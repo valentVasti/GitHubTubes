@@ -4,19 +4,21 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 public class Penyewaan {
-    public String id_Penyewaan;
-    public Customer customer;
-    public Kendaraan kendaraan;
-    public Transaksi transaksi;
-    public String id_Guide;
-    public int durasi;
-    public double total_Sewa;
+    private String id_Penyewaan;
+    private Customer customer;
+    private Transaksi transaksi;
+    private String id_Guide;
+    private int durasi;
+    private double total_Sewa;
     
-    public Penyewaan(String id_Penyewaan, Customer customer, Kendaraan kendaraan, Transaksi transaksi, String id_Guide, int durasi, double total_Sewa){
+    ArrayList<Kendaraan> listKendaraan = new ArrayList<>();
+    
+    public Penyewaan(String id_Penyewaan, Customer customer, Transaksi transaksi, String id_Guide, int durasi, double total_Sewa){
         this.id_Penyewaan = id_Penyewaan;
         this.customer = customer;
-        this.kendaraan = kendaraan;
         this.transaksi = transaksi;
         this.id_Guide = id_Guide;
         this.durasi = durasi;
@@ -33,10 +35,6 @@ public class Penyewaan {
     
     public Customer getCustomer(){
         return customer;
-    }
-    
-    public Kendaraan getKendaraan(){
-        return kendaraan;
     }
     
     public Transaksi getTransaksi(){
@@ -60,5 +58,9 @@ public class Penyewaan {
     public void setTotal_Sewa(double total_Sewa){
         this.total_Sewa = total_Sewa;
     }
-                                                                          
-}
+    
+    public void addKendaraan(Kendaraan k){
+        listKendaraan.add(k);
+    }
+}                                
+

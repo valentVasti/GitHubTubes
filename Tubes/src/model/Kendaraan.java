@@ -4,10 +4,20 @@
  */
 package model;
 
-/**
- *
- * @author RYZEN
- */
-public class Kendaraan {
+public abstract class Kendaraan {
+    private String id_Kendaraan;
+    private String jenis;
+    private String nama_Kendaraan;
+    private String platNo;
+    private String merk;
     
+    public Kendaraan(String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk){
+        this.id_Kendaraan = id_Kendaraan;
+        this.jenis = jenis;
+        this.nama_Kendaraan = nama_Kendaraan;
+        this.platNo = platNo;
+        this.merk = merk;
+    }
+    
+    public abstract void hitungTotalSewa();
 }
