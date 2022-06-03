@@ -60,4 +60,5 @@ public class Penyewaan {
     public void setTotal_Sewa(double total_Sewa){
         this.total_Sewa = total_Sewa;
     }
+    //asasasas
 }
