@@ -52,9 +52,19 @@ public class Customer {
         this.umur_Customer = umur_Customer;
     }
     
+    public String getTelp_Customer(){
+        return telp_Customer;
+    }
+    
+    public void setTelp_Customer(String telp_Customer){
+        this.telp_Customer = telp_Customer;
+    }
+    
     //mau Id atau nama aja?
     @Override
     public String toString(){
-        return nama_Customer;
+        String temp;
+        temp = id_Customer + " || " + nama_Customer;
+        return temp;
     }    
 }

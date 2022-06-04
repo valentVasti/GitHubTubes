@@ -5,8 +5,8 @@
 package model;
 
 public class Kendaraan_Motor extends Kendaraan{
-    public Kendaraan_Motor(String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk){
-        super(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk);
+    public Kendaraan_Motor(String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk, double tarif){
+        super(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, tarif);
     }
     
     @Override

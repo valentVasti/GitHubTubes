@@ -10,12 +10,14 @@ public abstract class Kendaraan {
     protected String nama_Kendaraan;
     protected String platNo;
     protected String merk;
+    protected double tarif;
     
-    public Kendaraan(String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk){
+    public Kendaraan(String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk, double tarif){
         this.id_Kendaraan = id_Kendaraan;
         this.jenis = jenis;
         this.nama_Kendaraan = nama_Kendaraan;
         this.platNo = platNo;
         this.merk = merk;
+        this.tarif = tarif;
     }
 } 
