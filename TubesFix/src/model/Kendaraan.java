@@ -18,6 +18,4 @@ public abstract class Kendaraan {
         this.platNo = platNo;
         this.merk = merk;
     }
-    
-    public abstract void hitungTotalSewa();
-}
+} 
