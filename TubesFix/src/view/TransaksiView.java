@@ -224,7 +224,6 @@ public class TransaksiView extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 51, 51), new java.awt.Color(255, 102, 102), new java.awt.Color(255, 102, 102), new java.awt.Color(255, 51, 51)), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 4)), "COMMAND", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Berlin Sans FB Demi", 1, 18), new java.awt.Color(51, 51, 51))); // NOI18N
-        jPanel4.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -240,18 +239,12 @@ public class TransaksiView extends javax.swing.JFrame {
         transaksiPanel.setBackground(new java.awt.Color(187, 187, 187));
 
         idTransaksiLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-        idTransaksiLabel.setForeground(new java.awt.Color(0, 0, 0));
         idTransaksiLabel.setText("ID Transaksi");
-
-        idTransaksiInput.setBackground(new java.awt.Color(255, 255, 255));
 
         penyewaanPanel.setBackground(new java.awt.Color(187, 187, 187));
 
         idPenyewaanLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-        idPenyewaanLabel.setForeground(new java.awt.Color(0, 0, 0));
         idPenyewaanLabel.setText("ID Penyewaan");
-
-        idPenyewaanInput.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout penyewaanPanelLayout = new javax.swing.GroupLayout(penyewaanPanel);
         penyewaanPanel.setLayout(penyewaanPanelLayout);
@@ -301,31 +294,22 @@ public class TransaksiView extends javax.swing.JFrame {
         tanggalPembayaranPanel1.setBackground(new java.awt.Color(187, 187, 187));
 
         tanggalPembayaranLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-        tanggalPembayaranLabel1.setForeground(new java.awt.Color(0, 0, 0));
         tanggalPembayaranLabel1.setText("Tanggal Pembayaran");
 
-        ddInput1.setBackground(new java.awt.Color(255, 255, 255));
         ddInput1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        ddInput2.setBackground(new java.awt.Color(255, 255, 255));
         ddInput2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        mmInput1.setBackground(new java.awt.Color(255, 255, 255));
         mmInput1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        mmInput2.setBackground(new java.awt.Color(255, 255, 255));
         mmInput2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        yyyyInput1.setBackground(new java.awt.Color(255, 255, 255));
         yyyyInput1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        yyyyInput2.setBackground(new java.awt.Color(255, 255, 255));
         yyyyInput2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        yyyyInput3.setBackground(new java.awt.Color(255, 255, 255));
         yyyyInput3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        yyyyInput4.setBackground(new java.awt.Color(255, 255, 255));
         yyyyInput4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
@@ -387,11 +371,9 @@ public class TransaksiView extends javax.swing.JFrame {
         statusPembayaranPanel.setBackground(new java.awt.Color(187, 187, 187));
 
         statusPembayaranLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-        statusPembayaranLabel.setForeground(new java.awt.Color(0, 0, 0));
         statusPembayaranLabel.setText("Status Pembayaran");
 
         sudahBayarBtn.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
-        sudahBayarBtn.setForeground(new java.awt.Color(0, 0, 0));
         sudahBayarBtn.setText("Sudah Bayar");
         sudahBayarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -400,7 +382,6 @@ public class TransaksiView extends javax.swing.JFrame {
         });
 
         belumBayarBtn.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
-        belumBayarBtn.setForeground(new java.awt.Color(0, 0, 0));
         belumBayarBtn.setText("Belum Bayar");
 
         javax.swing.GroupLayout statusPembayaranPanelLayout = new javax.swing.GroupLayout(statusPembayaranPanel);
@@ -430,12 +411,10 @@ public class TransaksiView extends javax.swing.JFrame {
         jenisPembayaranPanel.setBackground(new java.awt.Color(187, 187, 187));
 
         jenisPembayaranLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-        jenisPembayaranLabel.setForeground(new java.awt.Color(0, 0, 0));
         jenisPembayaranLabel.setText("Jenis Pembayaran");
 
         debitBtn.setBackground(new java.awt.Color(187, 187, 187));
         debitBtn.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
-        debitBtn.setForeground(new java.awt.Color(0, 0, 0));
         debitBtn.setText("Debit");
         debitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -444,7 +423,6 @@ public class TransaksiView extends javax.swing.JFrame {
         });
 
         cashBtn.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 12)); // NOI18N
-        cashBtn.setForeground(new java.awt.Color(0, 0, 0));
         cashBtn.setText("Cash");
         cashBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -480,7 +458,7 @@ public class TransaksiView extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

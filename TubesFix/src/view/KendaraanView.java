@@ -383,7 +383,7 @@ public class KendaraanView extends javax.swing.JFrame {
             ccInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ccInputLayout.createSequentialGroup()
                 .addComponent(jLabel9)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
             .addComponent(jTextField7)
         );
         ccInputLayout.setVerticalGroup(
