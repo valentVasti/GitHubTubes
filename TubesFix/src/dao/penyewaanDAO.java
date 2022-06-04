@@ -21,7 +21,7 @@ public class penyewaanDAO {
         
         String sql = "INSERT INTO penyewaan(id_Penyewaan, id_Customer, id_Kendaraan, id_Transaksi, id_Driver, durasi, total_Sewa)" // bakal dicek dulu
                 + "VALUES ('" +p.getId_Penyewaan()+ "', '" + p.getCustomer().getId_Customer()+ "','" + p.getKendaraan().getId()+ "', '"
-                + p.getTransaksi().getId_Transaksi() + "', '" + p.getId_Guide() + "', '" 
+                + p.getTransaksi().getId_Transaksi() + "', '" + p.getGuide().getId_Guide() + "', '" 
                 + p.getDurasi() + "', '" + p.getTotal_Sewa() + "')";
         
         System.out.println("Adding Penyewaan...");
@@ -41,7 +41,7 @@ public class penyewaanDAO {
     public void updatePenyewaan(Penyewaan p){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE penyewaan SET id_Customer = '" + p.getCustomer().getId_Customer()
+        String sql = "UPDATE penyewaan SET id_Penyewaan = '" + p.getCustomer().getId_Customer()
                 + "', id_Kendaraan = '" + p.getKendaraan().getId()
                 + "', id_Transaksi = '" + p.getTransaksi().getId_Transaksi()
                 + "', id_Guide = '" + p.getGuide().getId_Guide()
@@ -63,6 +63,7 @@ public class penyewaanDAO {
         dbCon.closeConnection();
     }
     
+    //belum selesai
     public List<Penyewaan> showPenyewaanBySearch(String query){
         con = dbCon.makeConnection();
         
@@ -75,7 +76,7 @@ public class penyewaanDAO {
 
         System.out.println("Mengambil data Customer...");
         
-        List<Customer> list = new ArrayList();
+        List<Penyewaan> list = new ArrayList();
         
         try {
             Statement statement = con.createStatement();
@@ -104,63 +105,6 @@ public class penyewaanDAO {
             return list;
     }
     
-    public void deleteCustomer(String id){
-        
-        con = dbCon.makeConnection();
-        
-        String sql = "DELETE FROM customer WHERE id_Customer = " + id + "";
-                
-        System.out.println("Deleting Customer...");
-        
-        try {
-            Statement statement = con.createStatement();
-            int result = statement.executeUpdate(sql);
-            System.out.println("Deleted " + result + " customer" + id);
-            statement.close();
-        } catch (Exception e) {
-            System.out.println("Error Deleting Customer...");
-            System.out.println(e);
-        }
-        
-        dbCon.closeConnection();
-    }  
-    
-    public List<Customer> showPembeli(){
-        con = dbCon.makeConnection();
-        
-        String sql = "SELECT * FROM customer";
-        System.out.println("Mengambil data customer...");
-        
-        List<Customer> list = new ArrayList();
-        
-        try {
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            
-            if (rs != null){
-                while (rs.next()){
-                        Customer c = new Customer(
-                            rs.getString("c.id_Customer"),
-                            rs.getString("c.nama_Customer"),
-                            rs.getString("c.alamat"),
-                            Integer.parseInt(rs.getString("c.umur")),
-                            rs.getString("c.no_Telp")
-                    );
-                    
-                    list.add(c);
-                    }
-                }
-                rs.close();
-                statement.close();
-            } catch (Exception e){
-                    System.out.println("Error reading database...");
-                    System.out.println(e);
-                    }
-        
-            dbCon.closeConnection();
-            
-            return list;
-        }
 //jfhjfhfjfhfhfh
     
 }
