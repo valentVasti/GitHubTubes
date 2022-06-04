@@ -10,17 +10,17 @@ public class Penyewaan {
     private String id_Penyewaan;
     private Customer customer;
     private Transaksi transaksi;
-    private String id_Guide;
+    private Guide guide;
+    private Kendaraan kendaraan;
     private int durasi;
     private double total_Sewa;
-    
-    ArrayList<Kendaraan> listKendaraan = new ArrayList<>();
-    
-    public Penyewaan(String id_Penyewaan, Customer customer, Transaksi transaksi, String id_Guide, int durasi, double total_Sewa){
+                
+    public Penyewaan(String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, int durasi, double total_Sewa){
         this.id_Penyewaan = id_Penyewaan;
         this.customer = customer;
         this.transaksi = transaksi;
-        this.id_Guide = id_Guide;
+        this.guide = guide;
+        this.kendaraan = kendaraan;
         this.durasi = durasi;
         this.total_Sewa = total_Sewa;
     }
@@ -41,7 +41,9 @@ public class Penyewaan {
         return transaksi;
     }
     
-    //getter sm setter guide masi belom tau
+    public Guide getGuide(){
+        return guide;
+    }
     
     public int getDurasi(){
         return durasi;
@@ -52,15 +54,17 @@ public class Penyewaan {
     }
     
     public double getTotal_Sewa(){
-        return total_Sewa;
+        double temp;
+        temp = durasi * kendaraan.tarif;
+        return temp;
     }
     
     public void setTotal_Sewa(double total_Sewa){
         this.total_Sewa = total_Sewa;
     }
     
-    public void addKendaraan(Kendaraan k){
-        listKendaraan.add(k);
+    public Kendaraan getKendaraan(){
+        return kendaraan;
     }
 }                                
 

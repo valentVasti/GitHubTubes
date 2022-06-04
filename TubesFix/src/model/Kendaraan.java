@@ -20,4 +20,6 @@ public abstract class Kendaraan {
         this.merk = merk;
         this.tarif = tarif;
     }
+    
+    public abstract String getId();
 } 

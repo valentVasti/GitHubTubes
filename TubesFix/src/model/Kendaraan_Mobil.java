@@ -9,6 +9,10 @@ public class Kendaraan_Mobil extends Kendaraan{
         super(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, tarif);
     }
     
+    public String getId(){
+        return id_Kendaraan;
+    }
+    
     @Override
     public String toString(){
         return nama_Kendaraan;
