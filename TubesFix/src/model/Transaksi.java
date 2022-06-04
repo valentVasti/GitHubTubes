@@ -4,10 +4,7 @@
  */
 package model;
 
-/**
- *
- * @author RYZEN
- */
 public class Transaksi {
-    
+    private String id_Transaksi;
+            
 }

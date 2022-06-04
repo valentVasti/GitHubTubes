@@ -5,11 +5,11 @@
 package model;
 
 public abstract class Kendaraan {
-    private String id_Kendaraan;
-    private String jenis;
-    private String nama_Kendaraan;
-    private String platNo;
-    private String merk;
+    protected String id_Kendaraan;
+    protected String jenis;
+    protected String nama_Kendaraan;
+    protected String platNo;
+    protected String merk;
     
     public Kendaraan(String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk){
         this.id_Kendaraan = id_Kendaraan;
