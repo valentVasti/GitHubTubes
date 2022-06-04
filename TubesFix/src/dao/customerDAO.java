@@ -100,7 +100,7 @@ public class customerDAO {
             return list;
     }
     
-    public void deleteCustomer(int id){
+    public void deleteCustomer(String id){
         
         con = dbCon.makeConnection();
         
