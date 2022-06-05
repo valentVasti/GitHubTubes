@@ -121,7 +121,7 @@ public class customerDAO {
         dbCon.closeConnection();
     }  
     
-    public List<Customer> showPembeli(){
+    public List<Customer> showCustomer(){
         con = dbCon.makeConnection();
         
         String sql = "SELECT * FROM customer";

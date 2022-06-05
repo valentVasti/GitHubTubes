@@ -19,7 +19,7 @@ public class penyewaanDAO {
     public void insertPenyewaan(Penyewaan p) {
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO penyewaan(id_Penyewaan, id_Customer, id_Kendaraan, id_Transaksi, id_Driver, durasi, total_Sewa)" // bakal dicek dulu
+        String sql = "INSERT INTO penyewaan(id_Penyewaan, id_Customer, id_Kendaraan, id_Transaksi, id_Guide, durasi, total_Sewa)" // bakal dicek dulu
                 + "VALUES ('" +p.getId_Penyewaan()+ "', '" + p.getCustomer().getId_Customer()+ "','" + p.getKendaraan().getId()+ "', '"
                 + p.getTransaksi().getId_Transaksi() + "', '" + p.getGuide().getId_Guide() + "', '" 
                 + p.getDurasi() + "', '" + p.getTotal_Sewa() + "')";
@@ -41,7 +41,8 @@ public class penyewaanDAO {
     public void updatePenyewaan(Penyewaan p){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE penyewaan SET id_Penyewaan = '" + p.getCustomer().getId_Customer()
+        String sql = "UPDATE penyewaan SET id_Penyewaan = '" + p.getId_Penyewaan()
+                + "', id_Customer = '" + p.getCustomer().getId_Customer()
                 + "', id_Kendaraan = '" + p.getKendaraan().getId()
                 + "', id_Transaksi = '" + p.getTransaksi().getId_Transaksi()
                 + "', id_Guide = '" + p.getGuide().getId_Guide()
@@ -63,13 +64,13 @@ public class penyewaanDAO {
         dbCon.closeConnection();
     }
     
-    //belum selesai
-    public List<Penyewaan> showPenyewaanBySearch(String query){
+    
+    public List<Penyewaan> showListPenyewaan(String query){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT c.* FROM customer as c WHERE (c.id_Customer LIKE"
+        String sql = "SELECT p.* FROM penyewaan as p WHERE (p.id_Penyewaan LIKE"
                 + "'%" + query + "%'"
-                + "OR c.nama_Customer LIKE '%" + query + "%'"
+                + "OR p.id_Customer LIKE '%" + query + "%'"
                 + "OR c.alamat LIKE '%" + query +"%'"
                 + "OR c.umur LIKE '%" + query + "%'"
                 + "OR c.no_Telp LIKE '%" + query + "%')";

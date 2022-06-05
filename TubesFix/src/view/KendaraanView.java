@@ -609,6 +609,7 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JPanel idKendaraanInput;
     private javax.swing.JPanel input;
     private javax.swing.JPanel input1;
+    private javax.swing.JPanel input2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -628,6 +629,8 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
