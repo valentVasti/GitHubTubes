@@ -8,8 +8,8 @@ public class Kendaraan_Motor extends Kendaraan{
     private String jenis_Helm;
     private String jenis_Stang;
 
-    public Kendaraan_Motor(String jenis_Helm, String jenis_Stang, String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk, double tarif) {
-        super(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, tarif);
+    public Kendaraan_Motor(String jenis_Helm, String jenis_Stang, String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk, String cc, double tarif) {
+        super(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, cc, tarif);
         this.jenis_Helm = jenis_Helm;
         this.jenis_Stang = jenis_Stang;
     }

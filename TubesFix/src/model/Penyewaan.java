@@ -11,17 +11,29 @@ public class Penyewaan {
     private Customer customer;
     private Transaksi transaksi;
     private Guide guide;
-    private Kendaraan kendaraan;
+    private Kendaraan_Mobil kendaraan_mobil;
+    private Kendaraan_Motor kendaraan_motor;
     private int durasi;
     private String jenis;
     private double total_Sewa;
 
-    public Penyewaan(String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, Kendaraan kendaraan, int durasi, String jenis, double total_Sewa) {
+    public Penyewaan(String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, Kendaraan_Mobil kendaraan_mobil, int durasi, String jenis, double total_Sewa) {
         this.id_Penyewaan = id_Penyewaan;
         this.customer = customer;
         this.transaksi = transaksi;
         this.guide = guide;
-        this.kendaraan = kendaraan;
+        this.kendaraan_mobil = kendaraan_mobil;
+        this.durasi = durasi;
+        this.jenis = jenis;
+        this.total_Sewa = total_Sewa;
+    }
+    
+    public Penyewaan(String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, Kendaraan_Motor kendaraan_motor, int durasi, String jenis, double total_Sewa) {
+        this.id_Penyewaan = id_Penyewaan;
+        this.customer = customer;
+        this.transaksi = transaksi;
+        this.guide = guide;
+        this.kendaraan_motor = kendaraan_motor;
         this.durasi = durasi;
         this.jenis = jenis;
         this.total_Sewa = total_Sewa;

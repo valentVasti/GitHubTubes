@@ -14,6 +14,9 @@ import model.Penyewaan;
 import model.Customer;
 import model.Guide;
 import model.Kendaraan;
+import model.Kendaraan_Mobil;
+import model.Kendaraan_Motor;
+import model.Transaksi;
 
 public class penyewaanDAO {
     private DbConnection dbCon = new DbConnection();
@@ -86,16 +89,16 @@ public class penyewaanDAO {
                 + "OR c.status_Pembayaran LIKE '%" + query + "%' "
                 + "OR g.nama_Guide LIKE '%" + query + "%' ";
         }else{
-                sql = "SELECT p.*, m.*, c.*, t.*, g.* FROM penyewaan as p JOIN motor as m ON m.id_kendaraan = p.id_kendaraan"
+                sql = "SELECT p.*, m.*, c.*, t.*, g.* FROM penyewaan as p JOIN motor as mt ON m.id_kendaraan = p.id_kendaraan"
                         + "JOIN customer c ON p.id_Customer = p.id_Customer"
                         + "JOIN transaksi t ON p.id_Transaksi = t.id_Transaksi"
                         + "JOIN guide g ON p.id_Guide = g.id_Guide";
                 sql+= "WHERE p.id_Penyewaan LIKE '%" + query  + "%' "
                 + "OR p.jenis LIKE '%" + query + "%' "
-                + "OR m.nama LIKE '%" + query + "%' "
-                + "OR m.jenis_helm LIKE '%" + query + "%' "
-                + "OR m.jenis_stang LIKE '%" + query + "%' "
-                + "OR m.cc '%" + query + "%' "
+                + "OR mt.nama LIKE '%" + query + "%' "
+                + "OR mt.jenis_helm LIKE '%" + query + "%' "
+                + "OR mt.jenis_stang LIKE '%" + query + "%' "
+                + "OR mt.cc '%" + query + "%' "
                 + "OR t.id_Transaksi LIKE '%" + query + "%' "
                 + "OR c.status_Pembayaran LIKE '%" + query + "%' "
                 + "OR g.nama_Guide LIKE '%" + query + "%' ";
@@ -112,17 +115,45 @@ public class penyewaanDAO {
             //String id_Penyewaan, Customer customer, Transaksi transaksi, 
             //Guide guide, Kendaraan kendaraan, int durasi, String jenis, double total_Sewa
             if (rs != null){
+                if(jenis.equalsIgnoreCase("Mobil"))
                 while (rs.next()){
                         Penyewaan p = new Penyewaan(
                             rs.getString("p.id_Penyewaan"),
+                                //Customer (id_Customer, nama_Customer, alamat_Customer, int umur_Customer, telp_Customer
                                 new Customer(
                                     rs.getString("c.id_Customer"),
-                                    rs.getString("c.alamat"),
-                                    rs.getString("c.")
+                                    rs.getString("c.nama_Customer"),
+                                    rs.getString("c.alamat_Customer"),
+                                    Integer.parseInt(rs.getString("c.umur_Customer")),
+                                    rs.getString("c.telp_Customer")
                                 ),
-                                rs.getString("c.alamat"),
-                                Integer.parseInt(rs.getString("c.umur")),
-                                rs.getString("c.no_Telp")
+                                // Transaksi (id_Transaksi, status_Pembayaran, jenis_Pembayaran, tanggal_Transaksi)
+                                new Transaksi(
+                                    rs.getString("t.id_Transaksi"),
+                                    rs.getString("t.status_Pembayaran"),
+                                    rs.getString("t.jenis_Pembayaran"),
+                                    rs.getString("t.tanggal_Transaksi")
+                                ),
+                                //Guide (id_Guide, nama_Guide, alamat_Guide, int umur_Guide, telp_Guide)
+                                new Guide(
+                                    rs.getString("g.id_Guide"),
+                                    rs.getString("g.nama_Guide"),
+                                    rs.getString("g.alamat_Guide"),
+                                    Integer.parseInt(rs.getString("g.umur_Guide")),
+                                    rs.getString("g.telp_Guide")
+                                ),
+                                new Kendaraan_Mobil(
+                                            rs.getString("m.id_Kendaraan"),
+                                            rs.getString("m.kapasitas_Mobil"),
+                                            rs.getString("m.jenis"),
+                                            rs.getString("m.nama"),
+                                            rs.getString("m.plat"),
+                                            rs.getString("m.merk"),
+                                            rs.getString("m.cc"),
+                                            Double.parseDouble(rs.getString("m.tarif"))
+                                )
+                                
+                                                     
                     );  
                     list.add(p);
                    }
