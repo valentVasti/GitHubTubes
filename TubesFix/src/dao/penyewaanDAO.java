@@ -162,6 +162,67 @@ public class penyewaanDAO {
             return list;
     }
     
+<<<<<<< Updated upstream
 //jfhjfhfjfhfhfh
+=======
+    public void deleteCustomer(String id){
+        
+        con = dbCon.makeConnection();
+        
+        String sql = "DELETE FROM customer WHERE id_Customer = " + id + "";
+                
+        System.out.println("Deleting Customer...");
+        
+        try {
+            Statement statement = con.createStatement();
+            int result = statement.executeUpdate(sql);
+            System.out.println("Deleted " + result + " customer" + id);
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Error Deleting Customer...");
+            System.out.println(e);
+        }
+        
+        dbCon.closeConnection();
+    }  
+    
+    public List<Customer> showPembeli(){
+        con = dbCon.makeConnection();
+        
+        String sql = "SELECT * FROM customer";
+        System.out.println("Mengambil data customer...");
+        
+        List<Customer> list = new ArrayList();
+        
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if (rs != null){
+                while (rs.next()){
+                        Customer c = new Customer(
+                            rs.getString("c.id_Customer"),
+                            rs.getString("c.nama_Customer"),
+                            rs.getString("c.alamat"),
+                            Integer.parseInt(rs.getString("c.umur")),
+                            rs.getString("c.no_Telp")
+                    );
+                    
+                    list.add(c);
+                    }
+                }
+                rs.close();
+                statement.close();
+            } catch (Exception e){
+                    System.out.println("Error reading database...");
+                    System.out.println(e);
+                    }
+        
+            dbCon.closeConnection();
+            
+            return list;
+        }
+
+>>>>>>> Stashed changes
     
 }
