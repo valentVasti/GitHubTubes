@@ -55,6 +55,14 @@ public class Kendaraan_Motor extends Kendaraan{
         return id_Kendaraan;
     }
     
+    public String getNamaKendaraan(){
+        return nama_Kendaraan;
+    }
+    
+    public String getMerkKendaraan(){
+        return merk;
+    }
+    
     @Override
     public String toString(){
         return nama_Kendaraan;
