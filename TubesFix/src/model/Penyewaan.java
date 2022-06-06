@@ -28,7 +28,7 @@ public class Penyewaan {
         this.total_Sewa = total_Sewa;
     }
     
-    public Penyewaan(String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, Kendaraan_Motor kendaraan_motor, int durasi, String jenis, double total_Sewa) {
+    public Penyewaan(String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, int durasi, String jenis, double total_Sewa, Kendaraan_Motor kendaraan_motor) {
         this.id_Penyewaan = id_Penyewaan;
         this.customer = customer;
         this.transaksi = transaksi;

@@ -151,9 +151,10 @@ public class penyewaanDAO {
                                             rs.getString("m.merk"),
                                             rs.getString("m.cc"),
                                             Double.parseDouble(rs.getString("m.tarif"))
-                                )
-                                
-                                                     
+                                ),
+                        rs.getString("p.durasi"),
+                        rs.getString("p.jenis"),
+                        Double.parseDouble(rs.getString("p.total_Sewa"))
                     );  
                     list.add(p);
                    }
