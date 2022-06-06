@@ -112,8 +112,6 @@ public class penyewaanDAO {
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             
-            //String id_Penyewaan, Customer customer, Transaksi transaksi, 
-            //Guide guide, Kendaraan kendaraan, int durasi, String jenis, double total_Sewa
             if (rs != null){
                 if(jenis.equalsIgnoreCase("Mobil")){
                 while (rs.next()){
