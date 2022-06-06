@@ -14,6 +14,9 @@ import model.Penyewaan;
 import model.Customer;
 import model.Guide;
 import model.Kendaraan;
+import model.Kendaraan_Mobil;
+import model.Kendaraan_Motor;
+import model.Transaksi;
 
 public class penyewaanDAO {
     private DbConnection dbCon = new DbConnection();
@@ -86,16 +89,16 @@ public class penyewaanDAO {
                 + "OR c.status_Pembayaran LIKE '%" + query + "%' "
                 + "OR g.nama_Guide LIKE '%" + query + "%' ";
         }else{
-                sql = "SELECT p.*, m.*, c.*, t.*, g.* FROM penyewaan as p JOIN motor as m ON m.id_kendaraan = p.id_kendaraan"
+                sql = "SELECT p.*, m.*, c.*, t.*, g.* FROM penyewaan as p JOIN motor as mt ON mt.id_kendaraan = p.id_kendaraan"
                         + "JOIN customer c ON p.id_Customer = p.id_Customer"
                         + "JOIN transaksi t ON p.id_Transaksi = t.id_Transaksi"
                         + "JOIN guide g ON p.id_Guide = g.id_Guide";
                 sql+= "WHERE p.id_Penyewaan LIKE '%" + query  + "%' "
                 + "OR p.jenis LIKE '%" + query + "%' "
-                + "OR m.nama LIKE '%" + query + "%' "
-                + "OR m.jenis_helm LIKE '%" + query + "%' "
-                + "OR m.jenis_stang LIKE '%" + query + "%' "
-                + "OR m.cc '%" + query + "%' "
+                + "OR mt.nama LIKE '%" + query + "%' "
+                + "OR mt.jenis_helm LIKE '%" + query + "%' "
+                + "OR mt.jenis_stang LIKE '%" + query + "%' "
+                + "OR mt.cc '%" + query + "%' "
                 + "OR t.id_Transaksi LIKE '%" + query + "%' "
                 + "OR c.status_Pembayaran LIKE '%" + query + "%' "
                 + "OR g.nama_Guide LIKE '%" + query + "%' ";
@@ -112,117 +115,139 @@ public class penyewaanDAO {
             //String id_Penyewaan, Customer customer, Transaksi transaksi, 
             //Guide guide, Kendaraan kendaraan, int durasi, String jenis, double total_Sewa
             if (rs != null){
+                if(jenis.equalsIgnoreCase("Mobil")){
                 while (rs.next()){
+                    Customer c = new Customer(
+                                    rs.getString("c.id_Customer"),
+                                    rs.getString("c.nama_Customer"),
+                                    rs.getString("c.alamat_Customer"),
+                                    Integer.parseInt(rs.getString("c.umur_Customer")),
+                                    rs.getString("c.telp_Customer")
+                                );
+                    
+                    Transaksi t = new Transaksi(
+                                    rs.getString("t.id_Transaksi"),
+                                    rs.getString("t.status_Pembayaran"),
+                                    rs.getString("t.jenis_Pembayaran"),
+                                    rs.getString("t.tanggal_Transaksi")
+                                );
+                    
+                    Guide g = new Guide(
+                                    rs.getString("g.id_Guide"),
+                                    rs.getString("g.nama_Guide"),
+                                    rs.getString("g.alamat_Guide"),
+                                    Integer.parseInt(rs.getString("g.umur_Guide")),
+                                    rs.getString("g.telp_Guide")
+                                );
+                    
+                    Kendaraan km = new Kendaraan_Mobil(
+                                            rs.getString("m.id_Kendaraan"),
+                                            rs.getString("m.kapasitas_Mobil"),
+                                            rs.getString("m.jenis"),
+                                            rs.getString("m.nama"),
+                                            rs.getString("m.plat"),
+                                            rs.getString("m.merk"),
+                                            rs.getString("m.cc"),
+                                            Double.parseDouble(rs.getString("m.tarif"))
+                                );
+                    
                         Penyewaan p = new Penyewaan(
                             rs.getString("p.id_Penyewaan"),
-                                new Customer(
-                                    rs.getString("c.id_Customer"),
-                                    rs.getString("c.alamat"),
-                                    rs.getString("c.")
-                                ),
-                                rs.getString("c.alamat"),
-                                Integer.parseInt(rs.getString("c.umur")),
-                                rs.getString("c.no_Telp")
+                                c,
+                                t,
+                                g,
+                                km,
+                        Integer.parseInt(rs.getString("p.durasi")),
+                        rs.getString("p.jenis"),
+                        Double.parseDouble(rs.getString("p.total_Sewa"))
                     );  
                     list.add(p);
                    }
                 }
                 rs.close();
                 statement.close();
-            } catch (Exception e){
-                    System.out.println("Error reading database ...");
-                    System.out.println(e);
-            }
-        try {
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql2);
-            
-            if (rs != null){
+                
+                }else{
+                
                 while (rs.next()){
-                        Customer c = new Customer(
-                            rs.getString("c.id_Customer"),
-                            rs.getString("c.nama_Customer"),
-                            rs.getString("c.alamat"),
-                            Integer.parseInt(rs.getString("c.umur")),
-                            rs.getString("c.no_Telp")
+                    Customer c = new Customer(
+                                    rs.getString("c.id_Customer"),
+                                    rs.getString("c.nama_Customer"),
+                                    rs.getString("c.alamat_Customer"),
+                                    Integer.parseInt(rs.getString("c.umur_Customer")),
+                                    rs.getString("c.telp_Customer")
+                                );
+                    
+                    Transaksi t = new Transaksi(
+                                    rs.getString("t.id_Transaksi"),
+                                    rs.getString("t.status_Pembayaran"),
+                                    rs.getString("t.jenis_Pembayaran"),
+                                    rs.getString("t.tanggal_Transaksi")
+                                );
+                    
+                    Guide g = new Guide(
+                                    rs.getString("g.id_Guide"),
+                                    rs.getString("g.nama_Guide"),
+                                    rs.getString("g.alamat_Guide"),
+                                    Integer.parseInt(rs.getString("g.umur_Guide")),
+                                    rs.getString("g.telp_Guide")
+                                );
+                    
+                    Kendaraan kt = new Kendaraan_Motor(
+                                            rs.getString("mt.jenis_Helm"),
+                                            rs.getString("mt.jenis_Stang"),
+                                            rs.getString("mt.id_Kendaraan"),
+                                            rs.getString("mt.jenis"),
+                                            rs.getString("mt.nama"),
+                                            rs.getString("mt.plat"),
+                                            rs.getString("mt.merk"),
+                                            rs.getString("mt.cc"),
+                                            Double.parseDouble(rs.getString("mt.tarif"))
+                                );
+                    
+                        Penyewaan p = new Penyewaan(
+                            rs.getString("p.id_Penyewaan"),
+                                c,
+                                t,
+                                g,
+                                kt,
+                        Integer.parseInt(rs.getString("p.durasi")),
+                        rs.getString("p.jenis"),
+                        Double.parseDouble(rs.getString("p.total_Sewa"))
                     );  
-                    list.add(c);
+                    list.add(p);
                    }
                 }
-                rs.close();
-                statement.close();
-            } catch (Exception e){
+                
+                } catch (Exception e){
                     System.out.println("Error reading database ...");
                     System.out.println(e);
             }
-        
         
             dbCon.closeConnection();
             
             return list;
+            
     }
     
-<<<<<<< Updated upstream
-//jfhjfhfjfhfhfh
-=======
-    public void deleteCustomer(String id){
+    public void deletePenyewaan(String id){
         
         con = dbCon.makeConnection();
         
-        String sql = "DELETE FROM customer WHERE id_Customer = " + id + "";
+        String sql = "DELETE FROM penyewaan WHERE id_Penyewaan = " + id + "";
                 
-        System.out.println("Deleting Customer...");
+        System.out.println("Deleting Penyewaan...");
         
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Deleted " + result + " customer" + id);
+            System.out.println("Deleted " + result + " Penyewaan" + id);
             statement.close();
         } catch (Exception e) {
-            System.out.println("Error Deleting Customer...");
+            System.out.println("Error Deleting Penyewaan...");
             System.out.println(e);
         }
         
         dbCon.closeConnection();
     }  
-    
-    public List<Customer> showPembeli(){
-        con = dbCon.makeConnection();
-        
-        String sql = "SELECT * FROM customer";
-        System.out.println("Mengambil data customer...");
-        
-        List<Customer> list = new ArrayList();
-        
-        try {
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            
-            if (rs != null){
-                while (rs.next()){
-                        Customer c = new Customer(
-                            rs.getString("c.id_Customer"),
-                            rs.getString("c.nama_Customer"),
-                            rs.getString("c.alamat"),
-                            Integer.parseInt(rs.getString("c.umur")),
-                            rs.getString("c.no_Telp")
-                    );
-                    
-                    list.add(c);
-                    }
-                }
-                rs.close();
-                statement.close();
-            } catch (Exception e){
-                    System.out.println("Error reading database...");
-                    System.out.println(e);
-                    }
-        
-            dbCon.closeConnection();
-            
-            return list;
-        }
-
->>>>>>> Stashed changes
-    
 }
