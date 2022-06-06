@@ -24,4 +24,6 @@ public abstract class Kendaraan {
     }
     
     public abstract String getId();
+    public abstract String getNamaKendaraan();
+    public abstract String getMerkKendaraan();
 } 
