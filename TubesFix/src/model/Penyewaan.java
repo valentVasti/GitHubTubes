@@ -13,58 +13,84 @@ public class Penyewaan {
     private Guide guide;
     private Kendaraan kendaraan;
     private int durasi;
+    private String jenis;
     private double total_Sewa;
-                
-    public Penyewaan(String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, int durasi, double total_Sewa){
+
+    public Penyewaan(String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, Kendaraan kendaraan, int durasi, String jenis, double total_Sewa) {
         this.id_Penyewaan = id_Penyewaan;
         this.customer = customer;
         this.transaksi = transaksi;
         this.guide = guide;
         this.kendaraan = kendaraan;
         this.durasi = durasi;
+        this.jenis = jenis;
         this.total_Sewa = total_Sewa;
     }
-    
-    public String getId_Penyewaan(){
+
+    public String getId_Penyewaan() {
         return id_Penyewaan;
     }
-    
-    public void setId_Penyewaan(){
+
+    public void setId_Penyewaan(String id_Penyewaan) {
         this.id_Penyewaan = id_Penyewaan;
     }
-    
-    public Customer getCustomer(){
+
+    public Customer getCustomer() {
         return customer;
     }
-    
-    public Transaksi getTransaksi(){
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Transaksi getTransaksi() {
         return transaksi;
     }
-    
-    public Guide getGuide(){
+
+    public void setTransaksi(Transaksi transaksi) {
+        this.transaksi = transaksi;
+    }
+
+    public Guide getGuide() {
         return guide;
     }
-    
-    public int getDurasi(){
+
+    public void setGuide(Guide guide) {
+        this.guide = guide;
+    }
+
+    public Kendaraan getKendaraan() {
+        return kendaraan;
+    }
+
+    public void setKendaraan(Kendaraan kendaraan) {
+        this.kendaraan = kendaraan;
+    }
+
+    public int getDurasi() {
         return durasi;
     }
-    
-    public void setDurasi(int durasi){
+
+    public void setDurasi(int durasi) {
         this.durasi = durasi;
     }
-    
-    public double getTotal_Sewa(){
-        double temp;
-        temp = durasi * kendaraan.tarif;
-        return temp;
+
+    public String getJenis() {
+        return jenis;
     }
-    
-    public void setTotal_Sewa(double total_Sewa){
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
+    }
+
+    public double getTotal_Sewa() {
+        return total_Sewa;
+    }
+
+    public void setTotal_Sewa(double total_Sewa) {
         this.total_Sewa = total_Sewa;
     }
     
-    public Kendaraan getKendaraan(){
-        return kendaraan;
-    }
+    
 }                                
 
