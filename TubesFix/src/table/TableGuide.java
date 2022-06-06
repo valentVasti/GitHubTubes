@@ -39,7 +39,7 @@ public class TableGuide extends AbstractTableModel{
             case 2: 
                 return list.get(rowIndex).getAlamat_Guide();
             case 3:
-                return list.get(rowIndex).getAlamat_Guide();
+                return list.get(rowIndex).getUmur_Guide();
             case 4:
                 return list.get(rowIndex).getTelp_Guide();
             default:
@@ -58,7 +58,7 @@ public class TableGuide extends AbstractTableModel{
             case 3:
                 return "Umur_Guide";
             case 4:
-                return "NomorTelp_Guide";
+                return "NomorTelp_Guide";   
             default:
                 return null;
         }
