@@ -89,7 +89,7 @@ public class penyewaanDAO {
                 + "OR c.status_Pembayaran LIKE '%" + query + "%' "
                 + "OR g.nama_Guide LIKE '%" + query + "%' ";
         }else{
-                sql = "SELECT p.*, m.*, c.*, t.*, g.* FROM penyewaan as p JOIN motor as mt ON m.id_kendaraan = p.id_kendaraan"
+                sql = "SELECT p.*, m.*, c.*, t.*, g.* FROM penyewaan as p JOIN motor as mt ON mt.id_kendaraan = p.id_kendaraan"
                         + "JOIN customer c ON p.id_Customer = p.id_Customer"
                         + "JOIN transaksi t ON p.id_Transaksi = t.id_Transaksi"
                         + "JOIN guide g ON p.id_Guide = g.id_Guide";
@@ -115,7 +115,7 @@ public class penyewaanDAO {
             //String id_Penyewaan, Customer customer, Transaksi transaksi, 
             //Guide guide, Kendaraan kendaraan, int durasi, String jenis, double total_Sewa
             if (rs != null){
-                if(jenis.equalsIgnoreCase("Mobil"))
+                if(jenis.equalsIgnoreCase("Mobil")){
                 while (rs.next()){
                     Customer c = new Customer(
                                     rs.getString("c.id_Customer"),
@@ -166,7 +166,58 @@ public class penyewaanDAO {
                 }
                 rs.close();
                 statement.close();
-            } catch (Exception e){
+                }else{
+                while (rs.next()){
+                    Customer c = new Customer(
+                                    rs.getString("c.id_Customer"),
+                                    rs.getString("c.nama_Customer"),
+                                    rs.getString("c.alamat_Customer"),
+                                    Integer.parseInt(rs.getString("c.umur_Customer")),
+                                    rs.getString("c.telp_Customer")
+                                );
+                    
+                    Transaksi t = new Transaksi(
+                                    rs.getString("t.id_Transaksi"),
+                                    rs.getString("t.status_Pembayaran"),
+                                    rs.getString("t.jenis_Pembayaran"),
+                                    rs.getString("t.tanggal_Transaksi")
+                                );
+                    
+                    Guide g = new Guide(
+                                    rs.getString("g.id_Guide"),
+                                    rs.getString("g.nama_Guide"),
+                                    rs.getString("g.alamat_Guide"),
+                                    Integer.parseInt(rs.getString("g.umur_Guide")),
+                                    rs.getString("g.telp_Guide")
+                                );
+                    
+                    Kendaraan kt = new Kendaraan_Motor(
+                                            rs.getString("mt.jenis_Helm"),
+                                            rs.getString("mt.jenis_Stang"),
+                                            rs.getString("mt.id_Kendaraan"),
+                                            rs.getString("mt.jenis"),
+                                            rs.getString("mt.nama"),
+                                            rs.getString("mt.plat"),
+                                            rs.getString("mt.merk"),
+                                            rs.getString("mt.cc"),
+                                            Double.parseDouble(rs.getString("mt.tarif"))
+                                );
+                    
+                        Penyewaan p = new Penyewaan(
+                            rs.getString("p.id_Penyewaan"),
+                                c,
+                                t,
+                                g,
+                                kt,
+                        Integer.parseInt(rs.getString("p.durasi")),
+                        rs.getString("p.jenis"),
+                        Double.parseDouble(rs.getString("p.total_Sewa"))
+                    );  
+                    list.add(p);
+                   }
+                }
+                
+                } catch (Exception e){
                     System.out.println("Error reading database ...");
                     System.out.println(e);
             }
@@ -174,6 +225,7 @@ public class penyewaanDAO {
             dbCon.closeConnection();
             
             return list;
+            
     }
     
 //jfhjfhfjfhfhfh

@@ -11,8 +11,7 @@ public class Penyewaan {
     private Customer customer;
     private Transaksi transaksi;
     private Guide guide;
-    private Kendaraan_Mobil kendaraan_mobil;
-    private Kendaraan_Motor kendaraan_motor;
+    private Kendaraan kendaraan;
     private int durasi;
     private String jenis;
     private double total_Sewa;
@@ -22,11 +21,76 @@ public class Penyewaan {
         this.customer = customer;
         this.transaksi = transaksi;
         this.guide = guide;
-        this.kendaraan_mobil = kendaraan_mobil;
+        this.kendaraan = kendaraan;
         this.durasi = durasi;
         this.jenis = jenis;
         this.total_Sewa = total_Sewa;
     }
+
+    public String getId_Penyewaan() {
+        return id_Penyewaan;
+    }
+
+    public void setId_Penyewaan(String id_Penyewaan) {
+        this.id_Penyewaan = id_Penyewaan;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Transaksi getTransaksi() {
+        return transaksi;
+    }
+
+    public void setTransaksi(Transaksi transaksi) {
+        this.transaksi = transaksi;
+    }
+
+    public Guide getGuide() {
+        return guide;
+    }
+
+    public void setGuide(Guide guide) {
+        this.guide = guide;
+    }
+
+    public Kendaraan getKendaraan() {
+        return kendaraan;
+    }
+
+    public void setKendaraan(Kendaraan kendaraan) {
+        this.kendaraan = kendaraan;
+    }
+
+    public int getDurasi() {
+        return durasi;
+    }
+
+    public void setDurasi(int durasi) {
+        this.durasi = durasi;
+    }
+
+    public String getJenis() {
+        return jenis;
+    }
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
+    }
+
+    public double getTotal_Sewa() {
+        return total_Sewa;
+    }
+
+    public void setTotal_Sewa(double total_Sewa) {
+        this.total_Sewa = total_Sewa;
+    }
+    
     
     
     
