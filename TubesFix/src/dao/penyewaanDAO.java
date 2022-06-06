@@ -117,32 +117,30 @@ public class penyewaanDAO {
             if (rs != null){
                 if(jenis.equalsIgnoreCase("Mobil"))
                 while (rs.next()){
-                        Penyewaan p = new Penyewaan(
-                            rs.getString("p.id_Penyewaan"),
-                                //Customer (id_Customer, nama_Customer, alamat_Customer, int umur_Customer, telp_Customer
-                                new Customer(
+                    Customer c = new Customer(
                                     rs.getString("c.id_Customer"),
                                     rs.getString("c.nama_Customer"),
                                     rs.getString("c.alamat_Customer"),
                                     Integer.parseInt(rs.getString("c.umur_Customer")),
                                     rs.getString("c.telp_Customer")
-                                ),
-                                // Transaksi (id_Transaksi, status_Pembayaran, jenis_Pembayaran, tanggal_Transaksi)
-                                new Transaksi(
+                                );
+                    
+                    Transaksi t = new Transaksi(
                                     rs.getString("t.id_Transaksi"),
                                     rs.getString("t.status_Pembayaran"),
                                     rs.getString("t.jenis_Pembayaran"),
                                     rs.getString("t.tanggal_Transaksi")
-                                ),
-                                //Guide (id_Guide, nama_Guide, alamat_Guide, int umur_Guide, telp_Guide)
-                                new Guide(
+                                );
+                    
+                    Guide g = new Guide(
                                     rs.getString("g.id_Guide"),
                                     rs.getString("g.nama_Guide"),
                                     rs.getString("g.alamat_Guide"),
                                     Integer.parseInt(rs.getString("g.umur_Guide")),
                                     rs.getString("g.telp_Guide")
-                                ),
-                                new Kendaraan_Mobil(
+                                );
+                    
+                    Kendaraan km = new Kendaraan_Mobil(
                                             rs.getString("m.id_Kendaraan"),
                                             rs.getString("m.kapasitas_Mobil"),
                                             rs.getString("m.jenis"),
@@ -151,8 +149,15 @@ public class penyewaanDAO {
                                             rs.getString("m.merk"),
                                             rs.getString("m.cc"),
                                             Double.parseDouble(rs.getString("m.tarif"))
-                                ),
-                        rs.getString("p.durasi"),
+                                );
+                    
+                        Penyewaan p = new Penyewaan(
+                            rs.getString("p.id_Penyewaan"),
+                                c,
+                                t,
+                                g,
+                                km,
+                        Integer.parseInt(rs.getString("p.durasi")),
                         rs.getString("p.jenis"),
                         Double.parseDouble(rs.getString("p.total_Sewa"))
                     );  
@@ -165,38 +170,13 @@ public class penyewaanDAO {
                     System.out.println("Error reading database ...");
                     System.out.println(e);
             }
-        try {
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql2);
-            
-            if (rs != null){
-                while (rs.next()){
-                        Customer c = new Customer(
-                            rs.getString("c.id_Customer"),
-                            rs.getString("c.nama_Customer"),
-                            rs.getString("c.alamat"),
-                            Integer.parseInt(rs.getString("c.umur")),
-                            rs.getString("c.no_Telp")
-                    );  
-                    list.add(c);
-                   }
-                }
-                rs.close();
-                statement.close();
-            } catch (Exception e){
-                    System.out.println("Error reading database ...");
-                    System.out.println(e);
-            }
-        
         
             dbCon.closeConnection();
             
             return list;
     }
     
-<<<<<<< Updated upstream
 //jfhjfhfjfhfhfh
-=======
     public void deleteCustomer(String id){
         
         con = dbCon.makeConnection();
@@ -255,6 +235,5 @@ public class penyewaanDAO {
             return list;
         }
 
->>>>>>> Stashed changes
     
 }
