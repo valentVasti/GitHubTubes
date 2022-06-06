@@ -71,12 +71,20 @@ public class Penyewaan {
         this.guide = guide;
     }
 
-    public Kendaraan getKendaraan() {
-        return kendaraan;
+    public Kendaraan_Mobil getKendaraan_mobil() {
+        return kendaraan_mobil;
     }
 
-    public void setKendaraan(Kendaraan kendaraan) {
-        this.kendaraan = kendaraan;
+    public void setKendaraan_mobil(Kendaraan_Mobil kendaraan_mobil) {
+        this.kendaraan_mobil = kendaraan_mobil;
+    }
+
+    public Kendaraan_Motor getKendaraan_motor() {
+        return kendaraan_motor;
+    }
+
+    public void setKendaraan_motor(Kendaraan_Motor kendaraan_motor) {
+        this.kendaraan_motor = kendaraan_motor;
     }
 
     public int getDurasi() {
@@ -95,10 +103,7 @@ public class Penyewaan {
         this.jenis = jenis;
     }
 
-    public double getTotal_Sewa() {
-        return total_Sewa;
-    }
-
+    
     public void setTotal_Sewa(double total_Sewa) {
         this.total_Sewa = total_Sewa;
     }
