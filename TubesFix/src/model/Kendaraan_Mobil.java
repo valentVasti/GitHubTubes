@@ -19,6 +19,14 @@ public class Kendaraan_Mobil extends Kendaraan{
     public void setKapasitas_Mobil(String kapasitas_Mobil) {
         this.kapasitas_Mobil = kapasitas_Mobil;
     }
+    
+    public String getId_Kendaraan() {
+        return id_Kendaraan;
+    }
+
+    public void setId_Kendaraan(String id_Kendaraan) {
+        this.id_Kendaraan = id_Kendaraan;
+    }
 
     public String getJenis() {
         return jenis;
@@ -50,6 +58,14 @@ public class Kendaraan_Mobil extends Kendaraan{
 
     public void setMerk(String merk) {
         this.merk = merk;
+    }
+    
+    public String getCC() {
+        return cc;
+    }
+
+    public void setCC(String cc) {
+        this.cc = cc;
     }
 
     public double getTarif() {

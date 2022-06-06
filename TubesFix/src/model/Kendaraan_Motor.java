@@ -69,6 +69,14 @@ public class Kendaraan_Motor extends Kendaraan{
     public void setMerk(String merk) {
         this.merk = merk;
     }
+    
+    public String getCC() {
+        return cc;
+    }
+
+    public void setCC(String cc) {
+        this.cc = cc;
+    }
 
     public double getTarif() {
         return tarif;
