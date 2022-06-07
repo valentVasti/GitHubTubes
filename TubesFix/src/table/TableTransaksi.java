@@ -5,11 +5,11 @@ import javax.swing.table.AbstractTableModel;
 import model.Transaksi;
 
 
-public class TabelTransaksi extends AbstractTableModel{
+public class TableTransaksi extends AbstractTableModel{
  
     private List<Transaksi> list;
     
-    public TabelTransaksi (List<Transaksi> list)
+    public TableTransaksi (List<Transaksi> list)
     {
         this.list = list;
     }
