@@ -5,7 +5,10 @@
         <group>
 <<<<<<< Updated upstream
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/GuideView.java</file>
+<<<<<<< Updated upstream
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/motorDAO.java</file>
+=======
+>>>>>>> Stashed changes
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/table/TableTransaksi.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/table/TableGuide.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/Control/guideControl.java</file>
