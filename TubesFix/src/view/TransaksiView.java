@@ -240,6 +240,7 @@ public class TransaksiView extends javax.swing.JFrame {
         idPenyewaanLabel.setText("ID Penyewaan");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         javax.swing.GroupLayout penyewaanPanelLayout = new javax.swing.GroupLayout(penyewaanPanel);
         penyewaanPanel.setLayout(penyewaanPanelLayout);
         penyewaanPanelLayout.setHorizontalGroup(
@@ -285,6 +286,8 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+=======
+>>>>>>> c15910b3c921931d6a7c58a1fab2400627e80cff
 =======
 >>>>>>> c15910b3c921931d6a7c58a1fab2400627e80cff
         tanggalPembayaranPanel1.setBackground(new java.awt.Color(187, 187, 187));
@@ -581,6 +584,9 @@ public class TransaksiView extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(transaksiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
+>>>>>>> c15910b3c921931d6a7c58a1fab2400627e80cff
+=======
 >>>>>>> c15910b3c921931d6a7c58a1fab2400627e80cff
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -604,6 +610,7 @@ public class TransaksiView extends javax.swing.JFrame {
                                 .addComponent(statusPembayaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jenisPembayaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tanggalPembayaranPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -611,6 +618,8 @@ public class TransaksiView extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
 =======
+=======
+>>>>>>> c15910b3c921931d6a7c58a1fab2400627e80cff
                                 .addComponent(jenisPembayaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
