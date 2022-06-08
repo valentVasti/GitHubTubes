@@ -75,6 +75,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="transaksiPanel" max="32767" attributes="0"/>
+<<<<<<< HEAD
+>>>>>>> c15910b3c921931d6a7c58a1fab2400627e80cff
+=======
 >>>>>>> c15910b3c921931d6a7c58a1fab2400627e80cff
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -508,6 +511,7 @@
                           </Group>
                       </Group>
 <<<<<<< HEAD
+<<<<<<< HEAD
                       <EmptySpace pref="26" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -579,6 +583,8 @@
               </Properties>
             </Component>
 =======
+=======
+>>>>>>> c15910b3c921931d6a7c58a1fab2400627e80cff
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
@@ -659,6 +665,9 @@
                 </Container>
               </SubComponents>
             </Container>
+<<<<<<< HEAD
+>>>>>>> c15910b3c921931d6a7c58a1fab2400627e80cff
+=======
 >>>>>>> c15910b3c921931d6a7c58a1fab2400627e80cff
           </SubComponents>
         </Container>
