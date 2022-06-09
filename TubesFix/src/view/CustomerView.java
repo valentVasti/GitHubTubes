@@ -206,7 +206,7 @@ public class CustomerView extends javax.swing.JFrame {
         logoLabel.setLayout(logoLabelLayout);
         logoLabelLayout.setHorizontalGroup(
             logoLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 152, Short.MAX_VALUE)
+            .addGap(0, 156, Short.MAX_VALUE)
         );
         logoLabelLayout.setVerticalGroup(
             logoLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,31 +551,17 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JTable customerTable;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
-    private javax.swing.JTable guideTable;
     private javax.swing.JPanel idCustomer;
     private javax.swing.JTextField idCustomerInput;
     private javax.swing.JLabel idCustomerLabel;
-    private javax.swing.JPanel idKendaraanInput;
-    private javax.swing.JPanel idKendaraanInput1;
-    private javax.swing.JPanel input;
-    private javax.swing.JPanel input1;
     private javax.swing.JPanel inputCustomer;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JPanel jenisInput;
     private javax.swing.JPanel logo;
     private javax.swing.JPanel logoLabel;
     private javax.swing.JPanel menu;
