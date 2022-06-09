@@ -6,6 +6,9 @@
 <<<<<<< Updated upstream
 <<<<<<< HEAD
         <group>
+<<<<<<< HEAD
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/penyewaanDAO.java</file>
+=======
 <<<<<<< Updated upstream
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/KendaraanView.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/TransaksiView.java</file>
@@ -24,6 +27,7 @@
             <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/table/TableGuide.java</file>
             <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/table/TablePenyewaan.java</file>
 >>>>>>> Stashed changes
+>>>>>>> 6b22e4d516e2d2a314fb24f4d6bcf8ff82a817e4
         </group>
 =======
         <group/>
