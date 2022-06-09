@@ -4,17 +4,63 @@
  */
 package view;
 
-/**
- *
- * @author bagas
- */
-public class CustomerView extends javax.swing.JFrame {
+import Control.CustomerControl;
+import model.Customer;
+import table.TableCustomer;
+import dao.customerDAO;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
-    /**
-     * Creates new form CustomerView
-     */
+public class CustomerView extends javax.swing.JFrame {
+    private CustomerControl customerControl;
+    
+    String action = null;
+    int selectedId = -1;
+    List<Customer> listCustomer;
+    
     public CustomerView() {
         initComponents();
+        setAddSearchComp(true);
+        setOthComp(false);
+        setEditDelComp(false);
+        customerControl = new CustomerControl();
+        showCustomer();
+    }
+    
+    public void setAddSearchComp(boolean value){
+        addBtn.setEnabled(value);
+        editBtn.setEnabled(value);
+        searchBtn.setEnabled(value);
+    }
+    
+    public void setOthComp(boolean value){
+        idCustomerInput.setEnabled(value);
+        namaCustomerInput.setEnabled(value);
+        alamatCustomerInput.setEnabled(value);
+        umurCustomerInput.setEnabled(value);
+        noTelpCustomerInput.setEnabled(value);
+        
+        saveBtn.setEnabled(value);
+        cancelBtn.setEnabled(value);
+    }
+    
+    public void setEditDelComp(boolean value){
+        editBtn.setEnabled(value);
+        deleteBtn.setEnabled(value);
+    }
+    
+    public void clearText(){
+        idCustomerInput.setText("");
+        namaCustomerInput.setText("");
+        alamatCustomerInput.setText("");
+        umurCustomerInput.setText("");
+        noTelpCustomerInput.setText("");
+    }
+    
+    public void showCustomer(){
+        TableCustomer.setModel(customerControl.showDataCustomer(action));
     }
 
     /**
