@@ -7,10 +7,7 @@ import java.util.List;
 import model.Customer;
 import java.sql.ResultSet;
 import table.TableCustomer;
-/**
- *
- * @author Thomas Dany H
- */
+
 public class CustomerControl {
     private customerDAO CDao = new customerDAO();
     public void insertDataCustomer(Customer c){

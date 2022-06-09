@@ -87,7 +87,8 @@ public class penyewaanDAO {
                 + "OR m.cc '%" + query + "%' "
                 + "OR t.id_Transaksi LIKE '%" + query + "%' "
                 + "OR c.status_Pembayaran LIKE '%" + query + "%' "
-                + "OR g.nama_Guide LIKE '%" + query + "%' ";
+                + "OR g.nama_Guide LIKE '%" + query + "%' "
+                + "OR p.total_Sewa LIKE '%" + query + "%' ";
         }else{
                 sql = "SELECT p.*, m.*, c.*, t.*, g.* FROM penyewaan as p JOIN motor as mt ON mt.id_kendaraan = p.id_kendaraan"
                         + "JOIN customer c ON p.id_Customer = p.id_Customer"
@@ -101,7 +102,8 @@ public class penyewaanDAO {
                 + "OR mt.cc '%" + query + "%' "
                 + "OR t.id_Transaksi LIKE '%" + query + "%' "
                 + "OR c.status_Pembayaran LIKE '%" + query + "%' "
-                + "OR g.nama_Guide LIKE '%" + query + "%' ";
+                + "OR g.nama_Guide LIKE '%" + query + "%' "
+                + "OR p.total_Sewa LIKE '%" + query + "%' ";
         }
         
         System.out.println("Mengambil data Penyewaan...");

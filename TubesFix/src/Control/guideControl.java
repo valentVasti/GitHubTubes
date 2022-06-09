@@ -10,10 +10,7 @@ import java.util.List;
 import model.Guide;
 import java.sql.ResultSet;
 import table.TableGuide;
-/**
- *
- * @author ASUS
- */
+
 public class guideControl {
     private guideDAO GDao = new guideDAO();
     

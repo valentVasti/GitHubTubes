@@ -4,6 +4,40 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+        <group>
+<<<<<<< HEAD
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/penyewaanDAO.java</file>
+=======
+<<<<<<< Updated upstream
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/KendaraanView.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/TransaksiView.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/GuideView.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/mobilDAO.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/model/Customer.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/Control/guideControl.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/PenyewaanView.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/Home.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/penyewaanDAO.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/model/Penyewaan.java</file>
+=======
+            <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/model/Kendaraan_Motor.java</file>
+            <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/model/Kendaraan.java</file>
+            <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/model/Kendaraan_Mobil.java</file>
+            <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/table/TableGuide.java</file>
+            <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/table/TablePenyewaan.java</file>
+>>>>>>> Stashed changes
+>>>>>>> 6b22e4d516e2d2a314fb24f4d6bcf8ff82a817e4
+        </group>
+=======
+        <group/>
+>>>>>>> 88e9bcde42e8a4ef4fcc9896aeb4492850c7bd56
+=======
+        <group/>
+>>>>>>> Stashed changes
+=======
+<<<<<<< HEAD
         <group/>
 =======
 <<<<<<< Updated upstream
@@ -33,6 +67,7 @@
         </group>
 >>>>>>> Stashed changes
 >>>>>>> 92aa24d9b65d46146cd8aaab3aab4e46c23440f1
+<<<<<<< HEAD
 =======
         <group>
             <file>file:/D:/Atma/Semester%204/Pemograman%20Berorientasi%20Objek/Tubes/Tubes%20Github/GitHubTubes/TubesFix/src/view/GuideView.java</file>
@@ -40,5 +75,8 @@
             <file>file:/D:/Atma/Semester%204/Pemograman%20Berorientasi%20Objek/Tubes/Tubes%20Github/GitHubTubes/TubesFix/src/view/CustomerView.java</file>
         </group>
 >>>>>>> Stashed changes
+=======
+>>>>>>> 0d435fbbdbe35b47dfd5f36706aa5055bcf2de4d
+>>>>>>> ebfc771f20a575298fa72ea75bd5ecf9294c2f56
     </open-files>
 </project-private>

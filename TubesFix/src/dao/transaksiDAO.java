@@ -16,7 +16,7 @@ public class transaksiDAO {
     private DbConnection dbCon = new DbConnection();
     private Connection con;
     
-    public void insertCustomer(Transaksi t) {
+    public void insertTransaksi(Transaksi t) {
         con = dbCon.makeConnection();
         
         String sql = "INSERT INTO transaksi(id_Transaksi, status_Pembayaran, jenis_Pembayaran, tanggal_Transaksi)"
@@ -37,7 +37,7 @@ public class transaksiDAO {
         dbCon.closeConnection();
     }
     
-    public void updateCustomer(Transaksi t){
+    public void updateTransaksi(Transaksi t){
         con = dbCon.makeConnection();
         
         String sql = "UPDATE transaksi SET status_Pembayaran = '" + t.getStatus_Pembayaran()
@@ -113,5 +113,43 @@ public class transaksiDAO {
             dbCon.closeConnection();
             
             return list;
-        }     
+        }
+    public List<Transaksi> showTransaksiBySearch(String query){
+        con = dbCon.makeConnection();
+        
+        String sql = "SELECT t.* FROM transaksi as g WHERE (g.id_Transaksi LIKE"
+                + "'%" + query + "%'"
+                + "OR t.status_Pembayaran LIKE '%" + query + "%'"
+                + "OR t.jenis_Pembayaran LIKE '%" + query +"%'"
+                + "OR t.tanggal_Transaksi LIKE '%" + query + "%')";
+
+        System.out.println("Mengambil data Transaksi...");
+        
+        List<Transaksi> list = new ArrayList();
+        
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if (rs != null){
+                while (rs.next()){
+                        Transaksi t = new Transaksi(
+                            rs.getString("t.id_Transaksi"),
+                            rs.getString("t.status_Pembayaran"),
+                            rs.getString("t.jenis_Pembayaran"),
+                            rs.getString("t.tanggal_Transaksi")                         
+                    );  
+                    list.add(t);
+                   }
+                }
+                rs.close();
+                statement.close();
+            } catch (Exception e){
+                    System.out.println("Error reading database ...");
+                    System.out.println(e);
+                    }
+            dbCon.closeConnection();
+            
+            return list;
+    }
 }

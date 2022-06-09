@@ -67,7 +67,7 @@ public class motorDAO {
         dbCon.closeConnection();
     }
     
-    public List<Kendaraan> showMotorBySearch(String query){
+    public List<Kendaraan_Motor> showMotorBySearch(String query){
         con = dbCon.makeConnection();
         
         String sql = "SELECT m.* FROM motor as m WHERE (m.id_Kendaraan LIKE"
@@ -83,7 +83,7 @@ public class motorDAO {
 
         System.out.println("Mengambil data Motor...");
         
-        List<Kendaraan> list = new ArrayList();
+        List<Kendaraan_Motor> list = new ArrayList();
         
         try {
             Statement statement = con.createStatement();
@@ -91,7 +91,7 @@ public class motorDAO {
             
             if (rs != null){
                 while (rs.next()){
-                        Kendaraan k = new Kendaraan_Motor(
+                        Kendaraan_Motor k = new Kendaraan_Motor(
                             rs.getString("mt.jenis_Helm"),
                             rs.getString("mt.jenis_Stang"),
                             rs.getString("mt.id_Kendaraan"),    
