@@ -18,7 +18,7 @@ public class guideControl {
         GDao.insertGuide(g);
     }
     
-    public List<Guide> showDataGuide(String jenis){
+    public List<Guide> showDataGuide(){
         List<Guide> dataGuide = GDao.showGuide();
         return dataGuide;
     }

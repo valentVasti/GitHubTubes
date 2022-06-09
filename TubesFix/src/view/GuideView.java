@@ -1,20 +1,61 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
-/**
- *
- * @author RYZEN
- */
+package view;
+
+import Control.guideControl;
+import java.beans.PropertyEditorManager;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+import model.Guide;
+import table.TableGuide;
+
 public class GuideView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PenyewaanView
-     */
+    private guideControl gControl;
+    
+    String action = null;
+    String selectedId = "";
+    List<Guide> listGuide;
+    
     public GuideView() {
         initComponents();
+        setAddSearchComp(true);
+        setOthComp(false);
+        setEditDelComp(false);
+        gControl = new guideControl();
+        showGuide();
     }
+    public void setAddSearchComp(boolean value){
+        addBtn.setEnabled(value);
+        searchBtn.setEnabled(value);
+        searchInput.setEnabled(value);
+    }
+    public void setOthComp(boolean value){
+        idInput.setEnabled(value);
+        namaInput.setEnabled(value);
+        alamatInput.setEnabled(value);
+        umurInput.setEnabled(value);
+        teleponInput.setEnabled(value);
+        
+        saveBtn.setEnabled(value);
+        cancelBtn.setEnabled(value);
+    }
+    public void setEditDelComp(boolean value){
+        editBtn.setEnabled(value);
+        deleteBtn.setEnabled(value);
+    }
+    public void clearText(){
+        idInput.setText("");
+        namaInput.setText("");
+        alamatInput.setText("");
+        umurInput.setText("");
+        teleponInput.setText("");
+    }
+    public void showGuide(){
+        guideTable.setModel((TableModel) gControl.showDataGuide());
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,18 +132,43 @@ public class GuideView extends javax.swing.JFrame {
 
         addBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         addBtn.setText("TAMBAH");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         deleteBtn.setText("HAPUS");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         saveBtn.setText("SIMPAN");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         cancelBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         cancelBtn.setText("BATAL");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -183,6 +249,11 @@ public class GuideView extends javax.swing.JFrame {
         jLabel5.setText("Telepon");
 
         searchBtn.setText("Cari");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -507,6 +578,71 @@ public class GuideView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        setOthComp(true);
+        ClearText();
+        action = "Tambah";
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        switch(getAnswer){
+            case 0:
+                try {
+                gControl.deleteGuide(selectedId);
+                ClearText();
+                showGuide();
+                setOthComp(false);
+                setAddSearchComp(true);
+                JOptionPane.showMessageDialog(this, "Berhasil menghapus data!");
+             
+            } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Gagal menghapus Guide");
+                    System.out.println("Error : "+e.getMessage());
+            }
+                break;
+            
+            case 1:
+                break;
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        setAddSearchComp(true);
+        setOthComp(false);
+        ClearText();
+        showGuide();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        int clickedRow = guideTable.getSelectedRow();
+        TableModel tableModel = guideTable.getModel();
+                
+        if(action.equals("Ubah")){
+            Guide g = new Guide(namaInput.getText(), 
+                        alamatInput.getText(),umurInput.getText(), teleponInput.getText());
+            gControl.updateGuide(g);
+        } else if(action.equals("Tambah")) {
+            Guide g = new Guide(idInput.getText(), namaInput.getText(), 
+                        alamatInput.getText(),umurInput.getText(), teleponInput.getText());
+            gControl.insertDataGuide(g);
+        }
+
+        clearText();
+        showGuide();
+        setOthComp(false);
+        setAddSearchComp(true);
+        setEditDelComp(false);      
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        
+    }//GEN-LAST:event_searchBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -586,4 +722,8 @@ public class GuideView extends javax.swing.JFrame {
     private javax.swing.JPanel titlePanel;
     private javax.swing.JTextField umurInput;
     // End of variables declaration//GEN-END:variables
+
+    private void ClearText() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
