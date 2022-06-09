@@ -21,7 +21,7 @@ public class penyewaanControl {
     
     public List<Penyewaan> showDataPenyewaan(String jenis){
         List<Penyewaan> dataPenyewaan = PDao.showPenyewaan();
-        return dataPenyewaan;
+        return dataPenyewaan+;
     }
     
     public TablePenyewaan showPenyewaan(String query, String Jenis) {
