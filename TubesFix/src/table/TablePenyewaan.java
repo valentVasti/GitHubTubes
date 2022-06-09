@@ -8,10 +8,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Penyewaan;
 import model.Kendaraan;
-/**
- *
- * @author bagas
- */
+
 public class TablePenyewaan extends AbstractTableModel{
      private List<Penyewaan> list;
     

@@ -17,7 +17,7 @@ public class mobilDAO {
     private DbConnection dbCon = new DbConnection();
     private Connection con;
     
-    public void insertMotor(Kendaraan_Mobil m) {
+    public void insertMobil(Kendaraan_Mobil m) {
         con = dbCon.makeConnection();
         
         String sql = "INSERT INTO mobil(id_Kendaraan, kapasitas_Mobil, jenis, nama_Kendaraan, platNo, merk, cc, tarif)" // bakal dicek dulu
@@ -65,7 +65,7 @@ public class mobilDAO {
         dbCon.closeConnection();
     }
     
-    public List<Kendaraan> showMobilBySearch(String query){
+    public List<Kendaraan_Mobil> showMobilBySearch(String query){
         con = dbCon.makeConnection();
         
         String sql = "SELECT m.* FROM mobil as m WHERE (m.id_Kendaraan LIKE"
@@ -80,7 +80,7 @@ public class mobilDAO {
 
         System.out.println("Mengambil data Mobil...");
         
-        List<Kendaraan> list = new ArrayList();
+        List<Kendaraan_Mobil> list = new ArrayList();
         
         try {
             Statement statement = con.createStatement();
@@ -88,7 +88,7 @@ public class mobilDAO {
             
             if (rs != null){
                 while (rs.next()){
-                        Kendaraan k = new Kendaraan_Mobil(
+                        Kendaraan_Mobil k = new Kendaraan_Mobil(
                             rs.getString("mt.kapasitas_Mobil"),
                             rs.getString("mt.id_Kendaraan"),    
                             rs.getString("mt.jenis"),
@@ -112,7 +112,7 @@ public class mobilDAO {
             return list;
     }
     
-    public void deleteMotor(String id){
+    public void deleteMobil(String id){
         
         con = dbCon.makeConnection();
         
