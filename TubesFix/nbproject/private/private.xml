@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/GuideView.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/table/TableTransaksi.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/PenyewaanView.java</file>
@@ -30,6 +31,12 @@
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/table/TableMobil.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/Control/KendaraanControl.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/customerDAO.java</file>
+=======
+            <file>file:/D:/POB/Tubessssss/GitHubTubes/TubesFix/src/dao/guideDAO.java</file>
+            <file>file:/D:/POB/Tubessssss/GitHubTubes/TubesFix/src/Control/guideControl.java</file>
+            <file>file:/D:/POB/Tubessssss/GitHubTubes/TubesFix/src/view/GuideView.java</file>
+            <file>file:/D:/POB/Tubessssss/GitHubTubes/TubesFix/src/model/Guide.java</file>
+>>>>>>> 67f8a3dca3b989ccd70c2a424330d12d40841d73
         </group>
     </open-files>
 </project-private>
