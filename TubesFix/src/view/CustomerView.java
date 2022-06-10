@@ -17,7 +17,7 @@ public class CustomerView extends javax.swing.JFrame {
     private CustomerControl customerControl;
     
     String action = null;
-    int selectedId = -1;
+    String selectedId = null;
     List<Customer> listCustomer;
     
     public CustomerView() {
@@ -60,7 +60,7 @@ public class CustomerView extends javax.swing.JFrame {
     }
     
     public void showCustomer(){
-        TableCustomer.setModel(customerControl.showDataCustomer(action));
+        customerTable.setModel(customerControl.showCustomer(""));
     }
 
     /**
@@ -125,18 +125,43 @@ public class CustomerView extends javax.swing.JFrame {
 
         addBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         addBtn.setText("TAMBAH");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         deleteBtn.setText("HAPUS");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         saveBtn.setText("SIMPAN");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         cancelBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         cancelBtn.setText("BATAL");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout commandLayout = new javax.swing.GroupLayout(command);
         command.setLayout(commandLayout);
@@ -295,6 +320,11 @@ public class CustomerView extends javax.swing.JFrame {
         );
 
         searchBtn.setText("Cari");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout inputCustomerLayout = new javax.swing.GroupLayout(inputCustomer);
         inputCustomer.setLayout(inputCustomerLayout);
@@ -348,6 +378,11 @@ public class CustomerView extends javax.swing.JFrame {
                 "", "", "", ""
             }
         ));
+        customerTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(customerTable);
 
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
@@ -574,12 +609,9 @@ public class CustomerView extends javax.swing.JFrame {
                 .addComponent(logoDalamPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(menuPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                    .addComponent(menuPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,6 +661,106 @@ public class CustomerView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idCustomerInputActionPerformed
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        setOthComp(true);
+        clearText();
+        action = "Tambah";
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        int clickedRow = customerTable.getSelectedRow();
+        TableModel tableModel = customerTable.getModel();
+        //(String id_Customer, String nama_Customer, String alamat_Customer, int umur_Customer, String telp_Customer)        
+        if(action.equals("Tambah")){
+            Customer c = new Customer(idCustomerInput.getText(), namaCustomerInput.getText(),
+            alamatCustomerInput.getText(), Integer.parseInt(umurCustomerInput.getText()), noTelpCustomerInput.getText());
+            customerControl.insertDataCustomer(c);
+        } else {
+            Customer c = new Customer(idCustomerInput.getText(), namaCustomerInput.getText(),
+            alamatCustomerInput.getText(), Integer.parseInt(umurCustomerInput.getText()), noTelpCustomerInput.getText());
+            customerControl.updateCustomer(c);
+        }
+
+        clearText();
+        showCustomer();
+        setOthComp(false);
+        setAddSearchComp(true);
+        setEditDelComp(false); 
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        setOthComp(true);
+        setAddSearchComp(false);
+        action = "Ubah";
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        setEditDelComp(false);
+        setOthComp(false);
+        setAddSearchComp(true);
+        
+        try {
+            TableCustomer customer = customerControl.showCustomer(searchInput.getText());
+            if(customer.getRowCount()==0){
+                clearText();
+                setEditDelComp(false);
+                JOptionPane.showConfirmDialog(null, "Data Tidak Ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            }else{
+                setEditDelComp(true);
+                customerTable.setModel(customer);
+            }
+            
+            clearText();
+        } catch (Exception e) {
+            System.out.println("Error : "+e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        switch(getAnswer){
+            case 0:
+                try {
+                customerControl.deleteCustomer(selectedId);
+                clearText();
+                showCustomer();
+                setOthComp(false);
+                setAddSearchComp(true);
+                JOptionPane.showMessageDialog(this, "Berhasil menghapus data!");
+             
+            } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Gagal menghapus pembeli");
+                    System.out.println("Error : "+e.getMessage());
+            }
+                break;
+            
+            case 1:
+                break;
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void customerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerTableMouseClicked
+        setEditDelComp(true);
+        setOthComp(false);
+                
+        int clickedRow = customerTable.getSelectedRow();
+        TableModel tableModel = customerTable.getModel();
+        
+        selectedId = tableModel.getValueAt(clickedRow, 0).toString();
+        idCustomerInput.setText(selectedId);
+        namaCustomerInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
+        alamatCustomerInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
+        umurCustomerInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
+        noTelpCustomerInput.setText(tableModel.getValueAt(clickedRow, 4).toString());
+    }//GEN-LAST:event_customerTableMouseClicked
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        setAddSearchComp(true);
+        setOthComp(false);
+        clearText();
+        showCustomer();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -675,35 +807,24 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JPanel header;
-    private javax.swing.JPanel headerPanel;
-    private javax.swing.JPanel headerPanel2;
     private javax.swing.JPanel idCustomer;
     private javax.swing.JTextField idCustomerInput;
     private javax.swing.JLabel idCustomerLabel;
     private javax.swing.JPanel inputCustomer;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JPanel logoDalamPanel;
     private javax.swing.JPanel logoDalamPanel1;
-    private javax.swing.JPanel logoDalamPanel2;
-    private javax.swing.JPanel logoLuarPanel;
     private javax.swing.JPanel logoLuarPanel1;
-    private javax.swing.JPanel logoLuarPanel2;
-    private javax.swing.JPanel menu1Panel;
     private javax.swing.JPanel menu1Panel1;
     private javax.swing.JPanel menu2Panel;
     private javax.swing.JPanel menu3Panel;
     private javax.swing.JPanel menu4Panel;
     private javax.swing.JPanel menu5Panel;
-    private javax.swing.JPanel menuPanel;
     private javax.swing.JPanel menuPanel1;
     private javax.swing.JPanel namaCustomer;
     private javax.swing.JTextField namaCustomerInput;

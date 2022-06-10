@@ -12,7 +12,7 @@ import table.TableGuide;
 
 public class GuideView extends javax.swing.JFrame {
 
-    private guideControl gControl;
+    private guideControl guideControl;
     
     String action = null;
     String selectedId = "";
@@ -23,7 +23,7 @@ public class GuideView extends javax.swing.JFrame {
         setAddSearchComp(true);
         setOthComp(false);
         setEditDelComp(false);
-        gControl = new guideControl();
+        guideControl = new guideControl();
         showGuide();
     }
     public void setAddSearchComp(boolean value){
@@ -53,7 +53,7 @@ public class GuideView extends javax.swing.JFrame {
         teleponInput.setText("");
     }
     public void showGuide(){
-        guideTable.setModel((TableModel) gControl.showDataGuide());
+        guideTable.setModel((TableModel) guideControl.showDataGuide());
     }
     
 
@@ -579,6 +579,7 @@ public class GuideView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        setAddSearchComp(false);
         setOthComp(true);
         ClearText();
         action = "Tambah";
@@ -589,7 +590,7 @@ public class GuideView extends javax.swing.JFrame {
         switch(getAnswer){
             case 0:
                 try {
-                gControl.deleteGuide(selectedId);
+                guideControl.deleteGuide(selectedId);
                 ClearText();
                 showGuide();
                 setOthComp(false);
@@ -617,15 +618,15 @@ public class GuideView extends javax.swing.JFrame {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         int clickedRow = guideTable.getSelectedRow();
         TableModel tableModel = guideTable.getModel();
-                
-        if(action.equals("Ubah")){
-            Guide g = new Guide(namaInput.getText(), 
-                        alamatInput.getText(),umurInput.getText(), teleponInput.getText());
-            gControl.updateGuide(g);
-        } else if(action.equals("Tambah")) {
-            Guide g = new Guide(idInput.getText(), namaInput.getText(), 
-                        alamatInput.getText(),umurInput.getText(), teleponInput.getText());
-            gControl.insertDataGuide(g);
+        //(String id_Guide, String nama_Guide, String alamat_Guide, int umur_Guide, String telp_Guide)        
+        if(action.equals("Tambah")){
+            Guide guide = new Guide(idInput.getText(), namaInput.getText(),alamatInput.getText(),
+                    Integer.parseInt(umurInput.getText()), teleponInput.getText());
+            guideControl.insertDataGuide(guide);
+        } else{
+            Guide guide = new Guide(idInput.getText(), namaInput.getText(),alamatInput.getText(),
+                    Integer.parseInt(umurInput.getText()), teleponInput.getText());
+            guideControl.updateGuide(guide);
         }
 
         clearText();
@@ -636,11 +637,31 @@ public class GuideView extends javax.swing.JFrame {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        
+        setOthComp(true);
+        setAddSearchComp(false);
+        action = "Ubah";        
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        setEditDelComp(false);
+        setOthComp(false);
+        setAddSearchComp(true);
         
+        try {
+            TableGuide guide = guideControl.showGuide(searchInput.getText());
+            if(guide.getRowCount()==0){
+                clearText();
+                setEditDelComp(false);
+                JOptionPane.showConfirmDialog(null, "Data Tidak Ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            }else{
+                setEditDelComp(true);
+                guideTable.setModel(guide);
+            }
+            
+            clearText();
+        } catch (Exception e) {
+            System.out.println("Error : "+e.getMessage());
+        }        
     }//GEN-LAST:event_searchBtnActionPerformed
 
     /**
