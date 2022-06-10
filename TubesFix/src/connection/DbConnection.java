@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 public class DbConnection {
    public static Connection CON;
    public static final String URL = "jdbc:mysql://";
-   public static final String PATH = "localhost:3306/b_8_rentalKendaraan";
+   public static final String PATH = "localhost:3306/b_8_rentalKendaraan.tb";
     
    public Connection makeConnection() {
        System.out.println("Opening Database...");
