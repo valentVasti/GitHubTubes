@@ -19,7 +19,7 @@ public class customerDAO {
     public void insertCustomer(Customer c) {
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO customer(id_Customer, nama_Customer, alamat, umur, no_Telp)" // bakal dicek dulu
+        String sql = "INSERT INTO customer(id_Customer, nama_Customer, alamat_Customer, umur_Customer, telp_Customer)" // bakal dicek dulu
                 + "VALUES ('" +c.getId_Customer()+ "', '" + c.getNama_Customer()+ "','" + c.getAlamat_Customer()+ "', '"
                 + c.getUmur_Customer() + "', '" + c.getTelp_Customer() + "')";
         
@@ -41,9 +41,10 @@ public class customerDAO {
         con = dbCon.makeConnection();
         
         String sql = "UPDATE customer SET nama_Customer = '" + c.getNama_Customer()
-                + "', alamat = '" + c.getAlamat_Customer()
-                + "', umur = '" + c.getUmur_Customer()
-                + "' WHERE id = '" + c.getId_Customer() + "'";
+                + "', alamat_Customer = '" + c.getAlamat_Customer()
+                + "', umur_Customer = '" + c.getUmur_Customer()
+                + "', telp_Customer = '" + c.getTelp_Customer()
+                + "' WHERE id_Customer = '" + c.getId_Customer() + "'";
         System.out.println("Editing Customer...");
         
         try {
@@ -65,9 +66,9 @@ public class customerDAO {
         String sql = "SELECT c.* FROM customer as c WHERE (c.id_Customer LIKE"
                 + "'%" + query + "%'"
                 + "OR c.nama_Customer LIKE '%" + query + "%'"
-                + "OR c.alamat LIKE '%" + query +"%'"
-                + "OR c.umur LIKE '%" + query + "%'"
-                + "OR c.no_Telp LIKE '%" + query + "%')";
+                + "OR c.alamat_Customer LIKE '%" + query +"%'"
+                + "OR c.umur_Customer LIKE '%" + query + "%'"
+                + "OR c.telp_Customer LIKE '%" + query + "%')";
 
         System.out.println("Mengambil data Customer...");
         
@@ -82,9 +83,9 @@ public class customerDAO {
                         Customer c = new Customer(
                             rs.getString("c.id_Customer"),
                             rs.getString("c.nama_Customer"),
-                            rs.getString("c.alamat"),
-                            Integer.parseInt(rs.getString("c.umur")),
-                            rs.getString("c.no_Telp")
+                            rs.getString("c.alamat_Customer"),
+                            Integer.parseInt(rs.getString("c.umur_Customer")),
+                            rs.getString("c.telp_Customer")
                     );  
                     list.add(c);
                    }
@@ -138,9 +139,9 @@ public class customerDAO {
                         Customer c = new Customer(
                             rs.getString("c.id_Customer"),
                             rs.getString("c.nama_Customer"),
-                            rs.getString("c.alamat"),
-                            Integer.parseInt(rs.getString("c.umur")),
-                            rs.getString("c.no_Telp")
+                            rs.getString("c.alamat_Customer"),
+                            Integer.parseInt(rs.getString("c.umur_Customer")),
+                            rs.getString("c.telp_Customer")
                     );
                     
                     list.add(c);
