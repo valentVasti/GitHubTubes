@@ -9,6 +9,10 @@ import javax.swing.table.AbstractTableModel;
  * @author Thomas Dany H
  */
 public class TableCustomer extends AbstractTableModel{
+
+    public static void setModel(List<Customer> showDataCustomer) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private List<Customer> list;
     
     public TableCustomer(List<Customer> list){

@@ -2,81 +2,41 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-<<<<<<< HEAD
         <group>
 <<<<<<< HEAD
-            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/penyewaanDAO.java</file>
-=======
-<<<<<<< Updated upstream
-            <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/KendaraanView.java</file>
-            <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/TransaksiView.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/GuideView.java</file>
-            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/mobilDAO.java</file>
-            <file>file:/D:/Github/GitHubTubes/TubesFix/src/model/Customer.java</file>
-            <file>file:/D:/Github/GitHubTubes/TubesFix/src/Control/guideControl.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/table/TableTransaksi.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/PenyewaanView.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/assets/customer.png</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/table/TableMotor.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/transaksiDAO.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/Control/transaksiControl.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/assets/car%20rent.png</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/TransaksiView.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/model/Customer.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/Home.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/penyewaanDAO.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/Control/penyewaanControl.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/guideDAO.java</file>
             <file>file:/D:/Github/GitHubTubes/TubesFix/src/model/Penyewaan.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/motorDAO.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/Control/CustomerControl.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/Control/guideControl.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/model/Kendaraan_Motor.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/KendaraanView.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/connection/DbConnection.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/mobilDAO.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/view/CustomerView.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/assets/car.png</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/table/TableMobil.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/Control/KendaraanControl.java</file>
+            <file>file:/D:/Github/GitHubTubes/TubesFix/src/dao/customerDAO.java</file>
 =======
-            <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/model/Kendaraan_Motor.java</file>
-            <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/model/Kendaraan.java</file>
-            <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/model/Kendaraan_Mobil.java</file>
-            <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/table/TableGuide.java</file>
-            <file>file:/C:/Users/bagas/OneDrive/Documents/GitHub/GitHubTubes/TubesFix/src/table/TablePenyewaan.java</file>
->>>>>>> Stashed changes
->>>>>>> 6b22e4d516e2d2a314fb24f4d6bcf8ff82a817e4
+            <file>file:/D:/POB/Tubessssss/GitHubTubes/TubesFix/src/dao/guideDAO.java</file>
+            <file>file:/D:/POB/Tubessssss/GitHubTubes/TubesFix/src/Control/guideControl.java</file>
+            <file>file:/D:/POB/Tubessssss/GitHubTubes/TubesFix/src/view/GuideView.java</file>
+            <file>file:/D:/POB/Tubessssss/GitHubTubes/TubesFix/src/model/Guide.java</file>
+>>>>>>> 67f8a3dca3b989ccd70c2a424330d12d40841d73
         </group>
-=======
-        <group/>
->>>>>>> 88e9bcde42e8a4ef4fcc9896aeb4492850c7bd56
-=======
-        <group/>
->>>>>>> Stashed changes
-=======
-<<<<<<< HEAD
-        <group/>
-=======
-<<<<<<< Updated upstream
-        <group/>
-=======
-        <group>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/model/Customer.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/view/KendaraanView.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/model/Transaksi.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/dao/guideDAO.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/model/Kendaraan_Motor.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/control/CustomerControl.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/dao/motorDAO.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/model/Penyewaan.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/dao/customerDAO.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/model/Guide.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/model/Kendaraan.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/table/TableGuide.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/dao/transaksiDAO.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/view/PenyewaanView.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/Exception/InputKosongException.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/dao/mobilDAO.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/view/GuideView.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/view/Home.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/dao/penyewaanDAO.java</file>
-            <file>file:/E:/backup%20hardisk%20old/Atma%20thingss/Sem%204/PBO/Teori/GitHubTubes/TubesFix/src/model/Kendaraan_Mobil.java</file>
-        </group>
->>>>>>> Stashed changes
->>>>>>> 92aa24d9b65d46146cd8aaab3aab4e46c23440f1
-<<<<<<< HEAD
-=======
-        <group>
-            <file>file:/D:/Atma/Semester%204/Pemograman%20Berorientasi%20Objek/Tubes/Tubes%20Github/GitHubTubes/TubesFix/src/view/GuideView.java</file>
-            <file>file:/D:/Atma/Semester%204/Pemograman%20Berorientasi%20Objek/Tubes/Tubes%20Github/GitHubTubes/TubesFix/src/view/TransaksiView.java</file>
-            <file>file:/D:/Atma/Semester%204/Pemograman%20Berorientasi%20Objek/Tubes/Tubes%20Github/GitHubTubes/TubesFix/src/view/CustomerView.java</file>
-        </group>
->>>>>>> Stashed changes
-=======
->>>>>>> 0d435fbbdbe35b47dfd5f36706aa5055bcf2de4d
->>>>>>> ebfc771f20a575298fa72ea75bd5ecf9294c2f56
     </open-files>
 </project-private>
