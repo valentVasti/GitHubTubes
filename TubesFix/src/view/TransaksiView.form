@@ -52,7 +52,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="commandPanel" max="32767" attributes="0"/>
-                  <Component id="contentPanel" pref="0" max="32767" attributes="0"/>
+                  <Component id="contentPanel" pref="517" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -207,7 +207,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="619" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="penyewaanPanel" alignment="0" max="32767" attributes="0"/>
@@ -218,6 +218,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jenisPembayaranPanel" max="32767" attributes="0"/>
                               <Component id="statusPembayaranPanel" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -228,16 +232,18 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="transaksiPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="penyewaanPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="tanggalPanel" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="statusPembayaranPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jenisPembayaranPanel" min="-2" max="-2" attributes="0"/>
@@ -319,7 +325,7 @@
                               <Component id="tanggalLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="155" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="tanggalInput" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jumlahPembayaranInput" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -331,7 +337,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="tanggalLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="tanggalInput" min="-2" max="-2" attributes="0"/>
+                      <Component id="jumlahPembayaranInput" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -343,12 +349,12 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Berlin Sans FB Demi" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tanggal Pembayaran"/>
+                <Property name="text" type="java.lang.String" value="Jumlah Pembayaran"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tanggalInput">
+            <Component class="javax.swing.JTextField" name="jumlahPembayaranInput">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tanggalInputActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jumlahPembayaranInputActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -370,7 +376,7 @@
                               <Component id="penyewaanLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="penyewaanInput" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tanggalTransaksiInut" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -382,7 +388,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="penyewaanLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="penyewaanInput" min="-2" max="-2" attributes="0"/>
+                      <Component id="tanggalTransaksiInut" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -394,12 +400,12 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Berlin Sans FB Demi" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ID Penyewaan"/>
+                <Property name="text" type="java.lang.String" value="Tanggal Transaksi"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="penyewaanInput">
+            <Component class="javax.swing.JTextField" name="tanggalTransaksiInut">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="penyewaanInputActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tanggalTransaksiInutActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -564,6 +570,41 @@
             </Component>
           </SubComponents>
         </Container>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextField1" pref="244" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextField1" pref="45" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="jTextField1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Lucida Sans Typewriter" size="24" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="headerPanel3">
@@ -586,7 +627,7 @@
                       <Component id="titlePanel" max="32767" attributes="0"/>
                       <Component id="menuPanel" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -628,7 +669,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
                       <Component id="logoLuarPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
