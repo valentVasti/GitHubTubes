@@ -6,6 +6,7 @@ package view;
 
 import Control.transaksiControl;
 import model.Transaksi;
+import model.Penyewaan;
 import table.TableTransaksi;
 import dao.transaksiDAO;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import javax.swing.table.TableModel;
 public class TransaksiView extends javax.swing.JFrame {
 
     private transaksiControl transaksiControl;
+    private Penyewaan p;
     
     String action = null;
     String selectedId = null;
@@ -29,17 +31,26 @@ public class TransaksiView extends javax.swing.JFrame {
         transaksiControl = new transaksiControl();
         showTransaksi();
     }
+    
+    public TransaksiView(Penyewaan p) {
+        initComponents();
+        setAddSearchComp(false);
+        setOthComp(true);
+        setEditDelComp(false);
+        transaksiControl = new transaksiControl();
+        this.p = p;
+        action = "Tambah";
+        showTransaksi();
+    }
     public void setAddSearchComp(boolean value){
         addBtn.setEnabled(value);
-        searchBtn.setEnabled(value);
-        searchInput.setEnabled(value);
+        //searchBtn.setEnabled(value);
+        //searchInput.setEnabled(value);
     }
     public void setOthComp(boolean value){
-        idInput.setEnabled(value);
-        namaInput.setEnabled(value);
-        alamatInput.setEnabled(value);
-        umurInput.setEnabled(value);
-        teleponInput.setEnabled(value);
+        idTransaksiInput.setEnabled(value);
+        tanggalTransaksiInput.setEnabled(value);
+        jumlahPembayaranInput.setEnabled(value);
         
         saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
@@ -49,14 +60,12 @@ public class TransaksiView extends javax.swing.JFrame {
         deleteBtn.setEnabled(value);
     }
     public void clearText(){
-        idInput.setText("");
-        namaInput.setText("");
-        alamatInput.setText("");
-        umurInput.setText("");
-        teleponInput.setText("");
+        idTransaksiInput.setText("");
+        tanggalTransaksiInput.setText("");
+        jumlahPembayaranInput.setText("");
     }
     public void showTransaksi(){
-        transaksiTabel.setModel((TableModel) transaksiControl.showTransaksi(""));
+        transaksiTable.setModel((TableModel) transaksiControl.showTransaksi(""));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -73,25 +82,27 @@ public class TransaksiView extends javax.swing.JFrame {
         contentPanel = new javax.swing.JPanel();
         transaksiPanel = new javax.swing.JPanel();
         transaksiLabel = new javax.swing.JLabel();
-        transaksiInput = new javax.swing.JTextField();
+        idTransaksiInput = new javax.swing.JTextField();
         tanggalPanel = new javax.swing.JPanel();
         tanggalLabel = new javax.swing.JLabel();
         jumlahPembayaranInput = new javax.swing.JTextField();
         penyewaanPanel = new javax.swing.JPanel();
         penyewaanLabel = new javax.swing.JLabel();
-        tanggalTransaksiInut = new javax.swing.JTextField();
+        tanggalTransaksiInput = new javax.swing.JTextField();
         statusPembayaranPanel = new javax.swing.JPanel();
-        sudahRbtn = new javax.swing.JRadioButton();
-        belumRbtn = new javax.swing.JRadioButton();
+        radioSudahBayar = new javax.swing.JRadioButton();
+        radioBelumBayar = new javax.swing.JRadioButton();
         statusPembayaranLabel1 = new javax.swing.JLabel();
         jenisPembayaranPanel = new javax.swing.JPanel();
         jenisPembayaranLabel = new javax.swing.JLabel();
-        cashRbtn = new javax.swing.JRadioButton();
-        debitRbtn = new javax.swing.JRadioButton();
+        radioCash = new javax.swing.JRadioButton();
+        radioDebit = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        transaksiTabel = new javax.swing.JTable();
+        transaksiTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        totalSewaField = new javax.swing.JTextField();
+        hitungPembayaranBtn = new javax.swing.JButton();
+        kembalianField = new javax.swing.JTextField();
         headerPanel3 = new javax.swing.JPanel();
         logoDalamPanel3 = new javax.swing.JPanel();
         logoLuarPanel3 = new javax.swing.JPanel();
@@ -127,6 +138,11 @@ public class TransaksiView extends javax.swing.JFrame {
 
         saveBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         saveBtn.setText("SIMPAN");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         cancelBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         cancelBtn.setText("BATAL");
@@ -171,9 +187,9 @@ public class TransaksiView extends javax.swing.JFrame {
         transaksiLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         transaksiLabel.setText("ID Transaksi");
 
-        transaksiInput.addActionListener(new java.awt.event.ActionListener() {
+        idTransaksiInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transaksiInputActionPerformed(evt);
+                idTransaksiInputActionPerformed(evt);
             }
         });
 
@@ -187,7 +203,7 @@ public class TransaksiView extends javax.swing.JFrame {
                     .addGroup(transaksiPanelLayout.createSequentialGroup()
                         .addComponent(transaksiLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(transaksiInput))
+                    .addComponent(idTransaksiInput))
                 .addContainerGap())
         );
         transaksiPanelLayout.setVerticalGroup(
@@ -196,7 +212,7 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(transaksiLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(transaksiInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(idTransaksiInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -239,9 +255,9 @@ public class TransaksiView extends javax.swing.JFrame {
         penyewaanLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         penyewaanLabel.setText("Tanggal Transaksi");
 
-        tanggalTransaksiInut.addActionListener(new java.awt.event.ActionListener() {
+        tanggalTransaksiInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tanggalTransaksiInutActionPerformed(evt);
+                tanggalTransaksiInputActionPerformed(evt);
             }
         });
 
@@ -255,7 +271,7 @@ public class TransaksiView extends javax.swing.JFrame {
                     .addGroup(penyewaanPanelLayout.createSequentialGroup()
                         .addComponent(penyewaanLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(tanggalTransaksiInut))
+                    .addComponent(tanggalTransaksiInput))
                 .addContainerGap())
         );
         penyewaanPanelLayout.setVerticalGroup(
@@ -264,19 +280,19 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(penyewaanLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tanggalTransaksiInut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tanggalTransaksiInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
         statusPembayaranPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        sudahRbtn.setBackground(new java.awt.Color(255, 255, 255));
-        radioStatusPembayaran.add(sudahRbtn);
-        sudahRbtn.setText("Sudah Bayar");
+        radioSudahBayar.setBackground(new java.awt.Color(255, 255, 255));
+        radioStatusPembayaran.add(radioSudahBayar);
+        radioSudahBayar.setText("Sudah Bayar");
 
-        belumRbtn.setBackground(new java.awt.Color(255, 255, 255));
-        radioStatusPembayaran.add(belumRbtn);
-        belumRbtn.setText("Belum Bayar");
+        radioBelumBayar.setBackground(new java.awt.Color(255, 255, 255));
+        radioStatusPembayaran.add(radioBelumBayar);
+        radioBelumBayar.setText("Belum Bayar");
 
         statusPembayaranLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         statusPembayaranLabel1.setText("Status Pembayaran");
@@ -288,8 +304,8 @@ public class TransaksiView extends javax.swing.JFrame {
             .addGroup(statusPembayaranPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(statusPembayaranPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sudahRbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(belumRbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioSudahBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioBelumBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(statusPembayaranLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -299,9 +315,9 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(statusPembayaranLabel1)
                 .addGap(12, 12, 12)
-                .addComponent(sudahRbtn)
+                .addComponent(radioSudahBayar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(belumRbtn)
+                .addComponent(radioBelumBayar)
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -310,16 +326,16 @@ public class TransaksiView extends javax.swing.JFrame {
         jenisPembayaranLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         jenisPembayaranLabel.setText("Jenis Pembayaran");
 
-        cashRbtn.setBackground(new java.awt.Color(255, 255, 255));
-        radioJenisPembayaran.add(cashRbtn);
-        cashRbtn.setText("Cash");
+        radioCash.setBackground(new java.awt.Color(255, 255, 255));
+        radioJenisPembayaran.add(radioCash);
+        radioCash.setText("Cash");
 
-        debitRbtn.setBackground(new java.awt.Color(255, 255, 255));
-        radioJenisPembayaran.add(debitRbtn);
-        debitRbtn.setText("Debit");
-        debitRbtn.addActionListener(new java.awt.event.ActionListener() {
+        radioDebit.setBackground(new java.awt.Color(255, 255, 255));
+        radioJenisPembayaran.add(radioDebit);
+        radioDebit.setText("Debit");
+        radioDebit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                debitRbtnActionPerformed(evt);
+                radioDebitActionPerformed(evt);
             }
         });
 
@@ -331,8 +347,8 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jenisPembayaranPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jenisPembayaranLabel)
-                    .addComponent(cashRbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(debitRbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(radioCash, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioDebit, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jenisPembayaranPanelLayout.setVerticalGroup(
@@ -341,13 +357,13 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jenisPembayaranLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cashRbtn)
+                .addComponent(radioCash)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(debitRbtn)
+                .addComponent(radioDebit)
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        transaksiTabel.setModel(new javax.swing.table.DefaultTableModel(
+        transaksiTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -358,12 +374,12 @@ public class TransaksiView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(transaksiTabel);
+        jScrollPane1.setViewportView(transaksiTable);
 
-        jTextField1.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 24)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        totalSewaField.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 24)); // NOI18N
+        totalSewaField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                totalSewaFieldActionPerformed(evt);
             }
         });
 
@@ -373,16 +389,31 @@ public class TransaksiView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(totalSewaField, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addComponent(totalSewaField, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        hitungPembayaranBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
+        hitungPembayaranBtn.setText("Hitung Pembayaran");
+        hitungPembayaranBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hitungPembayaranBtnActionPerformed(evt);
+            }
+        });
+
+        kembalianField.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 12)); // NOI18N
+        kembalianField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kembalianFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
@@ -393,10 +424,15 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                     .addGroup(contentPanelLayout.createSequentialGroup()
-                        .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(penyewaanPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(transaksiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tanggalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contentPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(hitungPembayaranBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(kembalianField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(penyewaanPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(transaksiPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tanggalPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(42, 42, 42)
                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jenisPembayaranPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -423,7 +459,11 @@ public class TransaksiView extends javax.swing.JFrame {
                         .addComponent(statusPembayaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jenisPembayaranPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hitungPembayaranBtn)
+                    .addComponent(kembalianField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
@@ -685,25 +725,78 @@ public class TransaksiView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void transaksiInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiInputActionPerformed
+    private void idTransaksiInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTransaksiInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_transaksiInputActionPerformed
+    }//GEN-LAST:event_idTransaksiInputActionPerformed
 
     private void jumlahPembayaranInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahPembayaranInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jumlahPembayaranInputActionPerformed
 
-    private void tanggalTransaksiInutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggalTransaksiInutActionPerformed
+    private void tanggalTransaksiInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggalTransaksiInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tanggalTransaksiInutActionPerformed
+    }//GEN-LAST:event_tanggalTransaksiInputActionPerformed
 
-    private void debitRbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debitRbtnActionPerformed
+    private void radioDebitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioDebitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_debitRbtnActionPerformed
+    }//GEN-LAST:event_radioDebitActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        int clickedRow = transaksiTable.getSelectedRow();
+        TableModel tableModel = transaksiTable.getModel();
+        String status = null, jenis = null;
+        //(String id_Transaksi, String status_Pembayaran, String jenis_Pembayaran, String tanggal_Transaksi)
+
+        if(radioSudahBayar.isSelected()){
+            status = "Sudah Bayar";
+        }else if (radioBelumBayar.isSelected()){
+            status = "Belum Bayar";
+        }
+        
+        if(radioCash.isSelected()){
+            jenis = "Cash";
+        }else if(radioDebit.isSelected()){
+            jenis = "Debit";
+        }
+        
+        if(action.equals("Tambah")){
+            Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
+                    tanggalTransaksiInput.getText());
+            transaksiControl.insertDataTransaksi(transaksi);
+        } else{
+            Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
+                    tanggalTransaksiInput.getText());
+            transaksiControl.insertDataTransaksi(transaksi);
+        }
+
+        clearText();
+        //balik ke view Penyewaan bisa tambahin j
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void hitungPembayaranBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungPembayaranBtnActionPerformed
+        double kembalian;
+        
+        do{
+            kembalian = Double.parseDouble(jumlahPembayaranInput.getText()) - Double.parseDouble(totalSewaField.getText());
+
+            if(kembalian < 0){
+                JOptionPane.showMessageDialog(this, "Uang Kurang!");
+                jumlahPembayaranInput.setText("");
+            }else if(kembalian >= 0){
+                kembalianField.setText(Double.toString(kembalian));
+                radioSudahBayar.setSelected(true);
+            }            
+        }while(kembalian < 0);
+
+    }//GEN-LAST:event_hitungPembayaranBtnActionPerformed
+
+    private void kembalianFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalianFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_kembalianFieldActionPerformed
+
+    private void totalSewaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalSewaFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalSewaFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -742,15 +835,14 @@ public class TransaksiView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
-    private javax.swing.JRadioButton belumRbtn;
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JRadioButton cashRbtn;
     private javax.swing.JPanel commandPanel;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JRadioButton debitRbtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JPanel headerPanel3;
+    private javax.swing.JButton hitungPembayaranBtn;
+    private javax.swing.JTextField idTransaksiInput;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -759,10 +851,10 @@ public class TransaksiView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel jenisPembayaranLabel;
     private javax.swing.JPanel jenisPembayaranPanel;
     private javax.swing.JTextField jumlahPembayaranInput;
+    private javax.swing.JTextField kembalianField;
     private javax.swing.JPanel logoDalamPanel3;
     private javax.swing.JPanel logoLuarPanel3;
     private javax.swing.JPanel menu1Panel;
@@ -773,20 +865,23 @@ public class TransaksiView extends javax.swing.JFrame {
     private javax.swing.JPanel menuPanel;
     private javax.swing.JLabel penyewaanLabel;
     private javax.swing.JPanel penyewaanPanel;
+    private javax.swing.JRadioButton radioBelumBayar;
+    private javax.swing.JRadioButton radioCash;
+    private javax.swing.JRadioButton radioDebit;
     private javax.swing.ButtonGroup radioJenisPembayaran;
     private javax.swing.ButtonGroup radioStatusPembayaran;
+    private javax.swing.JRadioButton radioSudahBayar;
     private javax.swing.JButton saveBtn;
     private javax.swing.JLabel statusPembayaranLabel1;
     private javax.swing.JPanel statusPembayaranPanel;
-    private javax.swing.JRadioButton sudahRbtn;
     private javax.swing.JLabel tanggalLabel;
     private javax.swing.JPanel tanggalPanel;
-    private javax.swing.JTextField tanggalTransaksiInut;
+    private javax.swing.JTextField tanggalTransaksiInput;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
-    private javax.swing.JTextField transaksiInput;
+    private javax.swing.JTextField totalSewaField;
     private javax.swing.JLabel transaksiLabel;
     private javax.swing.JPanel transaksiPanel;
-    private javax.swing.JTable transaksiTabel;
+    private javax.swing.JTable transaksiTable;
     // End of variables declaration//GEN-END:variables
 }
