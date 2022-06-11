@@ -24,7 +24,7 @@ public class penyewaanControl {
         return dataPenyewaan;
     }
     
-    public TablePenyewaan showPenyewaan(String query, String Jenis) {
+    public TablePenyewaan showPenyewaan(String query) {
         
         List<Penyewaan> dataPenyewaanMb = PDao.showListPenyewaan(query, "Mobil");
         List<Penyewaan> dataPenyewaanMt = PDao.showListPenyewaan(query, "Motor");
@@ -41,7 +41,7 @@ public class penyewaanControl {
     public void updateCustomer(Penyewaan p){
         PDao.updatePenyewaan(p);
     }
-    public void deleteTransaksi(String id){
+    public void deletePenyewaan(String id){
         PDao.deletePenyewaan(id);
     }
 }

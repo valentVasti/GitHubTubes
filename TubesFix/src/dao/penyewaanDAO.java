@@ -161,7 +161,7 @@ public class penyewaanDAO {
                         rs.getString("p.jenis"),
                         Double.parseDouble(rs.getString("p.total_Sewa"))
                     );  
-                    listMobil.add(p);
+                    list.add(p);
                    }
                 }
                 rs.close();
@@ -215,7 +215,7 @@ public class penyewaanDAO {
                         rs.getString("p.jenis"),
                         Double.parseDouble(rs.getString("p.total_Sewa"))
                     );  
-                    listMotor.add(p);
+                    list.add(p);
                    }
                 }
                 

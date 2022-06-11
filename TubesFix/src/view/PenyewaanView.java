@@ -65,7 +65,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     }
     
     public void showPenyewaan(){
-        penyewaanTabel1.setModel(penyewaanControl.showPenyewaan("", "Motor"));
+        penyewaanTabel1.setModel(penyewaanControl.showPenyewaan(""));
     }
     
 
@@ -417,12 +417,27 @@ public class PenyewaanView extends javax.swing.JFrame {
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         deleteBtn.setText("HAPUS");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         saveBtn.setText("SIMPAN");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         cancelBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         cancelBtn.setText("BATAL");
@@ -764,14 +779,14 @@ public class PenyewaanView extends javax.swing.JFrame {
         setAddSearchComp(true);
 
         try {
-            TableGuide guide = guideControl.showGuideBySearch(searchInput.getText());
-            if(guide.getRowCount()==0){
+            TablePenyewaan penyewaan = penyewaanControl.showPenyewaan(searchInput.getText());
+            if(penyewaan.getRowCount()==0){
                 clearText();
                 setEditDelComp(false);
                 JOptionPane.showConfirmDialog(null, "Data Tidak Ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
             }else{
                 setEditDelComp(true);
-                guideTable.setModel(guide);
+                penyewaanTabel1.setModel(penyewaan);
             }
 
             clearText();
@@ -779,6 +794,41 @@ public class PenyewaanView extends javax.swing.JFrame {
             System.out.println("Error : "+e.getMessage());
         }
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        setOthComp(true);
+        setAddSearchComp(false);
+        action = "Ubah";
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        switch(getAnswer){
+            case 0:
+                try {
+                penyewaanControl.deletePenyewaan(selectedId);
+                clearText();
+                showPenyewaan();
+                setOthComp(false);
+                setAddSearchComp(true);
+                JOptionPane.showMessageDialog(this, "Berhasil menghapus data!");
+             
+            } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Gagal menghapus pembeli");
+                    System.out.println("Error : "+e.getMessage());
+            }
+                break;
+            
+            case 1:
+                break;
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     /**
      * @param args the command line arguments
