@@ -5,18 +5,69 @@ package view;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-/**
- *
- * @author RYZEN
- */
-public class PenyewaanView extends javax.swing.JFrame {
+import Control.penyewaanControl;
+import model.Penyewaan;
+import table.TablePenyewaan;
+import dao.penyewaanDAO;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
-    /**
-     * Creates new form PenyewaanView
-     */
+public class PenyewaanView extends javax.swing.JFrame {
+    private penyewaanControl penyewaanControl;
+    
+    String action = null;
+    String selectedId = null;
+    List<Penyewaan> listPenyewaan;
+    
     public PenyewaanView() {
         initComponents();
+        setAddSearchComp(true);
+        setOthComp(false);
+        setEditDelComp(false);
+        penyewaanControl = new penyewaanControl();
+        showPenyewaan();
     }
+    
+    public void setAddSearchComp(boolean value){
+        addBtn.setEnabled(value);
+        editBtn.setEnabled(value);
+        searchBtn.setEnabled(value);
+    }
+    
+    public void setOthComp(boolean value){
+        penyewaanInput.setEnabled(value);
+        pilihDropDown.setEnabled(value);
+        mobilRb.setEnabled(value);
+        motorRb.setEnabled(value);
+        durasiInput.setEnabled(value);
+        mobilBox.setEnabled(value);
+        motorBox.setEnabled(value);
+        
+        saveBtn.setEnabled(value);
+        cancelBtn.setEnabled(value);
+    }
+    
+    public void setEditDelComp(boolean value){
+        editBtn.setEnabled(value);
+        deleteBtn.setEnabled(value);
+    }
+    
+    public void clearText(){
+        pilihDropDown.setSelectedItem(ABORT);
+        motorBox.setSelectedItem(ABORT);
+        mobilBox.setSelectedItem(ABORT);
+        penyewaanInput.setText("");
+        durasiInput.setText("");
+        mobilRb.setSelected(false);
+        motorRb.setSelected(false);
+    }
+    
+    public void showPenyewaan(){
+        penyewaanTabel1.setModel(penyewaanControl.showPenyewaan("", "Motor"));
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,20 +89,22 @@ public class PenyewaanView extends javax.swing.JFrame {
         penyewaanInput = new javax.swing.JTextField();
         pilihCusPanel = new javax.swing.JPanel();
         pilihCusLabel = new javax.swing.JLabel();
-        pilihCusCombox = new javax.swing.JComboBox<>();
-        pilKendPanel = new javax.swing.JPanel();
-        pilKendLabel = new javax.swing.JLabel();
-        pilKendMotorRb = new javax.swing.JRadioButton();
-        pilKendMobilRb = new javax.swing.JRadioButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        pilihDropDown = new javax.swing.JComboBox<>();
         durasiPanel = new javax.swing.JPanel();
         durasiLabel = new javax.swing.JLabel();
         durasiInput = new javax.swing.JTextField();
+        pilKendPanel = new javax.swing.JPanel();
+        pilKendLabel = new javax.swing.JLabel();
+        motorRb = new javax.swing.JRadioButton();
+        mobilRb = new javax.swing.JRadioButton();
+        motorBox = new javax.swing.JComboBox<>();
+        mobilBox = new javax.swing.JComboBox<>();
         rekapPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        searchInput = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         commandPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
@@ -122,11 +175,9 @@ public class PenyewaanView extends javax.swing.JFrame {
             .addGroup(idPenyewaanPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(idPenyewaanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(idPenyewaanPanelLayout.createSequentialGroup()
-                        .addComponent(penyewaanLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(penyewaanInput))
-                .addContainerGap())
+                    .addComponent(penyewaanLabel)
+                    .addComponent(penyewaanInput, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         idPenyewaanPanelLayout.setVerticalGroup(
             idPenyewaanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +194,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         pilihCusLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         pilihCusLabel.setText("Pilih Customer");
 
-        pilihCusCombox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pilihDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout pilihCusPanelLayout = new javax.swing.GroupLayout(pilihCusPanel);
         pilihCusPanel.setLayout(pilihCusPanelLayout);
@@ -152,11 +203,9 @@ public class PenyewaanView extends javax.swing.JFrame {
             .addGroup(pilihCusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pilihCusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pilihCusPanelLayout.createSequentialGroup()
-                        .addComponent(pilihCusLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(pilihCusCombox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(pilihCusLabel)
+                    .addComponent(pilihDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pilihCusPanelLayout.setVerticalGroup(
             pilihCusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,39 +213,44 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pilihCusLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pilihCusCombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pilihDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
+
+        durasiPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        durasiLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        durasiLabel.setText("Durasi Penyewaan");
 
         pilKendPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         pilKendLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         pilKendLabel.setText("Pilih Kendaraan");
 
-        pilKendMotorRb.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
-        pilKendMotorRb.setText("Motor");
-        pilKendMotorRb.addActionListener(new java.awt.event.ActionListener() {
+        motorRb.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        motorRb.setText("Motor");
+        motorRb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pilKendMotorRbActionPerformed(evt);
+                motorRbActionPerformed(evt);
             }
         });
 
-        pilKendMobilRb.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
-        pilKendMobilRb.setText("Mobil");
-        pilKendMobilRb.addActionListener(new java.awt.event.ActionListener() {
+        mobilRb.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
+        mobilRb.setText("Mobil");
+        mobilRb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pilKendMobilRbActionPerformed(evt);
+                mobilRbActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        motorBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        motorBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                motorBoxActionPerformed(evt);
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        mobilBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout pilKendPanelLayout = new javax.swing.GroupLayout(pilKendPanel);
         pilKendPanel.setLayout(pilKendPanelLayout);
@@ -208,14 +262,14 @@ public class PenyewaanView extends javax.swing.JFrame {
                     .addComponent(pilKendLabel)
                     .addGroup(pilKendPanelLayout.createSequentialGroup()
                         .addGroup(pilKendPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(motorBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pilKendPanelLayout.createSequentialGroup()
-                                .addComponent(pilKendMotorRb)
+                                .addComponent(motorRb)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pilKendMobilRb)))
+                                .addComponent(mobilRb)))
                         .addGap(29, 29, 29)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(138, Short.MAX_VALUE))
+                        .addComponent(mobilBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         pilKendPanelLayout.setVerticalGroup(
             pilKendPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,19 +278,14 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addComponent(pilKendLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pilKendPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pilKendMotorRb)
-                    .addComponent(pilKendMobilRb))
+                    .addComponent(motorRb)
+                    .addComponent(mobilRb))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pilKendPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mobilBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(motorBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-
-        durasiPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        durasiLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-        durasiLabel.setText("Durasi Penyewaan");
 
         javax.swing.GroupLayout durasiPanelLayout = new javax.swing.GroupLayout(durasiPanel);
         durasiPanel.setLayout(durasiPanelLayout);
@@ -245,20 +294,21 @@ public class PenyewaanView extends javax.swing.JFrame {
             .addGroup(durasiPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(durasiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(durasiPanelLayout.createSequentialGroup()
-                        .addComponent(durasiLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(durasiInput))
-                .addContainerGap())
+                    .addComponent(durasiLabel)
+                    .addComponent(durasiInput, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(105, Short.MAX_VALUE))
+            .addComponent(pilKendPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         durasiPanelLayout.setVerticalGroup(
             durasiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(durasiPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, durasiPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(pilKendPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(durasiLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(durasiInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         rekapPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -270,6 +320,41 @@ public class PenyewaanView extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        searchBtn.setText("Cari");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout rekapPanelLayout = new javax.swing.GroupLayout(rekapPanel);
+        rekapPanel.setLayout(rekapPanelLayout);
+        rekapPanelLayout.setHorizontalGroup(
+            rekapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+            .addGroup(rekapPanelLayout.createSequentialGroup()
+                .addGroup(rekapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addGroup(rekapPanelLayout.createSequentialGroup()
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(searchBtn)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        rekapPanelLayout.setVerticalGroup(
+            rekapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rekapPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(rekapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
+        );
+
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 12)); // NOI18N
         jButton1.setText("lanjutkan ke pembayaran");
@@ -279,34 +364,6 @@ public class PenyewaanView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout rekapPanelLayout = new javax.swing.GroupLayout(rekapPanel);
-        rekapPanel.setLayout(rekapPanelLayout);
-        rekapPanelLayout.setHorizontalGroup(
-            rekapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rekapPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(rekapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(rekapPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rekapPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addContainerGap())
-        );
-        rekapPanelLayout.setVerticalGroup(
-            rekapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rekapPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
         contentPanelLayout.setHorizontalGroup(
@@ -314,16 +371,17 @@ public class PenyewaanView extends javax.swing.JFrame {
             .addGroup(contentPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
-                    .addGroup(contentPanelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(pilKendPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pilihCusPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(idPenyewaanPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(durasiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(rekapPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(rekapPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         contentPanelLayout.setVerticalGroup(
@@ -335,16 +393,15 @@ public class PenyewaanView extends javax.swing.JFrame {
                         .addComponent(idPenyewaanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pilihCusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pilKendPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(durasiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(rekapPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         commandPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -352,6 +409,11 @@ public class PenyewaanView extends javax.swing.JFrame {
 
         addBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         addBtn.setText("TAMBAH");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
@@ -435,7 +497,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         logoDalamPanel3Layout.setVerticalGroup(
             logoDalamPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoDalamPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(logoLuarPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -444,6 +506,11 @@ public class PenyewaanView extends javax.swing.JFrame {
         menuPanel.setForeground(new java.awt.Color(255, 255, 255));
 
         menu1Panel.setBackground(new java.awt.Color(255, 255, 255));
+        menu1Panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu1PanelMouseClicked(evt);
+            }
+        });
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/car rent.png"))); // NOI18N
 
@@ -553,13 +620,13 @@ public class PenyewaanView extends javax.swing.JFrame {
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(menu1Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addComponent(menu2Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(29, 29, 29)
                 .addComponent(menu3Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(31, 31, 31)
                 .addComponent(menu4Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(menu5Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -635,17 +702,17 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addComponent(commandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(headerPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+            .addComponent(headerPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(headerPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(commandPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -653,7 +720,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -668,17 +735,50 @@ public class PenyewaanView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void motorBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motorBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_motorBoxActionPerformed
 
-    private void pilKendMobilRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilKendMobilRbActionPerformed
+    private void mobilRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobilRbActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pilKendMobilRbActionPerformed
+    }//GEN-LAST:event_mobilRbActionPerformed
 
-    private void pilKendMotorRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilKendMotorRbActionPerformed
+    private void motorRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motorRbActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pilKendMotorRbActionPerformed
+    }//GEN-LAST:event_motorRbActionPerformed
+
+    private void menu1PanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu1PanelMouseClicked
+
+    }//GEN-LAST:event_menu1PanelMouseClicked
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        setOthComp(true);
+        clearText();
+        action = "Tambah";
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        setEditDelComp(false);
+        setOthComp(false);
+        setAddSearchComp(true);
+
+        try {
+            TableGuide guide = guideControl.showGuideBySearch(searchInput.getText());
+            if(guide.getRowCount()==0){
+                clearText();
+                setEditDelComp(false);
+                JOptionPane.showConfirmDialog(null, "Data Tidak Ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            }else{
+                setEditDelComp(true);
+                guideTable.setModel(guide);
+            }
+
+            clearText();
+        } catch (Exception e) {
+            System.out.println("Error : "+e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -729,8 +829,6 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JPanel headerPanel3;
     private javax.swing.JPanel idPenyewaanPanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -751,19 +849,23 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JPanel menu4Panel;
     private javax.swing.JPanel menu5Panel;
     private javax.swing.JPanel menuPanel;
+    private javax.swing.JComboBox<String> mobilBox;
+    private javax.swing.JRadioButton mobilRb;
+    private javax.swing.JComboBox<String> motorBox;
+    private javax.swing.JRadioButton motorRb;
     private javax.swing.JTextField penyewaanInput;
     private javax.swing.JLabel penyewaanLabel;
     private javax.swing.JTable penyewaanTabel;
     private javax.swing.JTable penyewaanTabel1;
     private javax.swing.JLabel pilKendLabel;
-    private javax.swing.JRadioButton pilKendMobilRb;
-    private javax.swing.JRadioButton pilKendMotorRb;
     private javax.swing.JPanel pilKendPanel;
-    private javax.swing.JComboBox<String> pilihCusCombox;
     private javax.swing.JLabel pilihCusLabel;
     private javax.swing.JPanel pilihCusPanel;
+    private javax.swing.JComboBox<String> pilihDropDown;
     private javax.swing.JPanel rekapPanel;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchInput;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables
