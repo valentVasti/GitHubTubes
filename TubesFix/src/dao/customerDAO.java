@@ -65,10 +65,10 @@ public class customerDAO {
         
         String sql = "SELECT c.* FROM customer as c WHERE (c.id_Customer LIKE"
                 + "'%" + query + "%'"
-                + "OR c.nama_Customer LIKE '%" + query + "%'"
-                + "OR c.alamat_Customer LIKE '%" + query +"%'"
-                + "OR c.umur_Customer LIKE '%" + query + "%'"
-                + "OR c.telp_Customer LIKE '%" + query + "%')";
+                + "OR c.nama_Customer LIKE '" + query + "'"
+                + "OR c.alamat_Customer LIKE '" + query +"'"
+                + "OR c.umur_Customer LIKE '" + query + "'"
+                + "OR c.telp_Customer LIKE '" + query + "')";
 
         System.out.println("Mengambil data Customer...");
         
@@ -105,7 +105,7 @@ public class customerDAO {
         
         con = dbCon.makeConnection();
         
-        String sql = "DELETE FROM customer WHERE id_Customer = " + id + "";
+        String sql = "DELETE FROM customer WHERE id_Customer = '" + id + "'";
                 
         System.out.println("Deleting Customer...");
         
@@ -137,11 +137,11 @@ public class customerDAO {
             if (rs != null){
                 while (rs.next()){
                         Customer c = new Customer(
-                            rs.getString("c.id_Customer"),
-                            rs.getString("c.nama_Customer"),
-                            rs.getString("c.alamat_Customer"),
-                            Integer.parseInt(rs.getString("c.umur_Customer")),
-                            rs.getString("c.telp_Customer")
+                            rs.getString("id_Customer"),
+                            rs.getString("nama_Customer"),
+                            rs.getString("alamat_Customer"),
+                            Integer.parseInt(rs.getString("umur_Customer")),
+                            rs.getString("telp_Customer")
                     );
                     
                     list.add(c);

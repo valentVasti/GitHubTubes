@@ -60,7 +60,7 @@ public class CustomerView extends javax.swing.JFrame {
     }
     
     public void showCustomer(){
-        customerTable.setModel(customerControl.showCustomer(""));
+        customerTable.setModel(customerControl.showCustomer());
     }
 
     /**
@@ -99,6 +99,7 @@ public class CustomerView extends javax.swing.JFrame {
         tablePanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         customerTable = new javax.swing.JTable();
+        searchBtn1 = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         logoDalamPanel1 = new javax.swing.JPanel();
         logoLuarPanel1 = new javax.swing.JPanel();
@@ -385,19 +386,32 @@ public class CustomerView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(customerTable);
 
+        searchBtn1.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        searchBtn1.setText("Tampilkan Semua Data");
+        searchBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
         tablePanelLayout.setHorizontalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tablePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addGroup(tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(searchBtn1)))
                 .addContainerGap())
         );
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(searchBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -700,7 +714,7 @@ public class CustomerView extends javax.swing.JFrame {
         setAddSearchComp(true);
         
         try {
-            TableCustomer customer = customerControl.showCustomer(searchInput.getText());
+            TableCustomer customer = customerControl.showCustomerBySearch(searchInput.getText());
             if(customer.getRowCount()==0){
                 clearText();
                 setEditDelComp(false);
@@ -760,6 +774,10 @@ public class CustomerView extends javax.swing.JFrame {
         clearText();
         showCustomer();
     }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void searchBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn1ActionPerformed
+        showCustomer();
+    }//GEN-LAST:event_searchBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -834,6 +852,7 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JLabel noTelpCustomerLabel;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JButton searchBtn1;
     private javax.swing.JTextField searchInput;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JLabel titleLabel;
