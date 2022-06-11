@@ -26,7 +26,7 @@ public class TableCustomer extends AbstractTableModel{
     
     @Override
     public int getColumnCount(){
-        return 4;
+        return 5;
     }
     
     @Override
