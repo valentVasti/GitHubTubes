@@ -23,7 +23,15 @@ public class guideControl {
         return dataGuide;
     }
     
-    public TableGuide showGuide(String query) {
+    public TableGuide showGuide(){
+        
+        List<Guide> dataGuide = GDao.showGuide();
+        TableGuide tableGuide = new TableGuide(dataGuide);
+        
+        return tableGuide;
+    }
+    
+    public TableGuide showGuideBySearch(String query) {
         
         List<Guide> dataGuide = GDao.showGuideBySearch(query);
         TableGuide tableGuide = new TableGuide(dataGuide);

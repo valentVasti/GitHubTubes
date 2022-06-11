@@ -15,7 +15,7 @@ public class GuideView extends javax.swing.JFrame {
     private guideControl guideControl;
     
     String action = null;
-    String selectedId = "";
+    String selectedId = null;
     List<Guide> listGuide;
     
     public GuideView() {
@@ -53,7 +53,7 @@ public class GuideView extends javax.swing.JFrame {
         teleponInput.setText("");
     }
     public void showGuide(){
-        guideTable.setModel((TableModel) guideControl.showDataGuide());
+        guideTable.setModel(guideControl.showGuide());
     }
     
 
@@ -216,6 +216,11 @@ public class GuideView extends javax.swing.JFrame {
                 "", "", "", ""
             }
         ));
+        guideTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guideTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(guideTable);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -474,7 +479,7 @@ public class GuideView extends javax.swing.JFrame {
                     .addComponent(menu2Panel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menu1Panel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menu3Panel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         titlePanel.setBackground(new java.awt.Color(255, 204, 204));
@@ -526,7 +531,7 @@ public class GuideView extends javax.swing.JFrame {
                     .addGroup(headerPanelLayout.createSequentialGroup()
                         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -580,7 +585,7 @@ public class GuideView extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         setAddSearchComp(false);
         setOthComp(true);
-        ClearText();
+        clearText();
         action = "Tambah";
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -590,7 +595,7 @@ public class GuideView extends javax.swing.JFrame {
             case 0:
                 try {
                 guideControl.deleteGuide(selectedId);
-                ClearText();
+                clearText();
                 showGuide();
                 setOthComp(false);
                 setAddSearchComp(true);
@@ -610,7 +615,7 @@ public class GuideView extends javax.swing.JFrame {
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         setAddSearchComp(true);
         setOthComp(false);
-        ClearText();
+        clearText();
         showGuide();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
@@ -623,7 +628,7 @@ public class GuideView extends javax.swing.JFrame {
                     Integer.parseInt(umurInput.getText()), teleponInput.getText());
             guideControl.insertDataGuide(guide);
         } else{
-            Guide guide = new Guide(idInput.getText(), namaInput.getText(),alamatInput.getText(),
+            Guide guide = new Guide(idInput.getText(),namaInput.getText(), alamatInput.getText(),
                     Integer.parseInt(umurInput.getText()), teleponInput.getText());
             guideControl.updateGuide(guide);
         }
@@ -647,7 +652,7 @@ public class GuideView extends javax.swing.JFrame {
         setAddSearchComp(true);
         
         try {
-            TableGuide guide = guideControl.showGuide(searchInput.getText());
+            TableGuide guide = guideControl.showGuideBySearch(searchInput.getText());
             if(guide.getRowCount()==0){
                 clearText();
                 setEditDelComp(false);
@@ -662,6 +667,21 @@ public class GuideView extends javax.swing.JFrame {
             System.out.println("Error : "+e.getMessage());
         }        
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void guideTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideTableMouseClicked
+        setEditDelComp(true);
+        setOthComp(false);
+                
+        int clickedRow = guideTable.getSelectedRow();
+        TableModel tableModel = guideTable.getModel();
+        
+        selectedId = tableModel.getValueAt(clickedRow, 0).toString();
+        idInput.setText(selectedId);
+        namaInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
+        alamatInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
+        umurInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
+        teleponInput.setText(tableModel.getValueAt(clickedRow, 4).toString());
+    }//GEN-LAST:event_guideTableMouseClicked
 
     /**
      * @param args the command line arguments
