@@ -14,7 +14,7 @@ import table.TableMotor;
 
 public class KendaraanView extends javax.swing.JFrame {
     private KendaraanControl kendaraanControl;
-    
+    //tes
     String action = null;
     String selectedId = null;
     List<Kendaraan> listCustomer;
