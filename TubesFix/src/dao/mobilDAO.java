@@ -68,7 +68,7 @@ public class mobilDAO {
     public List<Kendaraan_Mobil> showMobilBySearch(String query){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT mt.* FROM mobil as m WHERE (m.id_Kendaraan LIKE"
+        String sql = "SELECT mt.* FROM mobil as mt WHERE (mt.id_Kendaraan LIKE"
                 + "'%" + query + "%'"
                 + "OR mt.kapasitas_Mobil LIKE '" + query + "'"
                 + "OR mt.jenis LIKE '" + query + "'"
@@ -89,8 +89,8 @@ public class mobilDAO {
             if (rs != null){
                 while (rs.next()){
                         Kendaraan_Mobil k = new Kendaraan_Mobil(
-                            rs.getString("mt.kapasitas_Mobil"),
-                            rs.getString("mt.id_Kendaraan"),    
+                            rs.getString("mt.id_Kendaraan"),
+                            rs.getString("mt.kapasitas_Mobil"),    
                             rs.getString("mt.jenis"),
                             rs.getString("mt.nama_Kendaraan"),
                             rs.getString("mt.platNo"),
@@ -116,7 +116,7 @@ public class mobilDAO {
         
         con = dbCon.makeConnection();
         
-        String sql = "DELETE FROM mobil WHERE id_Kendaraan = " + id + "";
+        String sql = "DELETE FROM mobil WHERE id_Kendaraan = '" + id + "'";
                 
         System.out.println("Deleting Mobil...");
         
@@ -148,14 +148,14 @@ public class mobilDAO {
             if (rs != null){
                 while (rs.next()){
                         Kendaraan_Mobil k = new Kendaraan_Mobil(
-                            rs.getString("kapasitas_Mobil"),
-                            rs.getString("id_Kendaraan"),    
+                            rs.getString("id_Kendaraan"),
+                            rs.getString("kapasitas_Mobil"),    
                             rs.getString("jenis"),
                             rs.getString("nama_Kendaraan"),
                             rs.getString("platNo"),
                             rs.getString("merk"),
                             rs.getString("cc"),
-                            Double.parseDouble(rs.getString("mt.tarif"))    
+                            Double.parseDouble(rs.getString("tarif"))    
                         );
                     
                     list.add(k);

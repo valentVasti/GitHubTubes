@@ -26,7 +26,7 @@ public class KendaraanControl {
             MtDao.insertMotor(kmt);
         }
     }
-    
+/*    
     public List<Kendaraan> showKendaraanBySearch(String jenis){
         if(jenis.equalsIgnoreCase("Mobil")){
             List<Kendaraan> listMobil = MbDao.showMobil();
@@ -37,6 +37,7 @@ public class KendaraanControl {
         }
                 
     }
+*/
     
     public TableMobil showMobil(){
         

@@ -70,16 +70,16 @@ public class motorDAO {
     public List<Kendaraan_Motor> showMotorBySearch(String query){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT mt.* FROM motor as m WHERE (m.id_Kendaraan LIKE"
+        String sql = "SELECT mt.* FROM motor as mt WHERE (mt.id_Kendaraan LIKE"
                 + "'%" + query + "%'"
-                + "OR mt.jenis_Helm LIKE '%" + query + "%'"
-                + "OR mt.jenis_Stang LIKE '%" + query +"%'"
-                + "OR mt.jenis LIKE '%" + query + "%'"
-                + "OR mt.nama_Kendaraan LIKE '%" + query + "%'"
-                + "OR mt.platNo LIKE '%" + query + "%'"
-                + "OR mt.merk LIKE '%" + query + "%'"
-                + "OR mt.cc LIKE '%" + query + "%'"
-                + "OR mt.tarif LIKE '%" + query + "%')";
+                + "OR mt.jenis_Helm LIKE '" + query + "'"
+                + "OR mt.jenis_Stang LIKE '" + query +"'"
+                + "OR mt.jenis LIKE '" + query + "'"
+                + "OR mt.nama_Kendaraan LIKE '" + query + "'"
+                + "OR mt.platNo LIKE '" + query + "'"
+                + "OR mt.merk LIKE '" + query + "'"
+                + "OR mt.cc LIKE '" + query + "'"
+                + "OR mt.tarif LIKE '" + query + "')";
 
         System.out.println("Mengambil data Motor...");
         
@@ -120,7 +120,7 @@ public class motorDAO {
         
         con = dbCon.makeConnection();
         
-        String sql = "DELETE FROM motor WHERE id_Kendaraan = " + id + "";
+        String sql = "DELETE FROM motor WHERE id_Kendaraan = '" + id + "'";
                 
         System.out.println("Deleting Motor...");
         

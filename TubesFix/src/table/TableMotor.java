@@ -44,6 +44,8 @@ public class TableMotor extends AbstractTableModel{
                 return list.get(rowIndex).getCC();
             case 5:
                 return list.get(rowIndex).getTarif();
+            case 6:
+                return list.get(rowIndex).getJenis();
             default:
                 return null;
         }
