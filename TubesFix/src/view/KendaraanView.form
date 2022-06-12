@@ -521,7 +521,7 @@
                               <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="ccInput1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tarifInput" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -532,7 +532,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ccInput1" pref="26" max="32767" attributes="0"/>
+                      <Component id="tarifInput" pref="26" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -547,7 +547,7 @@
                 <Property name="text" type="java.lang.String" value="Tarif"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="ccInput1">
+            <Component class="javax.swing.JTextField" name="tarifInput">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Berlin Sans FB" size="13" style="0"/>
@@ -1230,6 +1230,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="UBAH"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="deleteBtn">
           <Properties>
@@ -1238,6 +1241,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="HAPUS"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="saveBtn">
           <Properties>

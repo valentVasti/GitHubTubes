@@ -70,16 +70,16 @@ public class motorDAO {
     public List<Kendaraan_Motor> showMotorBySearch(String query){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT m.* FROM motor as m WHERE (m.id_Kendaraan LIKE"
+        String sql = "SELECT mt.* FROM motor as m WHERE (m.id_Kendaraan LIKE"
                 + "'%" + query + "%'"
-                + "OR m.jenis_Helm LIKE '%" + query + "%'"
-                + "OR m.jenis_Stang LIKE '%" + query +"%'"
-                + "OR m.jenis LIKE '%" + query + "%'"
-                + "OR m.nama_Kendaraan LIKE '%" + query + "%'"
-                + "OR m.platNo LIKE '%" + query + "%'"
-                + "OR m.merk LIKE '%" + query + "%'"
-                + "OR m.cc LIKE '%" + query + "%'"
-                + "OR m.tarif LIKE '%" + query + "%')";
+                + "OR mt.jenis_Helm LIKE '%" + query + "%'"
+                + "OR mt.jenis_Stang LIKE '%" + query +"%'"
+                + "OR mt.jenis LIKE '%" + query + "%'"
+                + "OR mt.nama_Kendaraan LIKE '%" + query + "%'"
+                + "OR mt.platNo LIKE '%" + query + "%'"
+                + "OR mt.merk LIKE '%" + query + "%'"
+                + "OR mt.cc LIKE '%" + query + "%'"
+                + "OR mt.tarif LIKE '%" + query + "%')";
 
         System.out.println("Mengambil data Motor...");
         
@@ -152,15 +152,15 @@ public class motorDAO {
             if (rs != null){
                 while (rs.next()){
                         Kendaraan_Motor k = new Kendaraan_Motor(
-                            rs.getString("mt.jenis_Helm"),
-                            rs.getString("mt.jenis_Stang"),
-                            rs.getString("mt.id_Kendaraan"),    
-                            rs.getString("mt.jenis"),
-                            rs.getString("mt.nama_Kendaraan"),
-                            rs.getString("mt.platNo"),
-                            rs.getString("mt.merk"),
-                            rs.getString("mt.cc"),
-                            Double.parseDouble(rs.getString("mt.tarif"))    
+                            rs.getString("jenis_Helm"),
+                            rs.getString("jenis_Stang"),
+                            rs.getString("id_Kendaraan"),    
+                            rs.getString("jenis"),
+                            rs.getString("nama_Kendaraan"),
+                            rs.getString("platNo"),
+                            rs.getString("merk"),
+                            rs.getString("cc"),
+                            Double.parseDouble(rs.getString("tarif"))    
                         );
                     
                     list.add(k);

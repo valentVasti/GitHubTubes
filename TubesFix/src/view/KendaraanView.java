@@ -24,7 +24,7 @@ public class KendaraanView extends javax.swing.JFrame {
         setAddSearchComp(true);
         setOthComp(false);
         setEditDelComp(false);
-        radioJenisComp(false);
+        setRadioJenisComp(false);
         kendaraanControl = new KendaraanControl();
         showKendaraan();
     }
@@ -51,7 +51,7 @@ public class KendaraanView extends javax.swing.JFrame {
         deleteBtn.setEnabled(value);
     }
     
-    public void radioJenisComp(boolean value){
+    public void setRadioJenisComp(boolean value){
         radioMobil.setEnabled(value);
         radioMotor.setEnabled(value);
     }
@@ -104,7 +104,7 @@ public class KendaraanView extends javax.swing.JFrame {
         radioMotor = new javax.swing.JRadioButton();
         tarifPanel = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        ccInput1 = new javax.swing.JTextField();
+        tarifInput = new javax.swing.JTextField();
         tableIPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMotor = new javax.swing.JTable();
@@ -339,7 +339,7 @@ public class KendaraanView extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         jLabel22.setText("Tarif");
 
-        ccInput1.setFont(new java.awt.Font("Berlin Sans FB", 0, 13)); // NOI18N
+        tarifInput.setFont(new java.awt.Font("Berlin Sans FB", 0, 13)); // NOI18N
 
         javax.swing.GroupLayout tarifPanelLayout = new javax.swing.GroupLayout(tarifPanel);
         tarifPanel.setLayout(tarifPanelLayout);
@@ -350,7 +350,7 @@ public class KendaraanView extends javax.swing.JFrame {
                     .addGroup(tarifPanelLayout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(ccInput1))
+                    .addComponent(tarifInput))
                 .addContainerGap())
         );
         tarifPanelLayout.setVerticalGroup(
@@ -358,7 +358,7 @@ public class KendaraanView extends javax.swing.JFrame {
             .addGroup(tarifPanelLayout.createSequentialGroup()
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ccInput1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addComponent(tarifInput, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -761,9 +761,19 @@ public class KendaraanView extends javax.swing.JFrame {
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         deleteBtn.setText("HAPUS");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         saveBtn.setText("SIMPAN");
@@ -848,32 +858,35 @@ public class KendaraanView extends javax.swing.JFrame {
     }//GEN-LAST:event_idKendaraanInputActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-    /*    setEditDelComp(false);
+        setEditDelComp(false);
         setOthComp(false);
         setAddSearchComp(true);
 
         try {
-            TableGuide guide = guideControl.showGuide(searchInput.getText());
-            if(guide.getRowCount()==0){
+            TableMobil mobil = kendaraanControl.showMobilBySearch(searchInput.getText());
+            TableMotor motor = kendaraanControl.showMotorBySearch(searchInput.getText());
+            
+            if(mobil.getRowCount()==0 && motor.getRowCount()==0){
                 clearText();
                 setEditDelComp(false);
                 JOptionPane.showConfirmDialog(null, "Data Tidak Ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
             }else{
                 setEditDelComp(true);
-                guideTable.setModel(guide);
+                tableMobil.setModel(mobil);
+                tableMotor.setModel(motor);
             }
 
             clearText();
         } catch (Exception e) {
             System.out.println("Error : "+e.getMessage());
         }
-        */
+        
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         setOthComp(false);
         jenisInput.setEnabled(false);
-        radioJenisComp(true);
+        setRadioJenisComp(true);
         clearText();
         action = "Tambah";
     }//GEN-LAST:event_addBtnActionPerformed
@@ -891,12 +904,12 @@ public class KendaraanView extends javax.swing.JFrame {
         if(radioMobil.isSelected()){
             if(action.equals("Tambah")){
                 Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), "4", jenisInput.getText(), 
-                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), 2000);
+                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
                 Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", "", 0);
                 kendaraanControl.insertDataKendaraan(k, kmt, jenisInput.getText());
             } else {
                 Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), "4", jenisInput.getText(), 
-                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), 2000);
+                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
                 Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", "", 0);
                 kendaraanControl.updateKendaraan(k, kmt, jenisInput.getText());
             }            
@@ -904,13 +917,13 @@ public class KendaraanView extends javax.swing.JFrame {
             if(action.equals("Tambah")){
                 Kendaraan_Motor k = new Kendaraan_Motor("", "", idKendaraanInput.getText(), 
                         jenisInput.getText(), namaInput.getText(), platInput.getText(), 
-                        merkInput.getText(), ccInput.getText(), 2000);
+                        merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
                 Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
                 kendaraanControl.insertDataKendaraan(kmb, k, jenisInput.getText());
             } else {
                 Kendaraan_Motor k = new Kendaraan_Motor("", "", idKendaraanInput.getText(), 
                         jenisInput.getText(), namaInput.getText(), platInput.getText(), 
-                        merkInput.getText(), ccInput.getText(), 2000);
+                        merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
                 Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
                 kendaraanControl.updateKendaraan(kmb, k, jenisInput.getText());
             }             
@@ -934,6 +947,36 @@ public class KendaraanView extends javax.swing.JFrame {
     private void radioMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMotorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioMotorActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        setOthComp(true);
+        setAddSearchComp(false);
+        setRadioJenisComp(false);
+        action = "Ubah";
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        switch(getAnswer){
+            case 0:
+                try {
+                kendaraanControl.deleteKendaraan(selectedId, jenisInput.getText());
+                clearText();
+                showKendaraan();
+                setOthComp(false);
+                setAddSearchComp(true);
+                JOptionPane.showMessageDialog(this, "Berhasil menghapus data!");
+             
+            } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Gagal menghapus Guide");
+                    System.out.println("Error : "+e.getMessage());
+            }
+                break;
+            
+            case 1:
+                break;
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -981,7 +1024,6 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JPanel ccIPanel;
     private javax.swing.JTextField ccInput;
-    private javax.swing.JTextField ccInput1;
     private javax.swing.JPanel commandPanel;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
@@ -1036,6 +1078,7 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JPanel tableIPanel;
     private javax.swing.JTable tableMobil;
     private javax.swing.JTable tableMotor;
+    private javax.swing.JTextField tarifInput;
     private javax.swing.JPanel tarifPanel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;

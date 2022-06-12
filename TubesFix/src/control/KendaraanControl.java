@@ -27,7 +27,7 @@ public class KendaraanControl {
         }
     }
     
-    public List<Kendaraan> showDataKendaraan(String jenis){
+    public List<Kendaraan> showKendaraanBySearch(String jenis){
         if(jenis.equalsIgnoreCase("Mobil")){
             List<Kendaraan> listMobil = MbDao.showMobil();
             return listMobil;
@@ -49,6 +49,22 @@ public class KendaraanControl {
     public TableMotor showMotor(){
         
         List<Kendaraan_Motor> dataMotor = MtDao.showMotor();
+        TableMotor tableMotor = new TableMotor(dataMotor);
+        
+        return tableMotor;
+    }
+
+    public TableMobil showMobilBySearch(String query){
+        
+        List<Kendaraan_Mobil> dataMobil = MbDao.showMobilBySearch(query);
+        TableMobil tableMobil = new TableMobil(dataMobil);
+        
+        return tableMobil;
+    }
+    
+    public TableMotor showMotorBySearch(String query){
+        
+        List<Kendaraan_Motor> dataMotor = MtDao.showMotorBySearch(query);
         TableMotor tableMotor = new TableMotor(dataMotor);
         
         return tableMotor;
