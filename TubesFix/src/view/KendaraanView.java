@@ -889,7 +889,6 @@ public class KendaraanView extends javax.swing.JFrame {
         */
     }//GEN-LAST:event_searchBtnActionPerformed
 
-<<<<<<< HEAD
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         setOthComp(false);
         jenisInput.setEnabled(false);
@@ -942,7 +941,7 @@ public class KendaraanView extends javax.swing.JFrame {
         setAddSearchComp(true);
         setEditDelComp(false);
     }//GEN-LAST:event_saveBtnActionPerformed
-=======
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -950,8 +949,6 @@ public class KendaraanView extends javax.swing.JFrame {
     private void jenisInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenisInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jenisInputActionPerformed
->>>>>>> 8122eef555396979c1f39a635c720d757917fdbd
-
     /**
      * @param args the command line arguments
      */
