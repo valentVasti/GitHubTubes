@@ -16,8 +16,8 @@ public class guideDAO {
     public void insertGuide(Guide g) {
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO tour_guide(id_Guide, nama_Guide, alamat, umur, no_telp)" // bakal dicek dulu
-                + "VALUES ('" +g.getId_Guide()+ "', '" + g.getId_Guide()+ "','" + g.getAlamat_Guide()+ "', '"
+        String sql = "INSERT INTO guide(id_Guide, nama_Guide, alamat_Guide, umur_Guide, telp_Guide)" // bakal dicek dulu
+                + "VALUES ('" +g.getId_Guide()+ "', '" + g.getNama_Guide()+ "','" + g.getAlamat_Guide()+ "', '"
                 + g.getUmur_Guide() + "', '" + g.getTelp_Guide() + "')";
         
         System.out.println("Adding Guide...");
@@ -37,10 +37,11 @@ public class guideDAO {
     public void updateGuide(Guide g){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE customer SET nama_Guide = '" + g.getNama_Guide()
-                + "', alamat = '" + g.getAlamat_Guide()
-                + "', umur = '" + g.getUmur_Guide()
-                + "' WHERE id = '" + g.getId_Guide() + "'";
+        String sql = "UPDATE guide SET nama_Guide = '" + g.getNama_Guide()
+                + "', alamat_Guide = '" + g.getAlamat_Guide()
+                + "', umur_Guide = '" + g.getUmur_Guide()
+                + "', telp_Guide = '" + g.getTelp_Guide()
+                + "' WHERE id_Guide = '" + g.getId_Guide() + "'";
         System.out.println("Editing Guide...");
         
         try {
@@ -59,12 +60,12 @@ public class guideDAO {
     public List<Guide> showGuideBySearch(String query){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT g.* FROM tour_guide as g WHERE (g.id_Guide LIKE"
-                + "'%" + query + "%'"
-                + "OR g.nama_Guide LIKE '%" + query + "%'"
-                + "OR g.alamat LIKE '%" + query +"%'"
-                + "OR g.umur LIKE '%" + query + "%'"
-                + "OR g.no_telp LIKE '%" + query + "%')";
+        String sql = "SELECT g.* FROM guide as g WHERE (g.id_Guide LIKE"
+                + "'" + query + "'"
+                + "OR g.nama_Guide LIKE '" + query + "'"
+                + "OR g.alamat_Guide LIKE '" + query +"'"
+                + "OR g.umur_guide LIKE '" + query + "'"
+                + "OR g.telp_Guide LIKE '" + query + "')";
 
         System.out.println("Mengambil data Guide...");
         
@@ -79,9 +80,9 @@ public class guideDAO {
                         Guide g = new Guide(
                             rs.getString("g.id_Guide"),
                             rs.getString("g.nama_Guide"),
-                            rs.getString("g.alamat"),
-                            Integer.parseInt(rs.getString("g.umur")),
-                            rs.getString("g.no_telp")
+                            rs.getString("g.alamat_Guide"),
+                            Integer.parseInt(rs.getString("g.umur_Guide")),
+                            rs.getString("g.telp_Guide")
                     );  
                     list.add(g);
                    }
@@ -101,7 +102,7 @@ public class guideDAO {
         
         con = dbCon.makeConnection();
         
-        String sql = "DELETE FROM tour_guide WHERE id_Guide = " + id + "";
+        String sql = "DELETE FROM guide WHERE id_Guide = '" + id + "'";
                 
         System.out.println("Deleting Guide...");
         
@@ -121,7 +122,7 @@ public class guideDAO {
     public List<Guide> showGuide(){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT * FROM tour_guide";
+        String sql = "SELECT * FROM guide";
         System.out.println("Mengambil data guide...");
         
         List<Guide> list = new ArrayList();
@@ -133,11 +134,11 @@ public class guideDAO {
             if (rs != null){
                 while (rs.next()){
                         Guide g = new Guide(
-                            rs.getString("g.id_Guide"),
-                            rs.getString("g.nama_Guide"),
-                            rs.getString("g.alamat"),
-                            Integer.parseInt(rs.getString("g.umur")),
-                            rs.getString("g.no_Telp")
+                            rs.getString("id_Guide"),
+                            rs.getString("nama_Guide"),
+                            rs.getString("alamat_Guide"),
+                            Integer.parseInt(rs.getString("umur_Guide")),
+                            rs.getString("telp_Guide")
                     );
                     
                     list.add(g);

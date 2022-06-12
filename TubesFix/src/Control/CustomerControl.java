@@ -19,13 +19,21 @@ public class CustomerControl {
         return dataCustomer;
     }
     
-    public TableCustomer showCustomer(String query) {
+    public TableCustomer showCustomer() {
+        
+        List<Customer> dataCustomer = CDao.showCustomer();
+        TableCustomer tableCustomer = new TableCustomer(dataCustomer);
+        
+        return tableCustomer;
+    }
+    
+    public TableCustomer showCustomerBySearch(String query) {
         
         List<Customer> dataCustomer = CDao.showCustomerBySearch(query);
         TableCustomer tableCustomer = new TableCustomer(dataCustomer);
         
         return tableCustomer;
-    }
+    }    
     
     public void updateCustomer(Customer c){
         CDao.updateCustomer(c);

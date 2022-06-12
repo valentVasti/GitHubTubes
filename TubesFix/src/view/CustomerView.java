@@ -60,7 +60,7 @@ public class CustomerView extends javax.swing.JFrame {
     }
     
     public void showCustomer(){
-        customerTable.setModel(customerControl.showCustomer(""));
+        customerTable.setModel(customerControl.showCustomer());
     }
 
     /**
@@ -99,6 +99,7 @@ public class CustomerView extends javax.swing.JFrame {
         tablePanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         customerTable = new javax.swing.JTable();
+        searchBtn1 = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         logoDalamPanel1 = new javax.swing.JPanel();
         logoLuarPanel1 = new javax.swing.JPanel();
@@ -106,14 +107,19 @@ public class CustomerView extends javax.swing.JFrame {
         menuPanel1 = new javax.swing.JPanel();
         menu1Panel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         menu2Panel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         menu3Panel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         menu4Panel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         menu5Panel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
 
@@ -196,7 +202,7 @@ public class CustomerView extends javax.swing.JFrame {
         );
 
         inputCustomer.setBackground(new java.awt.Color(250, 250, 250));
-        inputCustomer.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.red, null, null), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4)), "INPUT", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Berlin Sans FB Demi", 1, 18), new java.awt.Color(51, 51, 51))); // NOI18N
+        inputCustomer.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4)), "INPUT", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Berlin Sans FB Demi", 1, 18), new java.awt.Color(51, 51, 51))); // NOI18N
 
         idCustomer.setBackground(new java.awt.Color(250, 250, 250));
 
@@ -365,7 +371,7 @@ public class CustomerView extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        tablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4), "List Customer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        tablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4)), "List Customer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         customerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -385,19 +391,33 @@ public class CustomerView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(customerTable);
 
+        searchBtn1.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        searchBtn1.setText("Tampilkan Semua Data");
+        searchBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
         tablePanelLayout.setHorizontalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tablePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addGroup(tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(searchBtn1)))
                 .addContainerGap())
         );
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(searchBtn1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -415,16 +435,16 @@ public class CustomerView extends javax.swing.JFrame {
         logoLuarPanel1Layout.setHorizontalGroup(
             logoLuarPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoLuarPanel1Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(47, 47, 47))
         );
         logoLuarPanel1Layout.setVerticalGroup(
             logoLuarPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(logoLuarPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout logoDalamPanel1Layout = new javax.swing.GroupLayout(logoDalamPanel1);
@@ -439,8 +459,8 @@ public class CustomerView extends javax.swing.JFrame {
         logoDalamPanel1Layout.setVerticalGroup(
             logoDalamPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoDalamPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logoLuarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(logoLuarPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -451,23 +471,42 @@ public class CustomerView extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/car rent.png"))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel2.setText("Penyewaan");
+
         javax.swing.GroupLayout menu1Panel1Layout = new javax.swing.GroupLayout(menu1Panel1);
         menu1Panel1.setLayout(menu1Panel1Layout);
         menu1Panel1Layout.setHorizontalGroup(
             menu1Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu1Panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(19, 19, 19)
+                .addComponent(jLabel8)
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(menu1Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu1Panel1Layout.createSequentialGroup()
+                    .addContainerGap(20, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addContainerGap()))
         );
         menu1Panel1Layout.setVerticalGroup(
             menu1Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(menu1Panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(menu1Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu1Panel1Layout.createSequentialGroup()
+                    .addContainerGap(91, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addGap(1, 1, 1)))
         );
 
         menu2Panel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer.png"))); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel9.setText("Customer");
 
         javax.swing.GroupLayout menu2PanelLayout = new javax.swing.GroupLayout(menu2Panel);
         menu2Panel.setLayout(menu2PanelLayout);
@@ -475,60 +514,84 @@ public class CustomerView extends javax.swing.JFrame {
             menu2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu2PanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu2PanelLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap())
         );
         menu2PanelLayout.setVerticalGroup(
             menu2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu2PanelLayout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(menu2PanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9))
         );
 
         menu3Panel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/car.png"))); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel1.setText("Kendaraan");
+
         javax.swing.GroupLayout menu3PanelLayout = new javax.swing.GroupLayout(menu3Panel);
         menu3Panel.setLayout(menu3PanelLayout);
         menu3PanelLayout.setHorizontalGroup(
             menu3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu3PanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(menu3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
                 .addContainerGap())
         );
         menu3PanelLayout.setVerticalGroup(
             menu3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu3PanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1))
         );
 
         menu4Panel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/tour guide.png"))); // NOI18N
 
+        jLabel11.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel11.setText("Guide");
+
         javax.swing.GroupLayout menu4PanelLayout = new javax.swing.GroupLayout(menu4Panel);
         menu4Panel.setLayout(menu4PanelLayout);
         menu4PanelLayout.setHorizontalGroup(
             menu4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu4PanelLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(menu4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menu4PanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel11))
+                    .addComponent(jLabel5))
                 .addContainerGap())
         );
         menu4PanelLayout.setVerticalGroup(
             menu4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu4PanelLayout.createSequentialGroup()
-                .addGap(0, 8, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(menu4PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11))
         );
 
         menu5Panel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/transaction.png"))); // NOI18N
+
+        jLabel10.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel10.setText("Transaksi");
 
         javax.swing.GroupLayout menu5PanelLayout = new javax.swing.GroupLayout(menu5Panel);
         menu5Panel.setLayout(menu5PanelLayout);
@@ -536,12 +599,18 @@ public class CustomerView extends javax.swing.JFrame {
             menu5PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu5PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(menu5PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel6))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         menu5PanelLayout.setVerticalGroup(
             menu5PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(menu5PanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10))
         );
 
         javax.swing.GroupLayout menuPanel1Layout = new javax.swing.GroupLayout(menuPanel1);
@@ -549,7 +618,7 @@ public class CustomerView extends javax.swing.JFrame {
         menuPanel1Layout.setHorizontalGroup(
             menuPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(menu1Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menu2Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -563,15 +632,11 @@ public class CustomerView extends javax.swing.JFrame {
         );
         menuPanel1Layout.setVerticalGroup(
             menuPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(menuPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menu5Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu4Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu3Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu2Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu1Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(menu1Panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu2Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu3Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu4Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu5Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         titlePanel.setBackground(new java.awt.Color(255, 204, 204));
@@ -607,7 +672,7 @@ public class CustomerView extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(logoDalamPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(menuPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -615,15 +680,14 @@ public class CustomerView extends javax.swing.JFrame {
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+            .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoDalamPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(headerLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(menuPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(menuPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -648,8 +712,9 @@ public class CustomerView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(inputCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 2, Short.MAX_VALUE))
                     .addComponent(command, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
@@ -700,7 +765,7 @@ public class CustomerView extends javax.swing.JFrame {
         setAddSearchComp(true);
         
         try {
-            TableCustomer customer = customerControl.showCustomer(searchInput.getText());
+            TableCustomer customer = customerControl.showCustomerBySearch(searchInput.getText());
             if(customer.getRowCount()==0){
                 clearText();
                 setEditDelComp(false);
@@ -761,6 +826,10 @@ public class CustomerView extends javax.swing.JFrame {
         showCustomer();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    private void searchBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn1ActionPerformed
+        showCustomer();
+    }//GEN-LAST:event_searchBtn1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -811,12 +880,17 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JTextField idCustomerInput;
     private javax.swing.JLabel idCustomerLabel;
     private javax.swing.JPanel inputCustomer;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel logoDalamPanel1;
     private javax.swing.JPanel logoLuarPanel1;
@@ -834,6 +908,7 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JLabel noTelpCustomerLabel;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JButton searchBtn1;
     private javax.swing.JTextField searchInput;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JLabel titleLabel;

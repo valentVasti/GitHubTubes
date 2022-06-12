@@ -24,10 +24,16 @@ public class penyewaanControl {
         return dataPenyewaan;
     }
     
-    public TablePenyewaan showPenyewaan(String query, String Jenis) {
+    public TablePenyewaan showPenyewaan(String query) {
         
-        List<Penyewaan> dataPenyewaan = PDao.showListPenyewaan(query, Jenis);
-        TablePenyewaan tablePenyewaan = new TablePenyewaan(dataPenyewaan);
+        List<Penyewaan> dataPenyewaanMb = PDao.showListPenyewaan(query, "Mobil");
+        List<Penyewaan> dataPenyewaanMt = PDao.showListPenyewaan(query, "Motor");
+        
+        for(int i=0; i<dataPenyewaanMb.size(); i++){
+            dataPenyewaanMb.add(dataPenyewaanMt.get(i));
+        }
+        
+        TablePenyewaan tablePenyewaan = new TablePenyewaan(dataPenyewaanMb);
         
         return tablePenyewaan;
     }
@@ -35,7 +41,7 @@ public class penyewaanControl {
     public void updateCustomer(Penyewaan p){
         PDao.updatePenyewaan(p);
     }
-    public void deleteTransaksi(String id){
+    public void deletePenyewaan(String id){
         PDao.deletePenyewaan(id);
     }
 }
