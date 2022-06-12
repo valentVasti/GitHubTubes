@@ -123,9 +123,6 @@ public class KendaraanView extends javax.swing.JFrame {
         kapasitasPanel = new javax.swing.JPanel();
         kapasitasInput = new javax.swing.JTextField();
         kapasitasLabel = new javax.swing.JLabel();
-        stangPanel = new javax.swing.JPanel();
-        stangInput = new javax.swing.JTextField();
-        stangLabel = new javax.swing.JLabel();
         tableIPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMotor = new javax.swing.JTable();
@@ -452,38 +449,6 @@ public class KendaraanView extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        stangPanel.setBackground(new java.awt.Color(250, 250, 250));
-
-        stangInput.setFont(new java.awt.Font("Berlin Sans FB", 0, 13)); // NOI18N
-        stangInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stangInputActionPerformed(evt);
-            }
-        });
-
-        stangLabel.setBackground(new java.awt.Color(255, 255, 255));
-        stangLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-        stangLabel.setText("Jenis Stang");
-
-        javax.swing.GroupLayout stangPanelLayout = new javax.swing.GroupLayout(stangPanel);
-        stangPanel.setLayout(stangPanelLayout);
-        stangPanelLayout.setHorizontalGroup(
-            stangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(stangPanelLayout.createSequentialGroup()
-                .addGroup(stangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(stangLabel)
-                    .addComponent(stangInput, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        stangPanelLayout.setVerticalGroup(
-            stangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(stangPanelLayout.createSequentialGroup()
-                .addComponent(stangLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(stangInput, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-
         javax.swing.GroupLayout inputLayout = new javax.swing.GroupLayout(input);
         input.setLayout(inputLayout);
         inputLayout.setHorizontalGroup(
@@ -520,9 +485,8 @@ public class KendaraanView extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(seatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(kapasitasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(stangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(kapasitasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 56, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         inputLayout.setVerticalGroup(
@@ -555,8 +519,6 @@ public class KendaraanView extends javax.swing.JFrame {
                         .addComponent(kapasitasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(seatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(stangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -579,6 +541,8 @@ public class KendaraanView extends javax.swing.JFrame {
                 "", "", "", ""
             }
         ));
+        tableMotor.setMaximumSize(new java.awt.Dimension(2147483647, 200));
+        tableMotor.setMinimumSize(new java.awt.Dimension(60, 200));
         tableMotor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMotorMouseClicked(evt);
@@ -615,15 +579,15 @@ public class KendaraanView extends javax.swing.JFrame {
         tableIPanelLayout.setHorizontalGroup(
             tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tableIPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel5)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tableIPanelLayout.setVerticalGroup(
             tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -676,7 +640,7 @@ public class KendaraanView extends javax.swing.JFrame {
         logoDalamPanel3Layout.setVerticalGroup(
             logoDalamPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoDalamPanel3Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(logoLuarPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -792,7 +756,7 @@ public class KendaraanView extends javax.swing.JFrame {
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(menu1Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menu2Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -802,7 +766,7 @@ public class KendaraanView extends javax.swing.JFrame {
                 .addComponent(menu4Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menu5Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1029,23 +993,23 @@ public class KendaraanView extends javax.swing.JFrame {
             if(action.equals("Tambah")){
                 Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), "4", jenisInput.getText(), 
                         namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", "", 0);
+                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", 0);
                 kendaraanControl.insertDataKendaraan(k, kmt, jenisInput.getText());
             } else {
                 Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), "4", jenisInput.getText(), 
                         namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", "", 0);
+                Kendaraan_Motor kmt = new Kendaraan_Motor( "", "", "", "", "", "", "", 0);
                 kendaraanControl.updateKendaraan(k, kmt, jenisInput.getText());
             }            
         }else if(radioMotor.isSelected()){
             if(action.equals("Tambah")){
-                Kendaraan_Motor k = new Kendaraan_Motor("", "", idKendaraanInput.getText(), 
+                Kendaraan_Motor k = new Kendaraan_Motor( "", idKendaraanInput.getText(), 
                         jenisInput.getText(), namaInput.getText(), platInput.getText(), 
                         merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
                 Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
                 kendaraanControl.insertDataKendaraan(kmb, k, jenisInput.getText());
             } else {
-                Kendaraan_Motor k = new Kendaraan_Motor("", "", idKendaraanInput.getText(), 
+                Kendaraan_Motor k = new Kendaraan_Motor( "", idKendaraanInput.getText(), 
                         jenisInput.getText(), namaInput.getText(), platInput.getText(), 
                         merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
                 Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
@@ -1185,10 +1149,6 @@ public class KendaraanView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_kapasitasInputActionPerformed
 
-    private void stangInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stangInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_stangInputActionPerformed
-
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -1293,9 +1253,6 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JTextField searchInput;
     private javax.swing.JLabel seatLabel;
     private javax.swing.JPanel seatPanel;
-    private javax.swing.JTextField stangInput;
-    private javax.swing.JLabel stangLabel;
-    private javax.swing.JPanel stangPanel;
     private javax.swing.JPanel tableIPanel;
     private javax.swing.JTable tableMobil;
     private javax.swing.JTable tableMotor;

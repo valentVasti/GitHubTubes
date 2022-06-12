@@ -194,8 +194,7 @@ public class penyewaanDAO {
                                 );
                     
                     Kendaraan kt = new Kendaraan_Motor(
-                                            rs.getString("mt.jenis_Helm"),
-                                            rs.getString("mt.jenis_Stang"),
+                                            rs.getString("mt.jenis_Seat"),
                                             rs.getString("mt.id_Kendaraan"),
                                             rs.getString("mt.jenis"),
                                             rs.getString("mt.nama"),

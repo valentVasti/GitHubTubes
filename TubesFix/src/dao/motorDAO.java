@@ -21,8 +21,8 @@ public class motorDAO {
     public void insertMotor(Kendaraan_Motor m) {
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO motor(id_Kendaraan, jenis_Helm, jenis_Stang, jenis, nama_Kendaraan, platNo, merk, cc, tarif)" // bakal dicek dulu
-                + "VALUES ('" +m.getId_Kendaraan()+ "', '" + m.getJenis_Helm()+ "','" + m.getJenis_Stang()+ "', '"
+        String sql = "INSERT INTO motor(id_Kendaraan, jenis_Seat, jenis, nama_Kendaraan, platNo, merk, cc, tarif)" // bakal dicek dulu
+                + "VALUES ('" +m.getId_Kendaraan()+ "', '" + m.getJenis_Seat()+ "','" 
                 + m.getJenis() + "', '" + m.getNama_Kendaraan() + "', '" + m.getPlatNo() + "', '" + m.getMerk() + 
                 "', '" + m.getCC() + "', '" + m.getTarif() + "')";
         
@@ -43,8 +43,7 @@ public class motorDAO {
     public void updateMotor(Kendaraan_Motor m){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE motor SET jenis_Helm = '" + m.getJenis_Helm()
-                + "', jenis_Stang = '" + m.getJenis_Stang()
+        String sql = "UPDATE motor SET jenis_Helm = '" + m.getJenis_Seat()
                 + "', jenis = '" + m.getJenis()
                 + "', nama_Kendaraan = '" + m.getNamaKendaraan()
                 + "', platNo = '" + m.getPlatNo()
@@ -72,8 +71,7 @@ public class motorDAO {
         
         String sql = "SELECT mt.* FROM motor as mt WHERE (mt.id_Kendaraan LIKE"
                 + "'%" + query + "%'"
-                + "OR mt.jenis_Helm LIKE '" + query + "'"
-                + "OR mt.jenis_Stang LIKE '" + query +"'"
+                + "OR mt.jenis_Seat LIKE '" + query + "'"
                 + "OR mt.jenis LIKE '" + query + "'"
                 + "OR mt.nama_Kendaraan LIKE '" + query + "'"
                 + "OR mt.platNo LIKE '" + query + "'"
@@ -92,8 +90,7 @@ public class motorDAO {
             if (rs != null){
                 while (rs.next()){
                         Kendaraan_Motor k = new Kendaraan_Motor(
-                            rs.getString("mt.jenis_Helm"),
-                            rs.getString("mt.jenis_Stang"),
+                            rs.getString("mt.jenis_Seat"),
                             rs.getString("mt.id_Kendaraan"),    
                             rs.getString("mt.jenis"),
                             rs.getString("mt.nama_Kendaraan"),
@@ -152,8 +149,7 @@ public class motorDAO {
             if (rs != null){
                 while (rs.next()){
                         Kendaraan_Motor k = new Kendaraan_Motor(
-                            rs.getString("jenis_Helm"),
-                            rs.getString("jenis_Stang"),
+                            rs.getString("jenis_Seat"),
                             rs.getString("id_Kendaraan"),    
                             rs.getString("jenis"),
                             rs.getString("nama_Kendaraan"),
