@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         <group/>
 =======
@@ -68,5 +69,8 @@
         </group>
 >>>>>>> Stashed changes
 >>>>>>> ece5f44c9a28583ea903a1d74d4360d9cf02c6ba
+=======
+        <group/>
+>>>>>>> Stashed changes
     </open-files>
 </project-private>
