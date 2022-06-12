@@ -5,6 +5,10 @@
 package view;
 
 import Control.penyewaanControl;
+import Control.transaksiControl;
+import Control.CustomerControl;
+import control.KendaraanControl;
+import Control.guideControl;
 import model.Penyewaan;
 import model.Customer;
 import table.TablePenyewaan;
@@ -13,15 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import model.Kendaraan;
 import model.Kendaraan_Mobil;
 import model.Kendaraan_Motor;
 import model.Transaksi;
 import model.Guide;
 
 public class PenyewaanView extends javax.swing.JFrame {
-private penyewaanControl penyewaanControl;
-
-
+    private penyewaanControl penyewaanControl;
+    private transaksiControl transaksiControl;
+    private CustomerControl customerControl;
+    private KendaraanControl kendaraanControl;
+    private guideControl guideControl;        
     
     String action = null;
     String selectedId = null;
@@ -48,8 +55,8 @@ private penyewaanControl penyewaanControl;
     }
     
     public void setOthComp(boolean value){
-        idTransaksiDropDown.setEnabled(value);
-        pilihDropDown.setEnabled(value);
+        transaksiDropDown.setEnabled(value);
+        customerDropDown.setEnabled(value);
         mobilRb.setEnabled(value);
         motorRb.setEnabled(value);
         durasiInput.setEnabled(value);
@@ -66,10 +73,10 @@ private penyewaanControl penyewaanControl;
     }
     
     public void clearText(){
-        pilihDropDown.setSelectedItem(ABORT);
+        customerDropDown.setSelectedItem(-1);
         motorBox.setSelectedItem(ABORT);
         mobilBox.setSelectedItem(ABORT);
-        idTransaksiDropDown.setSelectedItem(ABORT);
+        transaksiDropDown.setSelectedItem(ABORT);
         durasiInput.setText("");
         mobilRb.setSelected(false);
         motorRb.setSelected(false);
@@ -78,6 +85,27 @@ private penyewaanControl penyewaanControl;
     public void showPenyewaan(){
         penyewaanTabel.setModel(penyewaanControl.showPenyewaan(""));
     }
+    
+    public void setTransaksiToDropDown(){
+        listTransaksi = transaksiControl.showDataTransaksi();
+             for(int i=0; i<listTransaksi.size(); i++){
+                transaksiDropDown.addItem(listTransaksi.get(i));
+            }
+    }
+    
+    public void setCustomerToDropDown(){
+        listCustomer = customerControl.showDataCustomer();
+             for(int i=0; i<listTransaksi.size(); i++){
+                transaksiDropDown.addItem(listTransaksi.get(i));
+            }
+    }
+
+    public void setMobilToDropDown(){
+        listMobil = kendaraanControl.();
+             for(int i=0; i<listTransaksi.size(); i++){
+                transaksiDropDown.addItem(listTransaksi.get(i));
+            }
+    }    
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -93,7 +121,7 @@ private penyewaanControl penyewaanControl;
         contentPanel = new javax.swing.JPanel();
         transaksiPanel = new javax.swing.JPanel();
         transaksiLabel = new javax.swing.JLabel();
-        idTransaksiDropDown = new javax.swing.JComboBox<>();
+        transaksiDropDown = new javax.swing.JComboBox<>();
         tanggalPanel = new javax.swing.JPanel();
         durasiLabel = new javax.swing.JLabel();
         durasiInput = new javax.swing.JTextField();
@@ -101,7 +129,7 @@ private penyewaanControl penyewaanControl;
         penyewaanTabel = new javax.swing.JTable();
         tanggalPanel1 = new javax.swing.JPanel();
         pilihLabel = new javax.swing.JLabel();
-        pilihDropDown = new javax.swing.JComboBox<>();
+        customerDropDown = new javax.swing.JComboBox<>();
         tanggalPanel2 = new javax.swing.JPanel();
         pilihLabel1 = new javax.swing.JLabel();
         mobilRb = new javax.swing.JRadioButton();
@@ -115,7 +143,7 @@ private penyewaanControl penyewaanControl;
         jumlahPembayaranInput1 = new javax.swing.JTextField();
         penyewaanPanel = new javax.swing.JPanel();
         penyewaanInput = new javax.swing.JLabel();
-        idPenyewaanInput = new javax.swing.JComboBox<>();
+        idPenyewaanInput = new javax.swing.JTextField();
         guidePanel = new javax.swing.JPanel();
         guideDropDown = new javax.swing.JComboBox<>();
         guideLabel = new javax.swing.JLabel();
@@ -158,6 +186,11 @@ private penyewaanControl penyewaanControl;
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         deleteBtn.setText("HAPUS");
@@ -213,6 +246,12 @@ private penyewaanControl penyewaanControl;
         transaksiLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         transaksiLabel.setText("ID Transaksi");
 
+        transaksiDropDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transaksiDropDownActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout transaksiPanelLayout = new javax.swing.GroupLayout(transaksiPanel);
         transaksiPanel.setLayout(transaksiPanelLayout);
         transaksiPanelLayout.setHorizontalGroup(
@@ -223,7 +262,7 @@ private penyewaanControl penyewaanControl;
                     .addGroup(transaksiPanelLayout.createSequentialGroup()
                         .addComponent(transaksiLabel)
                         .addGap(0, 217, Short.MAX_VALUE))
-                    .addComponent(idTransaksiDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(transaksiDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         transaksiPanelLayout.setVerticalGroup(
@@ -232,7 +271,7 @@ private penyewaanControl penyewaanControl;
                 .addContainerGap()
                 .addComponent(transaksiLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(idTransaksiDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(transaksiDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -281,6 +320,11 @@ private penyewaanControl penyewaanControl;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        penyewaanTabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                penyewaanTabelMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(penyewaanTabel);
 
         tanggalPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -288,9 +332,9 @@ private penyewaanControl penyewaanControl;
         pilihLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         pilihLabel.setText("Pilih Nama Customer");
 
-        pilihDropDown.addActionListener(new java.awt.event.ActionListener() {
+        customerDropDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pilihDropDownActionPerformed(evt);
+                customerDropDownActionPerformed(evt);
             }
         });
 
@@ -310,19 +354,14 @@ private penyewaanControl penyewaanControl;
             .addGroup(tanggalPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tanggalPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tanggalPanel2Layout.createSequentialGroup()
-                        .addGroup(tanggalPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pilihLabel1)
-                            .addGroup(tanggalPanel2Layout.createSequentialGroup()
-                                .addComponent(mobilRb, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(motorRb, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(tanggalPanel2Layout.createSequentialGroup()
-                        .addComponent(mobilBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(motorBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))))
+                    .addComponent(mobilBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pilihLabel1)
+                    .addComponent(mobilRb, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(tanggalPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(motorBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(motorRb, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
         );
         tanggalPanel2Layout.setVerticalGroup(
             tanggalPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,7 +389,7 @@ private penyewaanControl penyewaanControl;
                     .addGroup(tanggalPanel1Layout.createSequentialGroup()
                         .addComponent(pilihLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(pilihDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(customerDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tanggalPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -360,7 +399,7 @@ private penyewaanControl penyewaanControl;
                 .addContainerGap()
                 .addComponent(pilihLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pilihDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(customerDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(tanggalPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -376,7 +415,7 @@ private penyewaanControl penyewaanControl;
         tanggalPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         durasiLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-        durasiLabel1.setText("Durasi Penyewaan");
+        durasiLabel1.setText("Rekapan Penyewaan");
 
         jumlahPembayaranInput1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -422,7 +461,7 @@ private penyewaanControl penyewaanControl;
                     .addGroup(penyewaanPanelLayout.createSequentialGroup()
                         .addComponent(penyewaanInput)
                         .addGap(0, 197, Short.MAX_VALUE))
-                    .addComponent(idPenyewaanInput, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(idPenyewaanInput))
                 .addContainerGap())
         );
         penyewaanPanelLayout.setVerticalGroup(
@@ -430,9 +469,9 @@ private penyewaanControl penyewaanControl;
             .addGroup(penyewaanPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(penyewaanInput)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(idPenyewaanInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         guideLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
@@ -478,7 +517,7 @@ private penyewaanControl penyewaanControl;
                                 .addComponent(transaksiPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(tanggalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(penyewaanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
                                 .addComponent(tanggalPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -504,10 +543,9 @@ private penyewaanControl penyewaanControl;
                         .addGap(39, 39, 39)
                         .addComponent(tanggalPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(guidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(guidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contentPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(65, Short.MAX_VALUE)
                         .addComponent(penyewaanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(transaksiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -784,7 +822,7 @@ private penyewaanControl penyewaanControl;
                     .addComponent(logoDalamPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(headerPanel3Layout.createSequentialGroup()
                         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -822,61 +860,59 @@ private penyewaanControl penyewaanControl;
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         int clickedRowPenyewaan = penyewaanTabel.getSelectedRow();
         
-            int selectedIndex = pilihDropDown.getSelectedIndex();
+            int selectedIndex = customerDropDown.getSelectedIndex();
             Customer selectedCustomer = listCustomer.get(selectedIndex);
             
             selectedIndex = mobilBox.getSelectedIndex();
             Kendaraan_Mobil selectedMobil = listMobil.get(selectedIndex);
-            
-            
+                        
             selectedIndex = motorBox.getSelectedIndex();
             Kendaraan_Motor selectedMotor = listMotor.get(selectedIndex);
             
-            selectedIndex = idTransaksiDropDown.getSelectedIndex();
+            selectedIndex = transaksiDropDown.getSelectedIndex();
             Transaksi selectedTransaksi = listTransaksi.get(selectedIndex);
             
             selectedIndex = guideDropDown.getSelectedIndex();
             Guide selectedGuide = listGuide.get(selectedIndex);
             
-            
+       // (String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, 
+       //         Kendaraan kendaraan, int durasi, String jenis, double total_Sewa)    
         if(mobilRb.isSelected()){
             if(action.equals("Tambah")){
-                Penyewaan p = new Penyewaan(idPenyewaanInput,selectedTransaksi, selectedCustomer, 
-                        selectedMobil, platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", "", 0);
-                kendaraanControl.insertDataKendaraan(k, kmt, jenisInput.getText());
+                Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
+                        selectedMobil, Integer.parseInt(durasiInput.getText()), "Mobil", 
+                        Integer.parseInt(durasiInput.getText())*selectedMobil.getTarif());
+                penyewaanControl.insertDataPenyewaan(p);
             } else {
-                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), "4", jenisInput.getText(), 
-                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", "", 0);
-                kendaraanControl.updateKendaraan(k, kmt, jenisInput.getText());
+                Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
+                        selectedMobil, Integer.parseInt(durasiInput.getText()), "Mobil", 
+                        Integer.parseInt(durasiInput.getText())*selectedMobil.getTarif());
+                penyewaanControl.insertDataPenyewaan(p);
             }            
-        }else if(radioMotor.isSelected()){
+        }else if(motorRb.isSelected()){
             if(action.equals("Tambah")){
-                Kendaraan_Motor k = new Kendaraan_Motor("", "", idKendaraanInput.getText(), 
-                        jenisInput.getText(), namaInput.getText(), platInput.getText(), 
-                        merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
-                kendaraanControl.insertDataKendaraan(kmb, k, jenisInput.getText());
+                Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
+                        selectedMotor, Integer.parseInt(durasiInput.getText()), "Motor", 
+                        Integer.parseInt(durasiInput.getText())*selectedMotor.getTarif());
+                penyewaanControl.insertDataPenyewaan(p);
             } else {
-                Kendaraan_Motor k = new Kendaraan_Motor("", "", idKendaraanInput.getText(), 
-                        jenisInput.getText(), namaInput.getText(), platInput.getText(), 
-                        merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
-                kendaraanControl.updateKendaraan(kmb, k, jenisInput.getText());
+                Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
+                        selectedMotor, Integer.parseInt(durasiInput.getText()), "Motor", 
+                        Integer.parseInt(durasiInput.getText())*selectedMotor.getTarif());
+                penyewaanControl.insertDataPenyewaan(p);
             }             
         }
 
         clearText();
-        showKendaraan();
+        showPenyewaan();
         setOthComp(false);
         setAddSearchComp(true);
         setEditDelComp(false);
     }//GEN-LAST:event_saveBtnActionPerformed
 
-    private void pilihDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihDropDownActionPerformed
+    private void customerDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerDropDownActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pilihDropDownActionPerformed
+    }//GEN-LAST:event_customerDropDownActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
        
@@ -887,32 +923,140 @@ private penyewaanControl penyewaanControl;
     }//GEN-LAST:event_jumlahPembayaranInput1ActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        
+        setOthComp(true);
+        clearText();
+        action = "Tambah";        
     }//GEN-LAST:event_addBtnActionPerformed
 
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        setOthComp(true);
+        setAddSearchComp(false);
+        action = "Ubah";
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void penyewaanTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penyewaanTabelMouseClicked
+        int indexTransaksi = -1;
+        int indexCustomer = -1;
+        int indexKendaraan = -1;
+        int indexGuide = -1;
+        setEditDelComp(true);
+        setOthComp(false);
+                
+        int clickedRow = penyewaanTabel.getSelectedRow();
+        TableModel tableModel = penyewaanTabel.getModel();
+        
+        selectedId = tableModel.getValueAt(clickedRow, 0).toString();
+        idPenyewaanInput.setText(selectedId);
+        
+        String idTransaksi = tableModel.getValueAt(clickedRow, 6).toString();
+        
+        for(Transaksi transaksi : listTransaksi){
+            if(transaksi.getId_Transaksi().equals(idTransaksi)){
+                indexTransaksi = listTransaksi.indexOf(transaksi);
+            }
+        }
+        
+        transaksiDropDown.setSelectedIndex(indexTransaksi);
+        
+        String idCustomer = tableModel.getValueAt(clickedRow, 1).toString();
+        
+        for(Customer customer : listCustomer){
+            if(customer.getId_Customer().equals(idCustomer)){
+                indexCustomer = listCustomer.indexOf(idCustomer);
+            }
+        }
+        
+        customerDropDown.setSelectedIndex(indexCustomer);
+        
+        String idKendaraan = tableModel.getValueAt(clickedRow, 3).toString();
+        
+        if(idKendaraan.contains("MOB")){
+            mobilRb.setSelected(true);
+                for(Kendaraan kendaraan : listMobil){
+                    if(kendaraan.getId().equals(idKendaraan)){
+                        indexKendaraan = listMobil.indexOf(idKendaraan);
+                    }
+                }
+                mobilBox.setSelectedIndex(indexKendaraan);
+                motorBox.setSelectedIndex(-1);
+        }else if(idKendaraan.contains("MOT")){
+            motorRb.setSelected(true);
+                for(Kendaraan kendaraan : listMotor){
+                    if(kendaraan.getId().equals(idKendaraan)){
+                        indexKendaraan = listMobil.indexOf(idKendaraan);
+                    }
+                }
+                motorBox.setSelectedIndex(indexKendaraan);
+                mobilBox.setSelectedIndex(-1);
+        }
+                
+        durasiInput.setText(tableModel.getValueAt(clickedRow, 10).toString());
+        
+        String idGuide = tableModel.getValueAt(clickedRow, 11).toString();
+        
+        for(Guide guide : listGuide){
+            if(guide.getId_Guide().equals(idGuide)){
+                indexGuide = listGuide.indexOf(guide);
+            }
+        }
+        
+        guideDropDown.setSelectedIndex(indexGuide);        
+
+    }//GEN-LAST:event_penyewaanTabelMouseClicked
+
+    private void transaksiDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiDropDownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transaksiDropDownActionPerformed
+    
+    public static void main(String args[]) {
+            /* Set the Nimbus look and feel */
+            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+             * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+             */
+            try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }
+            } catch (ClassNotFoundException ex) {
+                java.util.logging.Logger.getLogger(GuideView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                java.util.logging.Logger.getLogger(GuideView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                java.util.logging.Logger.getLogger(GuideView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(GuideView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            //</editor-fold>
+            //</editor-fold>
+
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new PenyewaanView().setVisible(true);
+                }
+            });
+        }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JPanel commandPanel;
     private javax.swing.JPanel contentPanel;
+    private javax.swing.JComboBox<Customer> customerDropDown;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JTextField durasiInput;
     private javax.swing.JLabel durasiLabel;
     private javax.swing.JLabel durasiLabel1;
     private javax.swing.JButton editBtn;
-    private javax.swing.JComboBox<String> guideDropDown;
+    private javax.swing.JComboBox<Guide> guideDropDown;
     private javax.swing.JLabel guideLabel;
     private javax.swing.JPanel guidePanel;
     private javax.swing.JPanel headerPanel3;
-    private javax.swing.JComboBox<String> idPenyewaanInput;
-    private javax.swing.JComboBox<String> idPenyewaanInput1;
-    private javax.swing.JComboBox<String> idTransaksiDropDown;
-    private javax.swing.JComboBox<String> idTransaksiDropDown1;
-    private javax.swing.JComboBox<String> idTransaksiDropDown2;
-    private javax.swing.JComboBox<String> idTransaksiDropDown3;
-    private javax.swing.JComboBox<String> idTransaksiDropDown4;
-    private javax.swing.JComboBox<String> idTransaksiDropDown5;
-    private javax.swing.JComboBox<String> idTransaksiDropDown6;
+    private javax.swing.JTextField idPenyewaanInput;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -939,11 +1083,8 @@ private penyewaanControl penyewaanControl;
     private javax.swing.JComboBox<String> motorBox;
     private javax.swing.JRadioButton motorRb;
     private javax.swing.JLabel penyewaanInput;
-    private javax.swing.JLabel penyewaanInput1;
     private javax.swing.JPanel penyewaanPanel;
-    private javax.swing.JPanel penyewaanPanel1;
     private javax.swing.JTable penyewaanTabel;
-    private javax.swing.JComboBox<Customer> pilihDropDown;
     private javax.swing.JLabel pilihLabel;
     private javax.swing.JLabel pilihLabel1;
     private javax.swing.ButtonGroup radioJenisPembayaran;
@@ -957,19 +1098,8 @@ private penyewaanControl penyewaanControl;
     private javax.swing.JPanel tanggalPanel3;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
+    private javax.swing.JComboBox<Transaksi> transaksiDropDown;
     private javax.swing.JLabel transaksiLabel;
-    private javax.swing.JLabel transaksiLabel1;
-    private javax.swing.JLabel transaksiLabel2;
-    private javax.swing.JLabel transaksiLabel3;
-    private javax.swing.JLabel transaksiLabel4;
-    private javax.swing.JLabel transaksiLabel5;
-    private javax.swing.JLabel transaksiLabel6;
     private javax.swing.JPanel transaksiPanel;
-    private javax.swing.JPanel transaksiPanel1;
-    private javax.swing.JPanel transaksiPanel2;
-    private javax.swing.JPanel transaksiPanel3;
-    private javax.swing.JPanel transaksiPanel4;
-    private javax.swing.JPanel transaksiPanel5;
-    private javax.swing.JPanel transaksiPanel6;
     // End of variables declaration//GEN-END:variables
 }

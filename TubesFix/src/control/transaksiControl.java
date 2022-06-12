@@ -13,7 +13,7 @@ public class transaksiControl {
         TDao.insertTransaksi(t);
     }
     
-    public List<Transaksi> showDataTransaksi(String jenis){
+    public List<Transaksi> showDataTransaksi(){
         List<Transaksi> dataTransaksi = TDao.showTransaksi();
         return dataTransaksi;
     }

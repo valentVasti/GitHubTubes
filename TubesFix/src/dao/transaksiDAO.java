@@ -94,10 +94,10 @@ public class transaksiDAO {
             if (rs != null){
                 while (rs.next()){
                         Transaksi t = new Transaksi(
-                            rs.getString("t.id_Transaksi"),
-                            rs.getString("t.status_Pembayaran"),
-                            rs.getString("t.jenis_Pembayaran"),
-                            rs.getString("t.tanggal_Transaksi")
+                            rs.getString("id_Transaksi"),
+                            rs.getString("status_Pembayaran"),
+                            rs.getString("jenis_Pembayaran"),
+                            rs.getString("tanggal_Transaksi")
                     );
                     
                     list.add(t);

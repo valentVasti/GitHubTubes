@@ -14,7 +14,7 @@ public class CustomerControl {
         CDao.insertCustomer(c);
     }
     
-    public List<Customer> showDataCustomer(String jenis){
+    public List<Customer> showDataCustomer(){
         List<Customer> dataCustomer = CDao.showCustomer();
         return dataCustomer;
     }

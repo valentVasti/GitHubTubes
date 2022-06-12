@@ -49,6 +49,10 @@ public class TablePenyewaan extends AbstractTableModel{
                 return list.get(rowIndex).getJenis();
             case 9:
                 return list.get(rowIndex).getTransaksi().getStatus_Pembayaran();
+            case 10:
+                return list.get(rowIndex).getDurasi();
+            case 11:
+                return list.get(rowIndex).getGuide().getId_Guide();
             default:
                 return null;
         }
