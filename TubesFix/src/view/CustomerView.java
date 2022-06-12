@@ -105,19 +105,19 @@ public class CustomerView extends javax.swing.JFrame {
         logoLuarPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         menuPanel1 = new javax.swing.JPanel();
-        menu1Panel1 = new javax.swing.JPanel();
+        penyewaanMenu = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         menu2Panel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        menu3Panel = new javax.swing.JPanel();
+        kendaraanMenu = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        menu4Panel = new javax.swing.JPanel();
+        guideMenu = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        menu5Panel = new javax.swing.JPanel();
+        transaksiMenu = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         titlePanel = new javax.swing.JPanel();
@@ -467,35 +467,40 @@ public class CustomerView extends javax.swing.JFrame {
         menuPanel1.setBackground(new java.awt.Color(255, 204, 204));
         menuPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        menu1Panel1.setBackground(new java.awt.Color(255, 255, 255));
+        penyewaanMenu.setBackground(new java.awt.Color(255, 255, 255));
+        penyewaanMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                penyewaanMenuMouseClicked(evt);
+            }
+        });
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/car rent.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jLabel2.setText("Penyewaan");
 
-        javax.swing.GroupLayout menu1Panel1Layout = new javax.swing.GroupLayout(menu1Panel1);
-        menu1Panel1.setLayout(menu1Panel1Layout);
-        menu1Panel1Layout.setHorizontalGroup(
-            menu1Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu1Panel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout penyewaanMenuLayout = new javax.swing.GroupLayout(penyewaanMenu);
+        penyewaanMenu.setLayout(penyewaanMenuLayout);
+        penyewaanMenuLayout.setHorizontalGroup(
+            penyewaanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(penyewaanMenuLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel8)
-                .addContainerGap(19, Short.MAX_VALUE))
-            .addGroup(menu1Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu1Panel1Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(penyewaanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, penyewaanMenuLayout.createSequentialGroup()
                     .addContainerGap(20, Short.MAX_VALUE)
                     .addComponent(jLabel2)
                     .addContainerGap()))
         );
-        menu1Panel1Layout.setVerticalGroup(
-            menu1Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu1Panel1Layout.createSequentialGroup()
+        penyewaanMenuLayout.setVerticalGroup(
+            penyewaanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(penyewaanMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(menu1Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu1Panel1Layout.createSequentialGroup()
+            .addGroup(penyewaanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, penyewaanMenuLayout.createSequentialGroup()
                     .addContainerGap(91, Short.MAX_VALUE)
                     .addComponent(jLabel2)
                     .addGap(1, 1, 1)))
@@ -530,84 +535,99 @@ public class CustomerView extends javax.swing.JFrame {
                 .addComponent(jLabel9))
         );
 
-        menu3Panel.setBackground(new java.awt.Color(255, 255, 255));
+        kendaraanMenu.setBackground(new java.awt.Color(255, 255, 255));
+        kendaraanMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kendaraanMenuMouseClicked(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/car.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jLabel1.setText("Kendaraan");
 
-        javax.swing.GroupLayout menu3PanelLayout = new javax.swing.GroupLayout(menu3Panel);
-        menu3Panel.setLayout(menu3PanelLayout);
-        menu3PanelLayout.setHorizontalGroup(
-            menu3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu3PanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout kendaraanMenuLayout = new javax.swing.GroupLayout(kendaraanMenu);
+        kendaraanMenu.setLayout(kendaraanMenuLayout);
+        kendaraanMenuLayout.setHorizontalGroup(
+            kendaraanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kendaraanMenuLayout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(menu3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kendaraanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4))
                 .addContainerGap())
         );
-        menu3PanelLayout.setVerticalGroup(
-            menu3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu3PanelLayout.createSequentialGroup()
+        kendaraanMenuLayout.setVerticalGroup(
+            kendaraanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kendaraanMenuLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1))
         );
 
-        menu4Panel.setBackground(new java.awt.Color(255, 255, 255));
+        guideMenu.setBackground(new java.awt.Color(255, 255, 255));
+        guideMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guideMenuMouseClicked(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/tour guide.png"))); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jLabel11.setText("Guide");
 
-        javax.swing.GroupLayout menu4PanelLayout = new javax.swing.GroupLayout(menu4Panel);
-        menu4Panel.setLayout(menu4PanelLayout);
-        menu4PanelLayout.setHorizontalGroup(
-            menu4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu4PanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout guideMenuLayout = new javax.swing.GroupLayout(guideMenu);
+        guideMenu.setLayout(guideMenuLayout);
+        guideMenuLayout.setHorizontalGroup(
+            guideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guideMenuLayout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(menu4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menu4PanelLayout.createSequentialGroup()
+                .addGroup(guideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(guideMenuLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel11))
                     .addComponent(jLabel5))
                 .addContainerGap())
         );
-        menu4PanelLayout.setVerticalGroup(
-            menu4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu4PanelLayout.createSequentialGroup()
+        guideMenuLayout.setVerticalGroup(
+            guideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(guideMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11))
         );
 
-        menu5Panel.setBackground(new java.awt.Color(255, 255, 255));
+        transaksiMenu.setBackground(new java.awt.Color(255, 255, 255));
+        transaksiMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transaksiMenuMouseClicked(evt);
+            }
+        });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/transaction.png"))); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jLabel10.setText("Transaksi");
 
-        javax.swing.GroupLayout menu5PanelLayout = new javax.swing.GroupLayout(menu5Panel);
-        menu5Panel.setLayout(menu5PanelLayout);
-        menu5PanelLayout.setHorizontalGroup(
-            menu5PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu5PanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout transaksiMenuLayout = new javax.swing.GroupLayout(transaksiMenu);
+        transaksiMenu.setLayout(transaksiMenuLayout);
+        transaksiMenuLayout.setHorizontalGroup(
+            transaksiMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transaksiMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(menu5PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(transaksiMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(jLabel6))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
-        menu5PanelLayout.setVerticalGroup(
-            menu5PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu5PanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        transaksiMenuLayout.setVerticalGroup(
+            transaksiMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transaksiMenuLayout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10))
@@ -619,24 +639,24 @@ public class CustomerView extends javax.swing.JFrame {
             menuPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(menu1Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(penyewaanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menu2Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(menu3Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(kendaraanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(menu4Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(menu5Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(transaksiMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuPanel1Layout.setVerticalGroup(
             menuPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu1Panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(penyewaanMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(menu2Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(menu3Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(menu4Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(menu5Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(kendaraanMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(guideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(transaksiMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         titlePanel.setBackground(new java.awt.Color(255, 204, 204));
@@ -830,6 +850,30 @@ public class CustomerView extends javax.swing.JFrame {
         showCustomer();
     }//GEN-LAST:event_searchBtn1ActionPerformed
 
+    private void penyewaanMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penyewaanMenuMouseClicked
+        PenyewaanView pv = new PenyewaanView();
+        this.dispose();
+        pv.setVisible(true);
+    }//GEN-LAST:event_penyewaanMenuMouseClicked
+
+    private void kendaraanMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kendaraanMenuMouseClicked
+        KendaraanView kv = new KendaraanView();
+        this.dispose();
+        kv.setVisible(true);
+    }//GEN-LAST:event_kendaraanMenuMouseClicked
+
+    private void guideMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideMenuMouseClicked
+        GuideView gv = new GuideView();
+        this.dispose();
+        gv.setVisible(true);
+    }//GEN-LAST:event_guideMenuMouseClicked
+
+    private void transaksiMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiMenuMouseClicked
+        TransaksiView tv = new TransaksiView();
+        this.dispose();
+        tv.setVisible(true);
+    }//GEN-LAST:event_transaksiMenuMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -875,6 +919,7 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JTable customerTable;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
+    private javax.swing.JPanel guideMenu;
     private javax.swing.JPanel header;
     private javax.swing.JPanel idCustomer;
     private javax.swing.JTextField idCustomerInput;
@@ -892,13 +937,10 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel kendaraanMenu;
     private javax.swing.JPanel logoDalamPanel1;
     private javax.swing.JPanel logoLuarPanel1;
-    private javax.swing.JPanel menu1Panel1;
     private javax.swing.JPanel menu2Panel;
-    private javax.swing.JPanel menu3Panel;
-    private javax.swing.JPanel menu4Panel;
-    private javax.swing.JPanel menu5Panel;
     private javax.swing.JPanel menuPanel1;
     private javax.swing.JPanel namaCustomer;
     private javax.swing.JTextField namaCustomerInput;
@@ -906,6 +948,7 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JPanel noTelpCustomer;
     private javax.swing.JTextField noTelpCustomerInput;
     private javax.swing.JLabel noTelpCustomerLabel;
+    private javax.swing.JPanel penyewaanMenu;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JButton searchBtn1;
@@ -913,6 +956,7 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JPanel tablePanel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
+    private javax.swing.JPanel transaksiMenu;
     private javax.swing.JPanel umurCustomer;
     private javax.swing.JTextField umurCustomerInput;
     private javax.swing.JLabel umurCustomerLabel;
