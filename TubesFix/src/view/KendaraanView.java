@@ -940,16 +940,15 @@ public class KendaraanView extends javax.swing.JFrame {
         setEditDelComp(false);
     }//GEN-LAST:event_saveBtnActionPerformed
 
-<<<<<<< Updated upstream
-    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
         
         setOthComp(true);
         setAddSearchComp(false);
         setRadioJenisComp(false);
         action = "Ubah";
-    }//GEN-LAST:event_editBtnActionPerformed
+    }                                       
 
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         switch(getAnswer){
             case 0:
@@ -970,8 +969,8 @@ public class KendaraanView extends javax.swing.JFrame {
             case 1:
                 break;
         }
-    }//GEN-LAST:event_deleteBtnActionPerformed
-=======
+    }                                         
+
     private void tableMobilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMobilMouseClicked
         setEditDelComp(true);
         setOthComp(false);
@@ -1018,6 +1017,7 @@ public class KendaraanView extends javax.swing.JFrame {
         tarifInput.setText(tableModel.getValueAt(clickedRow, 5).toString());        
     }//GEN-LAST:event_tableMotorMouseClicked
 
+/*
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 switch(getAnswer){
@@ -1040,7 +1040,8 @@ public class KendaraanView extends javax.swing.JFrame {
                         break;
                 }
     }//GEN-LAST:event_deleteBtnActionPerformed
-
+    */
+    /*
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         setOthComp(true);
         setAddSearchComp(false);
@@ -1048,14 +1049,13 @@ public class KendaraanView extends javax.swing.JFrame {
         idKendaraanInput.setEnabled(false);
         action = "Ubah";
     }//GEN-LAST:event_editBtnActionPerformed
-
+    */
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         setAddSearchComp(true);
         setOthComp(false);
         clearText();
         showKendaraan();
     }//GEN-LAST:event_cancelBtnActionPerformed
->>>>>>> Stashed changes
 
     /**
      * @param args the command line arguments
