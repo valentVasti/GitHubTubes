@@ -13,13 +13,24 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import model.Kendaraan_Mobil;
+import model.Kendaraan_Motor;
+import model.Transaksi;
+import model.Guide;
 
 public class PenyewaanView extends javax.swing.JFrame {
 private penyewaanControl penyewaanControl;
+
+
     
     String action = null;
     String selectedId = null;
     List<Penyewaan> listPenyewaan;
+    List<Kendaraan_Mobil> listMobil;
+    List<Kendaraan_Motor> listMotor;
+    List<Customer> listCustomer;
+    List<Transaksi> listTransaksi;
+    List<Guide> listGuide;
     
     public PenyewaanView() {
         initComponents();
@@ -37,7 +48,7 @@ private penyewaanControl penyewaanControl;
     }
     
     public void setOthComp(boolean value){
-        penyewaanInput.setEnabled(value);
+        idTransaksiDropDown.setEnabled(value);
         pilihDropDown.setEnabled(value);
         mobilRb.setEnabled(value);
         motorRb.setEnabled(value);
@@ -58,14 +69,14 @@ private penyewaanControl penyewaanControl;
         pilihDropDown.setSelectedItem(ABORT);
         motorBox.setSelectedItem(ABORT);
         mobilBox.setSelectedItem(ABORT);
-        penyewaanInput.setText("");
+        idTransaksiDropDown.setSelectedItem(ABORT);
         durasiInput.setText("");
         mobilRb.setSelected(false);
         motorRb.setSelected(false);
     }
     
     public void showPenyewaan(){
-        penyewaanTabel1.setModel(penyewaanControl.showPenyewaan(""));
+        penyewaanTabel.setModel(penyewaanControl.showPenyewaan(""));
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -82,12 +93,12 @@ private penyewaanControl penyewaanControl;
         contentPanel = new javax.swing.JPanel();
         transaksiPanel = new javax.swing.JPanel();
         transaksiLabel = new javax.swing.JLabel();
-        penyewaanInput = new javax.swing.JTextField();
+        idTransaksiDropDown = new javax.swing.JComboBox<>();
         tanggalPanel = new javax.swing.JPanel();
         durasiLabel = new javax.swing.JLabel();
         durasiInput = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        penyewaanTabel1 = new javax.swing.JTable();
+        penyewaanTabel = new javax.swing.JTable();
         tanggalPanel1 = new javax.swing.JPanel();
         pilihLabel = new javax.swing.JLabel();
         pilihDropDown = new javax.swing.JComboBox<>();
@@ -102,6 +113,12 @@ private penyewaanControl penyewaanControl;
         tanggalPanel3 = new javax.swing.JPanel();
         durasiLabel1 = new javax.swing.JLabel();
         jumlahPembayaranInput1 = new javax.swing.JTextField();
+        penyewaanPanel = new javax.swing.JPanel();
+        penyewaanInput = new javax.swing.JLabel();
+        idPenyewaanInput = new javax.swing.JComboBox<>();
+        guidePanel = new javax.swing.JPanel();
+        guideDropDown = new javax.swing.JComboBox<>();
+        guideLabel = new javax.swing.JLabel();
         headerPanel3 = new javax.swing.JPanel();
         logoDalamPanel3 = new javax.swing.JPanel();
         logoLuarPanel3 = new javax.swing.JPanel();
@@ -133,6 +150,11 @@ private penyewaanControl penyewaanControl;
 
         addBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         addBtn.setText("TAMBAH");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
@@ -176,7 +198,7 @@ private penyewaanControl penyewaanControl;
                 .addComponent(editBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(deleteBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 451, Short.MAX_VALUE)
                 .addComponent(saveBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelBtn)
@@ -191,12 +213,6 @@ private penyewaanControl penyewaanControl;
         transaksiLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         transaksiLabel.setText("ID Transaksi");
 
-        penyewaanInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                penyewaanInputActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout transaksiPanelLayout = new javax.swing.GroupLayout(transaksiPanel);
         transaksiPanel.setLayout(transaksiPanelLayout);
         transaksiPanelLayout.setHorizontalGroup(
@@ -206,8 +222,8 @@ private penyewaanControl penyewaanControl;
                 .addGroup(transaksiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(transaksiPanelLayout.createSequentialGroup()
                         .addComponent(transaksiLabel)
-                        .addGap(0, 197, Short.MAX_VALUE))
-                    .addComponent(penyewaanInput))
+                        .addGap(0, 217, Short.MAX_VALUE))
+                    .addComponent(idTransaksiDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         transaksiPanelLayout.setVerticalGroup(
@@ -215,9 +231,9 @@ private penyewaanControl penyewaanControl;
             .addGroup(transaksiPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(transaksiLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(penyewaanInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(idTransaksiDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         tanggalPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -254,7 +270,7 @@ private penyewaanControl penyewaanControl;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        penyewaanTabel1.setModel(new javax.swing.table.DefaultTableModel(
+        penyewaanTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -265,7 +281,7 @@ private penyewaanControl penyewaanControl;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(penyewaanTabel1);
+        jScrollPane2.setViewportView(penyewaanTabel);
 
         tanggalPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -391,6 +407,60 @@ private penyewaanControl penyewaanControl;
                 .addContainerGap())
         );
 
+        penyewaanPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        penyewaanInput.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        penyewaanInput.setText("ID Penyewaan");
+
+        javax.swing.GroupLayout penyewaanPanelLayout = new javax.swing.GroupLayout(penyewaanPanel);
+        penyewaanPanel.setLayout(penyewaanPanelLayout);
+        penyewaanPanelLayout.setHorizontalGroup(
+            penyewaanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(penyewaanPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(penyewaanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(penyewaanPanelLayout.createSequentialGroup()
+                        .addComponent(penyewaanInput)
+                        .addGap(0, 197, Short.MAX_VALUE))
+                    .addComponent(idPenyewaanInput, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        penyewaanPanelLayout.setVerticalGroup(
+            penyewaanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(penyewaanPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(penyewaanInput)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(idPenyewaanInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        guideLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        guideLabel.setText("Guide");
+
+        javax.swing.GroupLayout guidePanelLayout = new javax.swing.GroupLayout(guidePanel);
+        guidePanel.setLayout(guidePanelLayout);
+        guidePanelLayout.setHorizontalGroup(
+            guidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(guidePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(guidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(guidePanelLayout.createSequentialGroup()
+                        .addComponent(guideLabel)
+                        .addGap(0, 247, Short.MAX_VALUE))
+                    .addComponent(guideDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        guidePanelLayout.setVerticalGroup(
+            guidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(guidePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(guideLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(guideDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
         contentPanelLayout.setHorizontalGroup(
@@ -398,48 +468,56 @@ private penyewaanControl penyewaanControl;
             .addGroup(contentPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(contentPanelLayout.createSequentialGroup()
                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(tanggalPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(transaksiPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(tanggalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                                .addComponent(transaksiPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tanggalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(penyewaanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
+                                .addComponent(tanggalPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
                                 .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19)
                                 .addComponent(searchBtn)
                                 .addGap(33, 33, 33))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
-                                .addComponent(tanggalPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
-                        .addContainerGap())))
+                            .addGroup(contentPanelLayout.createSequentialGroup()
+                                .addComponent(guidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentPanelLayout.createSequentialGroup()
                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contentPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(transaksiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(contentPanelLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchBtn))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(searchBtn))
+                        .addGap(39, 39, 39)
+                        .addComponent(tanggalPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(guidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(contentPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(penyewaanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(transaksiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tanggalPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tanggalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tanggalPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tanggalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         headerPanel3.setBackground(new java.awt.Color(204, 0, 0));
@@ -641,7 +719,7 @@ private penyewaanControl penyewaanControl;
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addComponent(menu1Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(menu2Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -651,7 +729,7 @@ private penyewaanControl penyewaanControl;
                 .addComponent(menu4Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(menu5Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -706,7 +784,7 @@ private penyewaanControl penyewaanControl;
                     .addComponent(logoDalamPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(headerPanel3Layout.createSequentialGroup()
                         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -722,7 +800,7 @@ private penyewaanControl penyewaanControl;
                         .addComponent(commandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(headerPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)))
+                    .addComponent(headerPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -737,16 +815,63 @@ private penyewaanControl penyewaanControl;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void penyewaanInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_penyewaanInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_penyewaanInputActionPerformed
-
     private void durasiInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durasiInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_durasiInputActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        int clickedRowPenyewaan = penyewaanTabel.getSelectedRow();
         
+            int selectedIndex = pilihDropDown.getSelectedIndex();
+            Customer selectedCustomer = listCustomer.get(selectedIndex);
+            
+            selectedIndex = mobilBox.getSelectedIndex();
+            Kendaraan_Mobil selectedMobil = listMobil.get(selectedIndex);
+            
+            
+            selectedIndex = motorBox.getSelectedIndex();
+            Kendaraan_Motor selectedMotor = listMotor.get(selectedIndex);
+            
+            selectedIndex = idTransaksiDropDown.getSelectedIndex();
+            Transaksi selectedTransaksi = listTransaksi.get(selectedIndex);
+            
+            selectedIndex = guideDropDown.getSelectedIndex();
+            Guide selectedGuide = listGuide.get(selectedIndex);
+            
+            
+        if(mobilRb.isSelected()){
+            if(action.equals("Tambah")){
+                Penyewaan p = new Penyewaan(idPenyewaanInput,selectedTransaksi, selectedCustomer, 
+                        selectedMobil, platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
+                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", "", 0);
+                kendaraanControl.insertDataKendaraan(k, kmt, jenisInput.getText());
+            } else {
+                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), "4", jenisInput.getText(), 
+                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
+                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", "", 0);
+                kendaraanControl.updateKendaraan(k, kmt, jenisInput.getText());
+            }            
+        }else if(radioMotor.isSelected()){
+            if(action.equals("Tambah")){
+                Kendaraan_Motor k = new Kendaraan_Motor("", "", idKendaraanInput.getText(), 
+                        jenisInput.getText(), namaInput.getText(), platInput.getText(), 
+                        merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
+                Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
+                kendaraanControl.insertDataKendaraan(kmb, k, jenisInput.getText());
+            } else {
+                Kendaraan_Motor k = new Kendaraan_Motor("", "", idKendaraanInput.getText(), 
+                        jenisInput.getText(), namaInput.getText(), platInput.getText(), 
+                        merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
+                Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
+                kendaraanControl.updateKendaraan(kmb, k, jenisInput.getText());
+            }             
+        }
+
+        clearText();
+        showKendaraan();
+        setOthComp(false);
+        setAddSearchComp(true);
+        setEditDelComp(false);
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void pilihDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihDropDownActionPerformed
@@ -761,6 +886,10 @@ private penyewaanControl penyewaanControl;
         // TODO add your handling code here:
     }//GEN-LAST:event_jumlahPembayaranInput1ActionPerformed
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        
+    }//GEN-LAST:event_addBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JButton cancelBtn;
@@ -771,7 +900,19 @@ private penyewaanControl penyewaanControl;
     private javax.swing.JLabel durasiLabel;
     private javax.swing.JLabel durasiLabel1;
     private javax.swing.JButton editBtn;
+    private javax.swing.JComboBox<String> guideDropDown;
+    private javax.swing.JLabel guideLabel;
+    private javax.swing.JPanel guidePanel;
     private javax.swing.JPanel headerPanel3;
+    private javax.swing.JComboBox<String> idPenyewaanInput;
+    private javax.swing.JComboBox<String> idPenyewaanInput1;
+    private javax.swing.JComboBox<String> idTransaksiDropDown;
+    private javax.swing.JComboBox<String> idTransaksiDropDown1;
+    private javax.swing.JComboBox<String> idTransaksiDropDown2;
+    private javax.swing.JComboBox<String> idTransaksiDropDown3;
+    private javax.swing.JComboBox<String> idTransaksiDropDown4;
+    private javax.swing.JComboBox<String> idTransaksiDropDown5;
+    private javax.swing.JComboBox<String> idTransaksiDropDown6;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -797,8 +938,11 @@ private penyewaanControl penyewaanControl;
     private javax.swing.JRadioButton mobilRb;
     private javax.swing.JComboBox<String> motorBox;
     private javax.swing.JRadioButton motorRb;
-    private javax.swing.JTextField penyewaanInput;
-    private javax.swing.JTable penyewaanTabel1;
+    private javax.swing.JLabel penyewaanInput;
+    private javax.swing.JLabel penyewaanInput1;
+    private javax.swing.JPanel penyewaanPanel;
+    private javax.swing.JPanel penyewaanPanel1;
+    private javax.swing.JTable penyewaanTabel;
     private javax.swing.JComboBox<Customer> pilihDropDown;
     private javax.swing.JLabel pilihLabel;
     private javax.swing.JLabel pilihLabel1;
@@ -814,6 +958,18 @@ private penyewaanControl penyewaanControl;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JLabel transaksiLabel;
+    private javax.swing.JLabel transaksiLabel1;
+    private javax.swing.JLabel transaksiLabel2;
+    private javax.swing.JLabel transaksiLabel3;
+    private javax.swing.JLabel transaksiLabel4;
+    private javax.swing.JLabel transaksiLabel5;
+    private javax.swing.JLabel transaksiLabel6;
     private javax.swing.JPanel transaksiPanel;
+    private javax.swing.JPanel transaksiPanel1;
+    private javax.swing.JPanel transaksiPanel2;
+    private javax.swing.JPanel transaksiPanel3;
+    private javax.swing.JPanel transaksiPanel4;
+    private javax.swing.JPanel transaksiPanel5;
+    private javax.swing.JPanel transaksiPanel6;
     // End of variables declaration//GEN-END:variables
 }
