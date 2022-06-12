@@ -38,17 +38,17 @@ public class KendaraanControl {
                 
     }
     
-    public TableMobil showMobil(String query) {
+    public TableMobil showMobil(){
         
-        List<Kendaraan_Mobil> dataMobil = MbDao.showMobilBySearch(query);
+        List<Kendaraan_Mobil> dataMobil = MbDao.showMobil();
         TableMobil tableMobil = new TableMobil(dataMobil);
         
         return tableMobil;
     }
     
-    public TableMotor showMotor(String query) {
+    public TableMotor showMotor(){
         
-        List<Kendaraan_Motor> dataMotor = MtDao.showMotorBySearch(query);
+        List<Kendaraan_Motor> dataMotor = MtDao.showMotor();
         TableMotor tableMotor = new TableMotor(dataMotor);
         
         return tableMotor;
