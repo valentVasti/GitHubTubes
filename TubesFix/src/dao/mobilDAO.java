@@ -133,13 +133,13 @@ public class mobilDAO {
         dbCon.closeConnection();
     }  
     
-    public List<Kendaraan> showMobil(){
+    public List<Kendaraan_Mobil> showMobil(){
         con = dbCon.makeConnection();
         
         String sql = "SELECT * FROM mobil";
-        System.out.println("Mengambil data Motor...");
+        System.out.println("Mengambil data Mobil...");
         
-        List<Kendaraan> list = new ArrayList();
+        List<Kendaraan_Mobil> list = new ArrayList();
         
         try {
             Statement statement = con.createStatement();
@@ -147,7 +147,7 @@ public class mobilDAO {
             
             if (rs != null){
                 while (rs.next()){
-                        Kendaraan k = new Kendaraan_Mobil(
+                        Kendaraan_Mobil k = new Kendaraan_Mobil(
                             rs.getString("mt.kapasitas_Mobil"),
                             rs.getString("mt.id_Kendaraan"),    
                             rs.getString("mt.jenis"),

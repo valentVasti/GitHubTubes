@@ -371,7 +371,11 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(headerPanelLayout.createSequentialGroup()
                         .addComponent(logoDalamPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< Updated upstream
                         .addGap(0, 5, Short.MAX_VALUE))
+=======
+                        .addGap(0, 25, Short.MAX_VALUE))
+>>>>>>> Stashed changes
                     .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

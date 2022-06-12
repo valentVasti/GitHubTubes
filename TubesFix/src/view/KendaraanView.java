@@ -1,24 +1,74 @@
 package view;
 
-import Control.guideControl;
+import control.KendaraanControl;
 import java.beans.PropertyEditorManager;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
-import model.Guide;
+import model.Kendaraan;
+import model.Kendaraan_Mobil;
+import model.Kendaraan_Motor;
 import table.TableMobil;
 import table.TableMotor;
 
 public class KendaraanView extends javax.swing.JFrame {
-
-    /**
-     * Creates new form InputKendaraan
-     */
+    private KendaraanControl kendaraanControl;
+    
+    String action = null;
+    String selectedId = null;
+    List<Kendaraan> listCustomer;
+    
     public KendaraanView() {
         initComponents();
+        setAddSearchComp(true);
+        setOthComp(false);
+        setEditDelComp(false);
+        radioJenisComp(false);
+        kendaraanControl = new KendaraanControl();
+        showKendaraan();
     }
-
+    
+    public void setAddSearchComp(boolean value){
+        addBtn.setEnabled(value);
+        editBtn.setEnabled(value);
+        searchBtn.setEnabled(value);
+    }
+    
+    public void setOthComp(boolean value){
+        idKendaraanInput.setEnabled(value);
+        namaInput.setEnabled(value);
+        platInput.setEnabled(value);
+        merkInput.setEnabled(value);
+        ccInput.setEnabled(value);
+        
+        saveBtn.setEnabled(value);
+        cancelBtn.setEnabled(value);
+    }
+    
+    public void setEditDelComp(boolean value){
+        editBtn.setEnabled(value);
+        deleteBtn.setEnabled(value);
+    }
+    
+    public void radioJenisComp(boolean value){
+        radioMobil.setEnabled(value);
+        radioMotor.setEnabled(value);
+    }
+    
+    public void clearText(){
+        idKendaraanInput.setText("");
+        namaInput.setText("");
+        platInput.setText("");
+        merkInput.setText("");
+        ccInput.setText("");
+        jenisInput.setText("");
+    }
+    
+    public void showKendaraan(){
+        tableMobil.setModel(kendaraanControl.showMobil());
+        tableMotor.setModel(kendaraanControl.showMotor());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,7 +78,7 @@ public class KendaraanView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        jenisRadioGroup = new javax.swing.ButtonGroup();
         input = new javax.swing.JPanel();
         idKendaraanIPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -48,10 +98,12 @@ public class KendaraanView extends javax.swing.JFrame {
         namaPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         namaInput = new javax.swing.JTextField();
-        motorRdb = new javax.swing.JRadioButton();
-        mobilRdb = new javax.swing.JRadioButton();
+        radioMotor = new javax.swing.JRadioButton();
+        radioMobil = new javax.swing.JRadioButton();
         searchBtn = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
         tableIPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMotor = new javax.swing.JTable();
@@ -92,7 +144,7 @@ public class KendaraanView extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         input.setBackground(new java.awt.Color(250, 250, 250));
-        input.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.red, null, null), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4)), "INPUT", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Berlin Sans FB Demi", 1, 18), new java.awt.Color(51, 51, 51))); // NOI18N
+        input.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4)), "INPUT", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Berlin Sans FB Demi", 1, 18), new java.awt.Color(51, 51, 51))); // NOI18N
 
         idKendaraanIPanel.setBackground(new java.awt.Color(250, 250, 250));
 
@@ -112,9 +164,12 @@ public class KendaraanView extends javax.swing.JFrame {
         idKendaraanIPanelLayout.setHorizontalGroup(
             idKendaraanIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(idKendaraanIPanelLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addContainerGap(189, Short.MAX_VALUE))
-            .addComponent(idKendaraanInput)
+                .addGroup(idKendaraanIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(idKendaraanIPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 179, Short.MAX_VALUE))
+                    .addComponent(idKendaraanInput))
+                .addContainerGap())
         );
         idKendaraanIPanelLayout.setVerticalGroup(
             idKendaraanIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,6 +267,11 @@ public class KendaraanView extends javax.swing.JFrame {
         jLabel4.setText("Jenis ");
 
         jenisInput.setFont(new java.awt.Font("Berlin Sans FB", 0, 13)); // NOI18N
+        jenisInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jenisInputActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jenisIPanelLayout = new javax.swing.GroupLayout(jenisIPanel);
         jenisIPanel.setLayout(jenisIPanelLayout);
@@ -219,9 +279,11 @@ public class KendaraanView extends javax.swing.JFrame {
             jenisIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jenisIPanelLayout.createSequentialGroup()
                 .addGroup(jenisIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jenisInput, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jenisIPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jenisInput))
+                .addContainerGap())
         );
         jenisIPanelLayout.setVerticalGroup(
             jenisIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,20 +320,25 @@ public class KendaraanView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        motorRdb.setBackground(new java.awt.Color(250, 250, 250));
-        buttonGroup1.add(motorRdb);
-        motorRdb.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-        motorRdb.setText("  Motor");
-        motorRdb.addActionListener(new java.awt.event.ActionListener() {
+        radioMotor.setBackground(new java.awt.Color(250, 250, 250));
+        jenisRadioGroup.add(radioMotor);
+        radioMotor.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        radioMotor.setText("  Motor");
+        radioMotor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                motorRdbActionPerformed(evt);
+                radioMotorActionPerformed(evt);
             }
         });
 
-        mobilRdb.setBackground(new java.awt.Color(250, 250, 250));
-        buttonGroup1.add(mobilRdb);
-        mobilRdb.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
-        mobilRdb.setText("  Mobil");
+        radioMobil.setBackground(new java.awt.Color(250, 250, 250));
+        jenisRadioGroup.add(radioMobil);
+        radioMobil.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        radioMobil.setText("  Mobil");
+        radioMobil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMobilActionPerformed(evt);
+            }
+        });
 
         searchBtn.setText("Cari");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -280,41 +347,64 @@ public class KendaraanView extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        jLabel22.setText("Tarif");
+
         javax.swing.GroupLayout inputLayout = new javax.swing.GroupLayout(input);
         input.setLayout(inputLayout);
         inputLayout.setHorizontalGroup(
             inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inputLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(29, 29, 29)
                 .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
+                    .addComponent(radioMotor)
+                    .addComponent(radioMobil))
+                .addGap(49, 49, 49)
+=======
                     .addComponent(motorRdb)
                     .addComponent(mobilRdb))
-                .addGap(49, 49, 49)
+                .addGap(92, 92, 92)
+>>>>>>> 8122eef555396979c1f39a635c720d757917fdbd
                 .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ccIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(merkIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(platIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jenisIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(namaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(inputLayout.createSequentialGroup()
-                        .addComponent(idKendaraanIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ccIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(merkIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(platIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jenisIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(namaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(inputLayout.createSequentialGroup()
+                                .addComponent(idKendaraanIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addComponent(searchBtn)))
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchBtn))
+                    .addGroup(inputLayout.createSequentialGroup()
+                        .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         inputLayout.setVerticalGroup(
             inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inputLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idKendaraanIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(searchBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchBtn))
+                    .addGroup(inputLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(idKendaraanIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
                 .addComponent(jenisIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inputLayout.createSequentialGroup()
@@ -323,19 +413,31 @@ public class KendaraanView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(platIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(inputLayout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(22, 22, 22)
+                        .addComponent(radioMotor)
+                        .addGap(18, 18, 18)
+                        .addComponent(radioMobil)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+=======
+                        .addGap(36, 36, 36)
                         .addComponent(motorRdb)
                         .addGap(18, 18, 18)
                         .addComponent(mobilRdb)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+>>>>>>> 8122eef555396979c1f39a635c720d757917fdbd
                 .addComponent(merkIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ccIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         tableIPanel.setBackground(new java.awt.Color(255, 255, 255));
-        tableIPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4), "List Input", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        tableIPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4)), "List Input", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         tableMotor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -547,7 +649,7 @@ public class KendaraanView extends javax.swing.JFrame {
         menu4PanelLayout.setVerticalGroup(
             menu4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu4PanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel20))
@@ -588,7 +690,7 @@ public class KendaraanView extends javax.swing.JFrame {
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(menu1Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menu2Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -598,7 +700,7 @@ public class KendaraanView extends javax.swing.JFrame {
                 .addComponent(menu4Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menu5Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -666,6 +768,11 @@ public class KendaraanView extends javax.swing.JFrame {
 
         addBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         addBtn.setText("TAMBAH");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
@@ -675,6 +782,11 @@ public class KendaraanView extends javax.swing.JFrame {
 
         saveBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         saveBtn.setText("SIMPAN");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         cancelBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         cancelBtn.setText("BATAL");
@@ -718,7 +830,7 @@ public class KendaraanView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(headerPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
+                    .addComponent(headerPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(commandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -736,9 +848,9 @@ public class KendaraanView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tableIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 1, Short.MAX_VALUE))
                     .addComponent(commandPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -750,12 +862,12 @@ public class KendaraanView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idKendaraanInputActionPerformed
 
-    private void motorRdbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motorRdbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_motorRdbActionPerformed
+    private void radioMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMotorActionPerformed
+        jenisInput.setText("Motor");
+    }//GEN-LAST:event_radioMotorActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        setEditDelComp(false);
+    /*    setEditDelComp(false);
         setOthComp(false);
         setAddSearchComp(true);
 
@@ -774,7 +886,71 @@ public class KendaraanView extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("Error : "+e.getMessage());
         }
+        */
     }//GEN-LAST:event_searchBtnActionPerformed
+
+<<<<<<< HEAD
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        setOthComp(false);
+        jenisInput.setEnabled(false);
+        radioJenisComp(true);
+        clearText();
+        action = "Tambah";
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void radioMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMobilActionPerformed
+        jenisInput.setText("Mobil");
+    }//GEN-LAST:event_radioMobilActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        int clickedRowMotor = tableMotor.getSelectedRow();
+        int clickedRowMobil = tableMobil.getSelectedRow();
+        
+        //(String id_Kendaraan, String kapasitas_Mobil, String jenis, 
+        //String nama_Kendaraan, String platNo, String merk, String cc, double tarif)        
+        if(radioMobil.isSelected()){
+            if(action.equals("Tambah")){
+                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), "4", jenisInput.getText(), 
+                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), 2000);
+                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", "", 0);
+                kendaraanControl.insertDataKendaraan(k, kmt, jenisInput.getText());
+            } else {
+                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), "4", jenisInput.getText(), 
+                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), 2000);
+                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", "", 0);
+                kendaraanControl.updateKendaraan(k, kmt, jenisInput.getText());
+            }            
+        }else if(radioMotor.isSelected()){
+            if(action.equals("Tambah")){
+                Kendaraan_Motor k = new Kendaraan_Motor("", "", idKendaraanInput.getText(), 
+                        jenisInput.getText(), namaInput.getText(), platInput.getText(), 
+                        merkInput.getText(), ccInput.getText(), 2000);
+                Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
+                kendaraanControl.insertDataKendaraan(kmb, k, jenisInput.getText());
+            } else {
+                Kendaraan_Motor k = new Kendaraan_Motor("", "", idKendaraanInput.getText(), 
+                        jenisInput.getText(), namaInput.getText(), platInput.getText(), 
+                        merkInput.getText(), ccInput.getText(), 2000);
+                Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
+                kendaraanControl.updateKendaraan(kmb, k, jenisInput.getText());
+            }             
+        }
+
+        clearText();
+        showKendaraan();
+        setOthComp(false);
+        setAddSearchComp(true);
+        setEditDelComp(false);
+    }//GEN-LAST:event_saveBtnActionPerformed
+=======
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jenisInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenisInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jenisInputActionPerformed
+>>>>>>> 8122eef555396979c1f39a635c720d757917fdbd
 
     /**
      * @param args the command line arguments
@@ -820,7 +996,6 @@ public class KendaraanView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JPanel ccIPanel;
     private javax.swing.JTextField ccInput;
@@ -843,6 +1018,7 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -852,8 +1028,10 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel jenisIPanel;
     private javax.swing.JTextField jenisInput;
+    private javax.swing.ButtonGroup jenisRadioGroup;
     private javax.swing.JPanel logoDalamPanel3;
     private javax.swing.JPanel logoLuarPanel3;
     private javax.swing.JPanel menu1Panel;
@@ -864,12 +1042,12 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JPanel menuPanel;
     private javax.swing.JPanel merkIPanel;
     private javax.swing.JTextField merkInput;
-    private javax.swing.JRadioButton mobilRdb;
-    private javax.swing.JRadioButton motorRdb;
     private javax.swing.JTextField namaInput;
     private javax.swing.JPanel namaPanel;
     private javax.swing.JPanel platIPanel;
     private javax.swing.JTextField platInput;
+    private javax.swing.JRadioButton radioMobil;
+    private javax.swing.JRadioButton radioMotor;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
