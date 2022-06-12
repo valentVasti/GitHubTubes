@@ -33,7 +33,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="headerPanel3" pref="961" max="32767" attributes="0"/>
+                  <Component id="headerPanel3" pref="1009" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="commandPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -112,12 +112,18 @@
                           <Component id="jenisIPanel" alignment="0" max="32767" attributes="0"/>
                           <Component id="namaPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+<<<<<<< HEAD
                       <Component id="idKendaraanIPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="0" pref="97" max="32767" attributes="0"/>
+=======
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="idKendaraanIPanel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+>>>>>>> ae5741de446e7e7c0aa5645894920504aafe3dd3
                           <Component id="searchInput" min="-2" pref="143" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Component id="searchBtn" min="-2" max="-2" attributes="0"/>
@@ -780,7 +786,9 @@
                       <Component id="jScrollPane1" min="-2" pref="306" max="-2" attributes="0"/>
                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <Component id="showAllBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -797,6 +805,11 @@
                       <Component id="jScrollPane1" alignment="1" min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="showAllBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -871,6 +884,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Table Motor"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="showAllBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tampilkan Semua Data"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showAllBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -997,7 +1018,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="menu1Panel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="menu2Panel" min="-2" max="-2" attributes="0"/>
@@ -1007,7 +1028,7 @@
                       <Component id="menu4Panel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="menu5Panel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="121" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
