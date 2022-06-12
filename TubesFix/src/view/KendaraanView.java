@@ -731,9 +731,19 @@ public class KendaraanView extends javax.swing.JFrame {
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         deleteBtn.setText("HAPUS");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         saveBtn.setText("SIMPAN");
@@ -899,6 +909,37 @@ public class KendaraanView extends javax.swing.JFrame {
         setAddSearchComp(true);
         setEditDelComp(false);
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        
+        setOthComp(true);
+        setAddSearchComp(false);
+        setRadioJenisComp(false);
+        action = "Ubah";
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        switch(getAnswer){
+            case 0:
+                try {
+                kendaraanControl.deleteKendaraan(selectedId, jenisInput.getText());
+                clearText();
+                showKendaraan();
+                setOthComp(false);
+                setAddSearchComp(true);
+                JOptionPane.showMessageDialog(this, "Berhasil menghapus data!");
+             
+            } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Gagal menghapus Guide");
+                    System.out.println("Error : "+e.getMessage());
+            }
+                break;
+            
+            case 1:
+                break;
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     /**
      * @param args the command line arguments
