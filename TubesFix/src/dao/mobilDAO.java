@@ -17,13 +17,13 @@ public class mobilDAO {
     private DbConnection dbCon = new DbConnection();
     private Connection con;
     
-    public void insertMobil(Kendaraan_Mobil m) {
+    public void insertMobil(Kendaraan m) {
         con = dbCon.makeConnection();
         
         String sql = "INSERT INTO kendaraan(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, cc, tarif, kapasitas_Mobil)" // jenis_Seat gaada berharap bisa NULL
-                + "VALUES ('" +m.getId_Kendaraan()+ "', '" + m.getJenis() + "', '" + m.getNama_Kendaraan() 
-                + "', '" + m.getPlatNo() + "', '" + m.getMerk() + 
-                "', '" + m.getCC() + "', '" + m.getTarif() + "', '" + m.getKapasitas_Mobil() + "')";
+                + "VALUES ('" +m.getId()+ "', '" + m.getData("jenis") + "', '" + m.getData("nama_Kendaraan")
+                + "', '" + m.getData("platNo")+ "', '" + m.getData("merk") + 
+                "', '" + m.getData("cc") + "', '" + Double.parseDouble(m.getData("tarif")) + "', '" + m.getData("kapasitas_Mobil") + "')";
         
         System.out.println("Adding Mobil...");
         
@@ -33,29 +33,29 @@ public class mobilDAO {
             System.out.println("Added " +result + " Mobil");
             statement.close();
         } catch (Exception e) {
-            System.out.println("Errror adding Mobil...");
+            System.out.println("Error adding Mobil...");
             System.out.println(e);
         }
         dbCon.closeConnection();
     }
     
-    public void updateMobil(Kendaraan_Mobil m){
+    public void updateMobil(Kendaraan m){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE kendaraan SET jenis = '" + m.getJenis()
-                + "', nama_Kendaraan = '" + m.getNamaKendaraan()
-                + "', platNo = '" + m.getPlatNo()
-                + "', merk = '" + m.getMerk()
-                + "', cc = '" + m.getCC()
-                + "', tarif = '" + m.getTarif()
-                + "', kapasitas_Mobil = '" + m.getKapasitas_Mobil()
-                + "' WHERE id_Kendaraan = '" + m.getId_Kendaraan() + "'";
+        String sql = "UPDATE kendaraan SET jenis = '" + m.getData("jenis")
+                + "', nama_Kendaraan = '" + m.getData("nama_Kendaraan")
+                + "', platNo = '" + m.getData("platNo")
+                + "', merk = '" + m.getData("merk")
+                + "', cc = '" + m.getData("cc")
+                + "', tarif = '" + m.getData("tarif")
+                + "', kapasitas_Mobil = '" + m.getData("kapasitas_Mobil")
+                + "' WHERE id_Kendaraan = '" + m.getId() + "'";
         System.out.println("Editing Mobil...");
         
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Edited " + result + " Mobil " + m.getId_Kendaraan());
+            System.out.println("Edited " + result + " Mobil " + m.getId());
             statement.close();
         } catch (Exception e) {
             System.out.println("Error Updating Mobil...");
@@ -75,7 +75,7 @@ public class mobilDAO {
                 + "OR mb.platNo LIKE '" + query + "'"
                 + "OR mb.merk LIKE '" + query + "'"
                 + "OR mb.cc LIKE '" + query + "'"
-                + "OR mb.tarif LIKE '" + query 
+                + "OR mb.tarif LIKE '" + query + "'"
                 + "OR mb.kapasitas_Mobil LIKE '" + query + "')";
 
         System.out.println("Mengambil data Mobil...");
@@ -97,8 +97,11 @@ public class mobilDAO {
                             rs.getString("mb.cc"),
                             Double.parseDouble(rs.getString("mb.tarif")),
                             rs.getString("mb.kapasitas_Mobil")
-                        ); 
-                    list.add(k);
+                        );
+                    if(k.getId().contains("MOB")){
+                        list.add(k);
+                    }
+                                 
                    }
                 }
                 rs.close();

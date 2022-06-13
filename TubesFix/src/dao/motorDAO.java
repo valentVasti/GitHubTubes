@@ -18,13 +18,13 @@ public class motorDAO {
     private DbConnection dbCon = new DbConnection();
     private Connection con;
     
-    public void insertMotor(Kendaraan_Motor m) {
+    public void insertMotor(Kendaraan m) {
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO kendaraan(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, cc, tarif, jenis_Seat)" // gausa diisi kapasitas_Mobil berharap bisa NULL
-                + "VALUES ('" +m.getId_Kendaraan()+ "', '" + m.getJenis() + "', '" + m.getNama_Kendaraan() 
-                + "', '" + m.getPlatNo() + "', '" + m.getMerk() + 
-                "', '" + m.getCC() + "', '" + m.getTarif() + "', '" + m.getJenis_Seat()+ "')";
+        String sql = "INSERT INTO kendaraan(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, cc, tarif, jenis_Seat)" // jenis_Seat gaada berharap bisa NULL
+                + "VALUES ('" +m.getId()+ "', '" + m.getData("jenis") + "', '" + m.getData("nama_Kendaraan")
+                + "', '" + m.getData("platNo")+ "', '" + m.getData("merk") + 
+                "', '" + m.getData("cc") + "', '" + Double.parseDouble(m.getData("tarif")) + "', '" + m.getData("jenis_Seat") + "')";
         
         System.out.println("Adding Motor...");
         
@@ -40,23 +40,23 @@ public class motorDAO {
         dbCon.closeConnection();
     }
     
-    public void updateMotor(Kendaraan_Motor m){
+    public void updateMotor(Kendaraan m){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE kendaraan SET jenis = '" + m.getJenis()
-                + "', nama_Kendaraan = '" + m.getNamaKendaraan()
-                + "', platNo = '" + m.getPlatNo()
-                + "', merk = '" + m.getMerk()
-                + "', cc = '" + m.getCC()
-                + "', tarif = '" + m.getTarif()
-                + "', jenis_Seat = '" + m.getJenis_Seat()
-                + "' WHERE id_Kendaraan = '" + m.getId_Kendaraan() + "'";
+        String sql = "UPDATE kendaraan SET jenis = '" + m.getData("jenis")
+                + "', nama_Kendaraan = '" + m.getData("nama_Kendaraan")
+                + "', platNo = '" + m.getData("platNo")
+                + "', merk = '" + m.getData("merk")
+                + "', cc = '" + m.getData("cc")
+                + "', tarif = '" + m.getData("tarif")
+                + "', jenis_Seat = '" + m.getData("jenis_Seat")
+                + "' WHERE id_Kendaraan = '" + m.getId() + "'";
         System.out.println("Editing Motor...");
         
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Edited " + result + " Motor " + m.getId_Kendaraan());
+            System.out.println("Edited " + result + " Motor " + m.getId());
             statement.close();
         } catch (Exception e) {
             System.out.println("Error Updating Motor...");
@@ -76,7 +76,7 @@ public class motorDAO {
                 + "OR mt.platNo LIKE '" + query + "'"
                 + "OR mt.merk LIKE '" + query + "'"
                 + "OR mt.cc LIKE '" + query + "'"
-                + "OR mt.tarif LIKE '" + query
+                + "OR mt.tarif LIKE '" + query + "'"
                 + "OR mt.jenis_Seat LIKE '" + query + "')";
 
         System.out.println("Mengambil data Motor...");
@@ -99,7 +99,9 @@ public class motorDAO {
                             Double.parseDouble(rs.getString("mt.tarif")),
                             rs.getString("mt.jenis_Seat")
                         ); 
-                    list.add(k);
+                    if(k.getId().contains("MOT")){
+                        list.add(k);
+                    }
                    }
                 }
                 rs.close();
@@ -149,14 +151,14 @@ public class motorDAO {
             if (rs != null){
                 while (rs.next()){
                         Kendaraan k = new Kendaraan_Motor(
-                            rs.getString("mt.id_Kendaraan"),    
-                            rs.getString("mt.jenis"),
-                            rs.getString("mt.nama_Kendaraan"),
-                            rs.getString("mt.platNo"),
-                            rs.getString("mt.merk"),
-                            rs.getString("mt.cc"),
-                            Double.parseDouble(rs.getString("mt.tarif")),
-                            rs.getString("mt.jenis_Seat")    
+                            rs.getString("id_Kendaraan"),    
+                            rs.getString("jenis"),
+                            rs.getString("nama_Kendaraan"),
+                            rs.getString("platNo"),
+                            rs.getString("merk"),
+                            rs.getString("cc"),
+                            Double.parseDouble(rs.getString("tarif")),
+                            rs.getString("jenis_Seat")    
                         );
                     
                     list.add(k);

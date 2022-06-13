@@ -11,6 +11,29 @@ public class Kendaraan_Mobil extends Kendaraan{
         super(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, cc, tarif);
         this.kapasitas_Mobil = kapasitas_Mobil;
     }
+    
+    public String getData(String data){
+        switch(data){
+            case "Id":
+                return id_Kendaraan;
+            case "jenis":
+                return jenis;
+            case "nama_Kendaraan":
+                return nama_Kendaraan;
+            case "platNo":
+                return platNo;
+            case "merk":
+                return merk;
+            case "cc":
+                return cc;
+            case "tarif":
+                return Double.toString(tarif);
+            case "kapasitas_Mobil":
+                return kapasitas_Mobil;
+            default:
+                return null;
+        }
+    }
 
     public String getKapasitas_Mobil() {
         return kapasitas_Mobil;
@@ -75,9 +98,7 @@ public class Kendaraan_Mobil extends Kendaraan{
     public void setTarif(double tarif) {
         this.tarif = tarif;
     }
-    
-    
-    
+        
     public String getId(){
         return id_Kendaraan;
     }

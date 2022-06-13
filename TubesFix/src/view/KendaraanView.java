@@ -46,6 +46,11 @@ public class KendaraanView extends javax.swing.JFrame {
         merkInput.setEnabled(value);
         ccInput.setEnabled(value);
         tarifInput.setEnabled(value);
+        if(radioMobil.isSelected()){
+            kapasitasInput.setEnabled(value);
+        }else if (radioMotor.isSelected()){
+            jenisSeatDropDown.setEnabled(value);
+        }
         
         saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
@@ -69,6 +74,8 @@ public class KendaraanView extends javax.swing.JFrame {
         ccInput.setText("");
         jenisInput.setText("");
         tarifInput.setText("");
+        kapasitasInput.setText("");
+        jenisSeatDropDown.setSelectedIndex(-1);
         
         radioGroupJenis.clearSelection();
         radioMobil.setSelected(false);
@@ -995,43 +1002,49 @@ public class KendaraanView extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        setOthComp(true);
-        jenisInput.setEnabled(false);
-        setRadioJenisComp(true);
-        clearText();
-        action = "Tambah";
+        if(radioMobil.isSelected() || radioMotor.isSelected()){
+            setOthComp(true);
+            jenisInput.setEnabled(false);
+            setRadioJenisComp(true);
+            clearText();
+            action = "Tambah";            
+        }else{
+            setOthComp(false);
+            jenisInput.setEnabled(false);
+            setRadioJenisComp(true);
+            clearText();
+            action = "Tambah";
+        }
+
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         int clickedRowMotor = tableMotor.getSelectedRow();
         int clickedRowMobil = tableMobil.getSelectedRow();
-        //(String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk, 
-                //String cc, double tarif, String kapasitas_Mobil)              
+              
         if(radioMobil.isSelected()){
             if(action.equals("Tambah")){
                 Kendaraan k = new Kendaraan_Mobil(idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(), 
                         platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
                         kapasitasInput.getText());
-                kendaraanControl.insertDataKendaraan(k, kmt, jenisInput.getText());
+                kendaraanControl.insertDataKendaraan(k, "Mobil");
             } else {
-                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), kapasitasInput.getText(), jenisInput.getText(), 
-                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Motor kmt = new Kendaraan_Motor( "", "", "", "", "", "", "", 0);
-                kendaraanControl.updateKendaraan(k, kmt, jenisInput.getText());
+                Kendaraan k = new Kendaraan_Mobil(idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(), 
+                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                        kapasitasInput.getText());
+                kendaraanControl.updateKendaraan(k, "Mobil");
             }            
         }else if(radioMotor.isSelected()){
             if(action.equals("Tambah")){
-                Kendaraan_Motor k = new Kendaraan_Motor( jenisSeatDropDown.getSelectedItem().toString(), idKendaraanInput.getText(), 
-                        jenisInput.getText(), namaInput.getText(), platInput.getText(), 
-                        merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
-                kendaraanControl.insertDataKendaraan(kmb, k, jenisInput.getText());
+                Kendaraan k = new Kendaraan_Motor( idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(),
+                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                        jenisSeatDropDown.getSelectedItem().toString());
+                kendaraanControl.insertDataKendaraan(k, "Motor");
             } else {
-                Kendaraan_Motor k = new Kendaraan_Motor( jenisSeatDropDown.getSelectedItem().toString(), idKendaraanInput.getText(), 
-                        jenisInput.getText(), namaInput.getText(), platInput.getText(), 
-                        merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
-                kendaraanControl.updateKendaraan(kmb, k, jenisInput.getText());
+                Kendaraan k = new Kendaraan_Motor( idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(),
+                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                        jenisSeatDropDown.getSelectedItem().toString());
+                kendaraanControl.updateKendaraan(k, "Motor");
             }             
         }
 

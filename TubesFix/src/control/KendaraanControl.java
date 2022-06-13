@@ -20,26 +20,30 @@ public class KendaraanControl {
     private motorDAO MtDao = new motorDAO();
     
     public void insertDataKendaraan(Kendaraan k, String jenis){
-        
+        if(jenis.equalsIgnoreCase("Mobil")){
+            MbDao.insertMobil(k);
+        }else{
+            MtDao.insertMotor(k);
+        }
     }
     
-    public List<Kendaraan_Mobil> showListMobil(){
+    public List<Kendaraan> showListMobil(){
         
-            List<Kendaraan_Mobil> listMobil = MbDao.showMobil();
+            List<Kendaraan> listMobil = MbDao.showMobil();
             return listMobil;
                
     }
     
-    public List<Kendaraan_Motor> showListMotor(){
+    public List<Kendaraan> showListMotor(){
                 
-            List<Kendaraan_Motor> listMotor = MtDao.showMotor();
+            List<Kendaraan> listMotor = MtDao.showMotor();
             return listMotor;
             
     }
     
     public TableMobil showMobil(){
         
-        List<Kendaraan_Mobil> dataMobil = MbDao.showMobil();
+        List<Kendaraan> dataMobil = MbDao.showMobil();
         TableMobil tableMobil = new TableMobil(dataMobil);
         
         return tableMobil;
@@ -47,7 +51,7 @@ public class KendaraanControl {
     
     public TableMotor showMotor(){
         
-        List<Kendaraan_Motor> dataMotor = MtDao.showMotor();
+        List<Kendaraan> dataMotor = MtDao.showMotor();
         TableMotor tableMotor = new TableMotor(dataMotor);
         
         return tableMotor;
@@ -55,7 +59,7 @@ public class KendaraanControl {
 
     public TableMobil showMobilBySearch(String query){
         
-        List<Kendaraan_Mobil> dataMobil = MbDao.showMobilBySearch(query);
+        List<Kendaraan> dataMobil = MbDao.showMobilBySearch(query);
         TableMobil tableMobil = new TableMobil(dataMobil);
         
         return tableMobil;
@@ -63,17 +67,17 @@ public class KendaraanControl {
     
     public TableMotor showMotorBySearch(String query){
         
-        List<Kendaraan_Motor> dataMotor = MtDao.showMotorBySearch(query);
+        List<Kendaraan> dataMotor = MtDao.showMotorBySearch(query);
         TableMotor tableMotor = new TableMotor(dataMotor);
         
         return tableMotor;
     }
     
-    public void updateKendaraan(Kendaraan_Mobil kmb, Kendaraan_Motor kmt, String jenis){
+    public void updateKendaraan(Kendaraan k, String jenis){
         if(jenis.equalsIgnoreCase("Mobil")){
-            MbDao.updateMobil(kmb);
+            MbDao.updateMobil(k);
         }else{
-            MtDao.updateMotor(kmt);
+            MtDao.updateMotor(k);
         }
     }
     
