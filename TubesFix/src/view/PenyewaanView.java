@@ -34,8 +34,8 @@ public class PenyewaanView extends javax.swing.JFrame {
     String action = null;
     String selectedId = null;
     List<Penyewaan> listPenyewaan;
-    List<Kendaraan_Mobil> listMobil;
-    List<Kendaraan_Motor> listMotor;
+    List<Kendaraan> listMobil;
+    List<Kendaraan> listMotor;
     List<Customer> listCustomer;
     List<Transaksi> listTransaksi;
     List<Guide> listGuide;
@@ -534,7 +534,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                     .addComponent(logoDalamPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(headerPanel3Layout.createSequentialGroup()
                         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -900,49 +900,41 @@ public class PenyewaanView extends javax.swing.JFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         int clickedRowPenyewaan = penyewaanTabel.getSelectedRow();
+        Kendaraan selectedKendaraan = listMobil.get(-1);
         
-            int selectedIndex = customerDropDown.getSelectedIndex();
-            Customer selectedCustomer = listCustomer.get(selectedIndex);
-            
-            selectedIndex = mobilBox.getSelectedIndex();
-            Kendaraan_Mobil selectedMobil = listMobil.get(selectedIndex);
-                        
-            selectedIndex = motorBox.getSelectedIndex();
-            Kendaraan_Motor selectedMotor = listMotor.get(selectedIndex);
-            
-            selectedIndex = transaksiDropDown.getSelectedIndex();
-            Transaksi selectedTransaksi = listTransaksi.get(selectedIndex);
-            
-            selectedIndex = guideDropDown.getSelectedIndex();
-            Guide selectedGuide = listGuide.get(selectedIndex);
-            
-       // (String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, 
-       //         Kendaraan kendaraan, int durasi, String jenis, double total_Sewa)    
+        int selectedIndex = customerDropDown.getSelectedIndex();
+        Customer selectedCustomer = listCustomer.get(selectedIndex);
+        
         if(mobilRb.isSelected()){
-            if(action.equals("Tambah")){
-                Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
-                        selectedMobil, Integer.parseInt(durasiInput.getText()), "Mobil", 
-                        Integer.parseInt(durasiInput.getText())*selectedMobil.getTarif());
-                penyewaanControl.insertDataPenyewaan(p);
-            } else {
-                Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
-                        selectedMobil, Integer.parseInt(durasiInput.getText()), "Mobil", 
-                        Integer.parseInt(durasiInput.getText())*selectedMobil.getTarif());
-                penyewaanControl.insertDataPenyewaan(p);
-            }            
+            selectedIndex = mobilBox.getSelectedIndex();
+            selectedKendaraan = listMobil.get(selectedIndex);            
         }else if(motorRb.isSelected()){
-            if(action.equals("Tambah")){
-                Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
-                        selectedMotor, Integer.parseInt(durasiInput.getText()), "Motor", 
-                        Integer.parseInt(durasiInput.getText())*selectedMotor.getTarif());
-                penyewaanControl.insertDataPenyewaan(p);
-            } else {
-                Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
-                        selectedMotor, Integer.parseInt(durasiInput.getText()), "Motor", 
-                        Integer.parseInt(durasiInput.getText())*selectedMotor.getTarif());
-                penyewaanControl.insertDataPenyewaan(p);
-            }             
+            selectedIndex = motorBox.getSelectedIndex();
+            selectedKendaraan = listMotor.get(selectedIndex);
         }
+
+        selectedIndex = transaksiDropDown.getSelectedIndex();
+        Transaksi selectedTransaksi = listTransaksi.get(selectedIndex);
+
+        selectedIndex = guideDropDown.getSelectedIndex();
+        Guide selectedGuide = listGuide.get(selectedIndex);
+            
+        double totalSewa = Integer.parseInt(durasiInput.getText()) * Double.parseDouble(selectedKendaraan.getData("tarif"));
+            
+        //(String id_Penyewaan, Customer customer, Transaksi transaksi, Guide guide, 
+        //Kendaraan kendaraan, int durasi, String jenis, double total_Sewa) 
+
+        if(action.equals("Tambah")){
+            Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
+                    selectedKendaraan, Integer.parseInt(durasiInput.getText()), "Mobil", totalSewa 
+                    );
+            penyewaanControl.insertDataPenyewaan(p);
+        } else {
+            Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
+                    selectedKendaraan, Integer.parseInt(durasiInput.getText()), "Mobil", totalSewa 
+                    );
+            penyewaanControl.updateCustomer(p);
+        }            
 
         clearText();
         showPenyewaan();
@@ -1147,9 +1139,9 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JPanel menu4Panel;
     private javax.swing.JPanel menu5Panel;
     private javax.swing.JPanel menuPanel;
-    private javax.swing.JComboBox<Kendaraan_Mobil> mobilBox;
+    private javax.swing.JComboBox<Kendaraan> mobilBox;
     private javax.swing.JRadioButton mobilRb;
-    private javax.swing.JComboBox<Kendaraan_Motor> motorBox;
+    private javax.swing.JComboBox<Kendaraan> motorBox;
     private javax.swing.JRadioButton motorRb;
     private javax.swing.JLabel penyewaanInput;
     private javax.swing.JPanel penyewaanPanel;

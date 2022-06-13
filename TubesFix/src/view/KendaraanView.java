@@ -1002,18 +1002,14 @@ public class KendaraanView extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        jenisInput.setEnabled(false);
+        setRadioJenisComp(true);
+        clearText();
+        action = "Tambah";        
         if(radioMobil.isSelected() || radioMotor.isSelected()){
             setOthComp(true);
-            jenisInput.setEnabled(false);
-            setRadioJenisComp(true);
-            clearText();
-            action = "Tambah";            
         }else{
             setOthComp(false);
-            jenisInput.setEnabled(false);
-            setRadioJenisComp(true);
-            clearText();
-            action = "Tambah";
         }
 
     }//GEN-LAST:event_addBtnActionPerformed
@@ -1058,7 +1054,6 @@ public class KendaraanView extends javax.swing.JFrame {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        
         setOthComp(true);
         setAddSearchComp(false);
         setRadioJenisComp(false);

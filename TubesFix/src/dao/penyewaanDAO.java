@@ -74,7 +74,26 @@ public class penyewaanDAO {
     public List<Penyewaan> showListPenyewaan(String query, String jenis){
         con = dbCon.makeConnection(); 
         String sql;
-        
+
+                sql = "SELECT p.*, k.*, c.*, t.*, g.* FROM penyewaan as p JOIN kendaraan as k ON k.id_kendaraan = p.id_kendaraan"
+                        + " JOIN customer as c ON c.id_Customer = p.id_Customer"
+                        + " JOIN transaksi as t ON t.id_Transaksi = p.id_Transaksi"
+                        + " JOIN guide as g ON g.id_Guide = p.id_Guide "
+                + "WHERE p.id_Penyewaan LIKE '%" + query  + "%' "
+                + "OR c.id_Customer LIKE '%" + query + "%' "
+                + "OR c.nama_Customer LIKE '%" + query + "%' "
+                + "OR k.id_Kendaraan LIKE '%" + query + "%' "
+                + "OR k.nama_Kendaraan LIKE '%" + query + "%' "
+                + "OR k.merk LIKE '%" + query + "%' "
+                + "OR t.id_Transaksi LIKE '%" + query + "%' "
+                + "OR p.total_Sewa LIKE '%" + query + "%' "
+                + "OR t.status_Pembayaran LIKE '%" + query + "%' "
+                + "OR t.jenis_Pembayaran LIKE '%" + query + "%' "
+                + "OR p.durasi LIKE '%" + query + "%' "
+                + "OR g.id_Guide LIKE '%" + query + "%' "
+                + "OR g.nama_Guide LIKE '%" + query + "%' ";
+
+/*    
         if(jenis.equalsIgnoreCase("Mobil")){
                 sql = "SELECT p.*, m.*, c.*, t.*, g.* FROM penyewaan as p JOIN mobil as m ON m.id_kendaraan = p.id_kendaraan"
                         + " JOIN customer as c ON c.id_Customer = p.id_Customer"
@@ -112,6 +131,7 @@ public class penyewaanDAO {
                 + "OR g.id_Guide LIKE '%" + query + "%' "
                 + "OR g.nama_Guide LIKE '%" + query + "%' ";
         }
+        */
         
         System.out.println("Mengambil data Penyewaan...");
         
@@ -146,18 +166,18 @@ public class penyewaanDAO {
                                     Integer.parseInt(rs.getString("g.umur_Guide")),
                                     rs.getString("g.telp_Guide")
                                 );
-                    
+
                     Kendaraan km = new Kendaraan_Mobil(
-                                            rs.getString("m.id_Kendaraan"),
-                                            rs.getString("m.kapasitas_Mobil"),
-                                            rs.getString("m.jenis"),
-                                            rs.getString("m.nama"),
-                                            rs.getString("m.plat"),
-                                            rs.getString("m.merk"),
-                                            rs.getString("m.cc"),
-                                            Double.parseDouble(rs.getString("m.tarif"))
-                                );
-                    
+                                            rs.getString("k.id_Kendaraan"),
+                                            rs.getString("k.jenis"),
+                                            rs.getString("k.nama"),
+                                            rs.getString("k.plat"),
+                                            rs.getString("k.merk"),
+                                            rs.getString("k.cc"),
+                                            Double.parseDouble(rs.getString("k.tarif")),
+                                            rs.getString("k.kapasitas_Mobil")
+                                );                        
+                     
                         Penyewaan p = new Penyewaan(
                             rs.getString("p.id_Penyewaan"),
                                 c,
@@ -201,14 +221,14 @@ public class penyewaanDAO {
                                 );
                     
                     Kendaraan kt = new Kendaraan_Motor(
-                                            rs.getString("mt.jenis_Seat"),
                                             rs.getString("mt.id_Kendaraan"),
                                             rs.getString("mt.jenis"),
                                             rs.getString("mt.nama"),
                                             rs.getString("mt.plat"),
                                             rs.getString("mt.merk"),
                                             rs.getString("mt.cc"),
-                                            Double.parseDouble(rs.getString("mt.tarif"))
+                                            Double.parseDouble(rs.getString("mt.tarif")),
+                                            rs.getString("mt.jenis_Seat")
                                 );
                     
                         Penyewaan p = new Penyewaan(
