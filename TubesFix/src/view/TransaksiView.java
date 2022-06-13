@@ -859,30 +859,12 @@ public class TransaksiView extends javax.swing.JFrame {
             jenis = "Debit";
         }
         
-        if(action.equals("Tambah")){
-            Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
-                    tanggalTransaksiInput.getText());
-            transaksiControl.insertDataTransaksi(transaksi);
-            PenyewaanView pv = new PenyewaanView(transaksi, p);
-            this.dispose();
-            pv.setVisible(true);            
-            
-        } else{
-            Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
-                    tanggalTransaksiInput.getText());
-            transaksiControl.updateTransaksi(transaksi);
-            PenyewaanView pv = new PenyewaanView(transaksi, p);
-            this.dispose();
-            pv.setVisible(true); 
-        }
-
-        clearText();
-        showTransaksi(); //testing
-        setOthComp(false);
-        setAddSearchComp(true);
-        setEditDelComp(false);
-        
-        //balik ke view Penyewaan bisa tambahin j
+        Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
+                tanggalTransaksiInput.getText());
+        transaksiControl.insertDataTransaksi(transaksi);
+        PenyewaanView pv = new PenyewaanView(transaksi, p);
+        this.dispose();
+        pv.setVisible(true);            
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void hitungPembayaranBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungPembayaranBtnActionPerformed
