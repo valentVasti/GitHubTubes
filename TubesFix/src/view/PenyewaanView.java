@@ -95,55 +95,35 @@ public class PenyewaanView extends javax.swing.JFrame {
     public void setTransaksiToDropDown(){
         listTransaksi = transaksiControl.showDataTransaksi();
              for(int i=0; i<listTransaksi.size(); i++){
-                if(listTransaksi!=null){
                     transaksiDropDown.addItem(listTransaksi.get(i));                    
-                }else{
-                    transaksiDropDown.setSelectedIndex(-1);
-                }
             }
     }
     
     public void setCustomerToDropDown(){
         listCustomer = customerControl.showDataCustomer();
              for(int i=0; i<listCustomer.size(); i++){
-                if(listCustomer!=null){
                     customerDropDown.addItem(listCustomer.get(i));    
-                }else{
-                    customerDropDown.setSelectedIndex(-1);
-                }
             }
     }
     
     public void setMobilToDropDown(){
         listMobil = kendaraanControl.showListMobil();
              for(int i=0; i<listMobil.size(); i++){
-                if(listMobil!=null){
                     mobilBox.addItem(listMobil.get(i));    
-                }else{
-                    mobilBox.setSelectedIndex(-1);
-                }
             }
     }
 
     public void setMotorToDropDown(){
         listMotor = kendaraanControl.showListMotor();
              for(int i=0; i<listMotor.size(); i++){
-                if(listMotor!=null){
                     motorBox.addItem(listMotor.get(i));    
-                }else{
-                    motorBox.setSelectedIndex(-1);
-                }
             }
     }
     
     public void setGuideToDropDown(){
         listGuide = guideControl.showDataGuide();
              for(int i=0; i<listGuide.size(); i++){
-                if(listGuide!=null){
                     guideDropDown.addItem(listGuide.get(i));    
-                }else{
-                    guideDropDown.setSelectedIndex(-1);
-                }
             }
     }    
     
@@ -838,19 +818,20 @@ public class PenyewaanView extends javax.swing.JFrame {
                                 .addComponent(transaksiPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(tanggalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(penyewaanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                        .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
-                                .addComponent(tanggalPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
-                                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)
-                                .addComponent(searchBtn)
-                                .addGap(33, 33, 33))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
+                                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(19, 19, 19)
+                                    .addComponent(searchBtn)
+                                    .addGap(33, 33, 33))
+                                .addGroup(contentPanelLayout.createSequentialGroup()
+                                    .addComponent(guidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap()))
                             .addGroup(contentPanelLayout.createSequentialGroup()
-                                .addComponent(guidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
+                                .addComponent(tanggalPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33))))))
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -861,9 +842,9 @@ public class PenyewaanView extends javax.swing.JFrame {
                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchBtn))
-                        .addGap(39, 39, 39)
+                        .addGap(45, 45, 45)
                         .addComponent(tanggalPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(guidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contentPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

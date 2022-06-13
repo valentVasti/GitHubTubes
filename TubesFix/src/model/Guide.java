@@ -64,7 +64,7 @@ public class Guide {
     @Override
     public String toString(){
         String temp;
-        temp = id_Guide + " || " + nama_Guide;
+        temp = nama_Guide;
         return temp;
     }     
 }

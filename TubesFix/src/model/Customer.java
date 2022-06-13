@@ -64,7 +64,7 @@ public class Customer {
     @Override
     public String toString(){
         String temp;
-        temp = id_Customer + " || " + nama_Customer;
+        temp = nama_Customer;
         return temp;
     }    
 }
