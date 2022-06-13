@@ -1005,14 +1005,13 @@ public class KendaraanView extends javax.swing.JFrame {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         int clickedRowMotor = tableMotor.getSelectedRow();
         int clickedRowMobil = tableMobil.getSelectedRow();
-        
-        //(String id_Kendaraan, String kapasitas_Mobil, String jenis, 
-        //String nama_Kendaraan, String platNo, String merk, String cc, double tarif)        
+        //(String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk, 
+                //String cc, double tarif, String kapasitas_Mobil)              
         if(radioMobil.isSelected()){
             if(action.equals("Tambah")){
-                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), kapasitasInput.getText(), jenisInput.getText(), 
-                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", 0);
+                Kendaraan k = new Kendaraan_Mobil(idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(), 
+                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                        kapasitasInput.getText());
                 kendaraanControl.insertDataKendaraan(k, kmt, jenisInput.getText());
             } else {
                 Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), kapasitasInput.getText(), jenisInput.getText(), 

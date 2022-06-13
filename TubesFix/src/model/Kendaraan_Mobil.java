@@ -7,7 +7,7 @@ package model;
 public class Kendaraan_Mobil extends Kendaraan{
     private String kapasitas_Mobil;
 
-    public Kendaraan_Mobil(String id_Kendaraan, String kapasitas_Mobil, String jenis, String nama_Kendaraan, String platNo, String merk, String cc, double tarif) {
+    public Kendaraan_Mobil(String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk, String cc, double tarif, String kapasitas_Mobil) {
         super(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, cc, tarif);
         this.kapasitas_Mobil = kapasitas_Mobil;
     }

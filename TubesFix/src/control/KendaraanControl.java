@@ -19,12 +19,8 @@ public class KendaraanControl {
     private mobilDAO MbDao = new mobilDAO();
     private motorDAO MtDao = new motorDAO();
     
-    public void insertDataKendaraan(Kendaraan_Mobil kmb, Kendaraan_Motor kmt, String jenis){
-        if(jenis.equalsIgnoreCase("Mobil")){
-            MbDao.insertMobil(kmb);
-        }else{
-            MtDao.insertMotor(kmt);
-        }
+    public void insertDataKendaraan(Kendaraan k, String jenis){
+        
     }
     
     public List<Kendaraan_Mobil> showListMobil(){
