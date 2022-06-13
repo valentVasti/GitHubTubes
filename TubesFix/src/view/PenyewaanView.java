@@ -99,7 +99,11 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public void setTransaksiToDropDown(){
         listTransaksi = transaksiControl.showDataTransaksi();
+<<<<<<< HEAD
              for(int i=0; i<listTransaksi.size(); i++){
+=======
+            for(int i=0; i<listTransaksi.size(); i++){
+>>>>>>> 1bede21c5243436c64130b76208d2479b9faa2f9
                     transaksiDropDown.addItem(listTransaksi.get(i));                    
             }
     }
@@ -1045,10 +1049,6 @@ public class PenyewaanView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_penyewaanTabelMouseClicked
 
-    private void transaksiDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiDropDownActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transaksiDropDownActionPerformed
-
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         switch(getAnswer){
@@ -1075,6 +1075,10 @@ public class PenyewaanView extends javax.swing.JFrame {
     private void mobilBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobilBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mobilBoxActionPerformed
+
+    private void transaksiDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiDropDownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transaksiDropDownActionPerformed
     
     public static void main(String args[]) {
             /* Set the Nimbus look and feel */
