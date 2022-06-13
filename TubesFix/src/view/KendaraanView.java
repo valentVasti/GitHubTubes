@@ -132,6 +132,7 @@ public class KendaraanView extends javax.swing.JFrame {
         tableMobil = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        showAllBtn = new javax.swing.JButton();
         headerPanel3 = new javax.swing.JPanel();
         logoDalamPanel3 = new javax.swing.JPanel();
         logoLuarPanel3 = new javax.swing.JPanel();
@@ -572,6 +573,13 @@ public class KendaraanView extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         jLabel16.setText("Table Motor");
 
+        showAllBtn.setText("Tampilkan Semua Data");
+        showAllBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAllBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tableIPanelLayout = new javax.swing.GroupLayout(tableIPanel);
         tableIPanel.setLayout(tableIPanelLayout);
         tableIPanelLayout.setHorizontalGroup(
@@ -583,17 +591,28 @@ public class KendaraanView extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
-                .addContainerGap(11, Short.MAX_VALUE))
+                    .addGroup(tableIPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(39, Short.MAX_VALUE))
+                    .addGroup(tableIPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(showAllBtn)
+                        .addGap(37, 37, 37))))
         );
         tableIPanelLayout.setVerticalGroup(
             tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(tableIPanelLayout.createSequentialGroup()
-                .addGroup(tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tableIPanelLayout.createSequentialGroup()
+                        .addGroup(tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel16))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableIPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(showAllBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1166,6 +1185,10 @@ public class KendaraanView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jenisSeatDropDownActionPerformed
 
+    private void showAllBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllBtnActionPerformed
+        showKendaraan();
+    }//GEN-LAST:event_showAllBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1266,6 +1289,7 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JTextField searchInput;
     private javax.swing.JLabel seatLabel;
     private javax.swing.JPanel seatPanel;
+    private javax.swing.JButton showAllBtn;
     private javax.swing.JPanel tableIPanel;
     private javax.swing.JTable tableMobil;
     private javax.swing.JTable tableMotor;

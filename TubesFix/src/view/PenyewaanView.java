@@ -47,11 +47,13 @@ public class PenyewaanView extends javax.swing.JFrame {
         setEditDelComp(false);
         penyewaanControl = new penyewaanControl();
         showPenyewaan();
+        setTransaksiToDropDown();
+        setGuideToDropDown();
         setMobilToDropDown();
         setMotorToDropDown();        
-        //setTransaksiToDropDown();
+        
         setCustomerToDropDown();
-        setGuideToDropDown();
+        
     }
     
     public void setAddSearchComp(boolean value){
@@ -122,9 +124,10 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public void setGuideToDropDown(){
         listGuide = guideControl.showDataGuide();
-             for(int i=0; i<listGuide.size(); i++){
+            for(int i=0; i<listGuide.size(); i++){
                     guideDropDown.addItem(listGuide.get(i));    
             }
+             
     }    
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
