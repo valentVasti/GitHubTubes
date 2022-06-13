@@ -23,7 +23,7 @@ public class TablePenyewaan extends AbstractTableModel{
     
     @Override
     public int getColumnCount(){
-        return 10;
+        return 13;
     }
     
     @Override
@@ -46,13 +46,15 @@ public class TablePenyewaan extends AbstractTableModel{
             case 7:
                 return list.get(rowIndex).getTotal_Sewa();
             case 8:
-                return list.get(rowIndex).getJenis();
+                return list.get(rowIndex).getTransaksi().getJenis_Pembayaran();
             case 9:
                 return list.get(rowIndex).getTransaksi().getStatus_Pembayaran();
             case 10:
                 return list.get(rowIndex).getDurasi();
             case 11:
                 return list.get(rowIndex).getGuide().getId_Guide();
+            case 12 :
+                return list.get(rowIndex).getGuide().getNama_Guide();
             default:
                 return null;
         }
@@ -80,6 +82,12 @@ public class TablePenyewaan extends AbstractTableModel{
                 return "Jenis Pembayaran"; 
             case 9:
                 return "Status Pembayaran"; 
+            case 10:
+                return "Durasi Penyewaan"; 
+            case 11:
+                return "ID Guide";
+            case 12:
+                return "Nama Guide";  
             default:
                 return null;
         }
