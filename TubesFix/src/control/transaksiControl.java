@@ -26,7 +26,7 @@ public class transaksiControl {
         return tableTransaksi;
     }
     
-    public void updateCustomer(Transaksi t){
+    public void updateTransaksi(Transaksi t){
         TDao.updateTransaksi(t);
     }
     public void deleteTransaksi(String id){

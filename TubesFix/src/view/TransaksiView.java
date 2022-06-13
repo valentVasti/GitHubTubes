@@ -31,7 +31,7 @@ public class TransaksiView extends javax.swing.JFrame {
         transaksiControl = new transaksiControl();
         hitungPembayaranBtn.setEnabled(false);
         showTransaksi();
-        totalSewaField.setText("1000000");
+
     }
     
     public TransaksiView(Penyewaan p) {
@@ -40,10 +40,12 @@ public class TransaksiView extends javax.swing.JFrame {
         setOthComp(true);
         setEditDelComp(false);
         transaksiControl = new transaksiControl();
-        this.p = p;
         action = "Tambah";
         showTransaksi();
+        totalSewaField.setText(Double.toString(p.getTotal_Sewa()));
+        this.p = p;
     }
+    
     public void setAddSearchComp(boolean value){
         addBtn.setEnabled(value);
         //searchBtn.setEnabled(value);
@@ -861,17 +863,25 @@ public class TransaksiView extends javax.swing.JFrame {
             Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
                     tanggalTransaksiInput.getText());
             transaksiControl.insertDataTransaksi(transaksi);
+            PenyewaanView pv = new PenyewaanView(transaksi, p);
+            this.dispose();
+            pv.setVisible(true);            
+            
         } else{
             Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
                     tanggalTransaksiInput.getText());
-            transaksiControl.insertDataTransaksi(transaksi);
+            transaksiControl.updateTransaksi(transaksi);
+            PenyewaanView pv = new PenyewaanView(transaksi, p);
+            this.dispose();
+            pv.setVisible(true); 
         }
 
         clearText();
         showTransaksi(); //testing
         setOthComp(false);
         setAddSearchComp(true);
-        setEditDelComp(false); 
+        setEditDelComp(false);
+        
         //balik ke view Penyewaan bisa tambahin j
     }//GEN-LAST:event_saveBtnActionPerformed
 
