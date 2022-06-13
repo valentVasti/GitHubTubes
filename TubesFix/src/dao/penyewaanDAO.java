@@ -77,10 +77,10 @@ public class penyewaanDAO {
         
         if(jenis.equalsIgnoreCase("Mobil")){
                 sql = "SELECT p.*, m.*, c.*, t.*, g.* FROM penyewaan as p JOIN mobil as m ON m.id_kendaraan = p.id_kendaraan"
-                        + "JOIN customer c ON p.id_Customer = p.id_Customer"
-                        + "JOIN transaksi t ON p.id_Transaksi = t.id_Transaksi"
-                        + "JOIN guide g ON p.id_Guide = g.id_Guide";
-                sql+= "WHERE p.id_Penyewaan LIKE '%" + query  + "%' "
+                        + " JOIN customer as c ON c.id_Customer = p.id_Customer"
+                        + " JOIN transaksi as t ON t.id_Transaksi = p.id_Transaksi"
+                        + " JOIN guide as g ON g.id_Guide = p.id_Guide ("
+                + "WHERE p.id_Penyewaan LIKE '%" + query  + "%' "
                 + "OR p.jenis LIKE '%" + query + "%' "
                 + "OR m.nama LIKE '%" + query + "%' "
                 + "OR m.kapasitas_Mobil LIKE '%" + query + "%' "
@@ -88,17 +88,16 @@ public class penyewaanDAO {
                 + "OR t.id_Transaksi LIKE '%" + query + "%' "
                 + "OR c.status_Pembayaran LIKE '%" + query + "%' "
                 + "OR g.nama_Guide LIKE '%" + query + "%' "
-                + "OR p.total_Sewa LIKE '%" + query + "%' ";
+                + "OR p.total_Sewa LIKE '%" + query + "%' )";
         }else{
-                sql = "SELECT p.*, m.*, c.*, t.*, g.* FROM penyewaan as p JOIN motor as mt ON mt.id_kendaraan = p.id_kendaraan"
-                        + "JOIN customer c ON p.id_Customer = p.id_Customer"
-                        + "JOIN transaksi t ON p.id_Transaksi = t.id_Transaksi"
-                        + "JOIN guide g ON p.id_Guide = g.id_Guide";
-                sql+= "WHERE p.id_Penyewaan LIKE '%" + query  + "%' "
+                sql = "SELECT p.*, mt.*, c.*, t.*, g.* FROM penyewaan as p JOIN motor as mt ON mt.id_kendaraan = p.id_kendaraan"
+                        + " JOIN customer as c ON p.id_Customer = c.id_Customer"
+                        + " JOIN transaksi as t ON p.id_Transaksi = t.id_Transaksi"
+                        + " JOIN guide as g ON p.id_Guide = g.id_Guide " 
+                + "WHERE p.id_Penyewaan LIKE '%" + query  + "%' "
                 + "OR p.jenis LIKE '%" + query + "%' "
                 + "OR mt.nama LIKE '%" + query + "%' "
-                + "OR mt.jenis_helm LIKE '%" + query + "%' "
-                + "OR mt.jenis_stang LIKE '%" + query + "%' "
+                + "OR mt.jenis_Seat LIKE '%" + query + "%' "
                 + "OR mt.cc '%" + query + "%' "
                 + "OR t.id_Transaksi LIKE '%" + query + "%' "
                 + "OR c.status_Pembayaran LIKE '%" + query + "%' "

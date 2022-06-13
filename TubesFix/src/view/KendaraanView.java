@@ -19,7 +19,7 @@ public class KendaraanView extends javax.swing.JFrame {
     String action = null;
     String selectedId = null;
     List<Kendaraan> listCustomer;
-    
+        
     public KendaraanView() {
         initComponents();
         setAddSearchComp(true);
@@ -29,6 +29,8 @@ public class KendaraanView extends javax.swing.JFrame {
         kendaraanControl = new KendaraanControl();
         showKendaraan();
         jenisInput.setEnabled(false);
+        kapasitasInput.setEnabled(false);
+        jenisSeatDropDown.setEnabled(false);        
     }
     
     public void setAddSearchComp(boolean value){
@@ -119,7 +121,7 @@ public class KendaraanView extends javax.swing.JFrame {
         tarifInput = new javax.swing.JTextField();
         seatPanel = new javax.swing.JPanel();
         seatLabel = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jenisSeatDropDown = new javax.swing.JComboBox<>();
         kapasitasPanel = new javax.swing.JPanel();
         kapasitasInput = new javax.swing.JTextField();
         kapasitasLabel = new javax.swing.JLabel();
@@ -390,10 +392,10 @@ public class KendaraanView extends javax.swing.JFrame {
         seatLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         seatLabel.setText("Jenis Seat");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single Seat", "Double Seat" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jenisSeatDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single Seat", "Double Seat" }));
+        jenisSeatDropDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jenisSeatDropDownActionPerformed(evt);
             }
         });
 
@@ -406,7 +408,7 @@ public class KendaraanView extends javax.swing.JFrame {
                     .addGroup(seatPanelLayout.createSequentialGroup()
                         .addComponent(seatLabel)
                         .addGap(0, 182, Short.MAX_VALUE))
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jenisSeatDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         seatPanelLayout.setVerticalGroup(
@@ -414,7 +416,7 @@ public class KendaraanView extends javax.swing.JFrame {
             .addGroup(seatPanelLayout.createSequentialGroup()
                 .addComponent(seatLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                .addComponent(jenisSeatDropDown, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
         );
 
         kapasitasPanel.setBackground(new java.awt.Color(250, 250, 250));
@@ -454,22 +456,18 @@ public class KendaraanView extends javax.swing.JFrame {
         inputLayout.setHorizontalGroup(
             inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inputLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(inputLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioMotor)
-                            .addComponent(radioMobil))
-                        .addGap(39, 39, 39)
-                        .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(platIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(namaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idKendaraanIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(merkIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ccIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(inputLayout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(jenisIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(radioMotor)
+                    .addComponent(radioMobil))
+                .addGap(39, 39, 39)
+                .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(platIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idKendaraanIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(merkIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ccIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jenisIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(inputLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -486,7 +484,7 @@ public class KendaraanView extends javax.swing.JFrame {
                                 .addGroup(inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(seatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(kapasitasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 56, Short.MAX_VALUE)))
+                        .addGap(0, 74, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         inputLayout.setVerticalGroup(
@@ -579,7 +577,7 @@ public class KendaraanView extends javax.swing.JFrame {
         tableIPanelLayout.setHorizontalGroup(
             tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tableIPanelLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -587,7 +585,7 @@ public class KendaraanView extends javax.swing.JFrame {
                 .addGroup(tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         tableIPanelLayout.setVerticalGroup(
             tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -640,7 +638,7 @@ public class KendaraanView extends javax.swing.JFrame {
         logoDalamPanel3Layout.setVerticalGroup(
             logoDalamPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoDalamPanel3Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(logoLuarPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -947,6 +945,8 @@ public class KendaraanView extends javax.swing.JFrame {
     private void radioMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMotorActionPerformed
         jenisInput.setText("Motor");
         setOthComp(true);
+        jenisSeatDropDown.setEnabled(true);
+        kapasitasInput.setEnabled(false);
         
     }//GEN-LAST:event_radioMotorActionPerformed
 
@@ -991,25 +991,25 @@ public class KendaraanView extends javax.swing.JFrame {
         //String nama_Kendaraan, String platNo, String merk, String cc, double tarif)        
         if(radioMobil.isSelected()){
             if(action.equals("Tambah")){
-                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), "4", jenisInput.getText(), 
+                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), kapasitasInput.getText(), jenisInput.getText(), 
                         namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
                 Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", 0);
                 kendaraanControl.insertDataKendaraan(k, kmt, jenisInput.getText());
             } else {
-                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), "4", jenisInput.getText(), 
+                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), kapasitasInput.getText(), jenisInput.getText(), 
                         namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
                 Kendaraan_Motor kmt = new Kendaraan_Motor( "", "", "", "", "", "", "", 0);
                 kendaraanControl.updateKendaraan(k, kmt, jenisInput.getText());
             }            
         }else if(radioMotor.isSelected()){
             if(action.equals("Tambah")){
-                Kendaraan_Motor k = new Kendaraan_Motor( "", idKendaraanInput.getText(), 
+                Kendaraan_Motor k = new Kendaraan_Motor( jenisSeatDropDown.getSelectedItem().toString(), idKendaraanInput.getText(), 
                         jenisInput.getText(), namaInput.getText(), platInput.getText(), 
                         merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
                 Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
                 kendaraanControl.insertDataKendaraan(kmb, k, jenisInput.getText());
             } else {
-                Kendaraan_Motor k = new Kendaraan_Motor( "", idKendaraanInput.getText(), 
+                Kendaraan_Motor k = new Kendaraan_Motor( jenisSeatDropDown.getSelectedItem().toString(), idKendaraanInput.getText(), 
                         jenisInput.getText(), namaInput.getText(), platInput.getText(), 
                         merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
                 Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
@@ -1019,6 +1019,8 @@ public class KendaraanView extends javax.swing.JFrame {
 
         clearText();
         showKendaraan();
+        kapasitasInput.setEnabled(false);
+        jenisSeatDropDown.setEnabled(false);
         setOthComp(false);
         setAddSearchComp(true);
         setEditDelComp(false);
@@ -1073,12 +1075,16 @@ public class KendaraanView extends javax.swing.JFrame {
         merkInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
         ccInput.setText(tableModel.getValueAt(clickedRow, 4).toString());
         tarifInput.setText(tableModel.getValueAt(clickedRow, 5).toString());
-        
+        kapasitasInput.setText(tableModel.getValueAt(clickedRow, 7).toString());
+        jenisSeatDropDown.setEnabled(false);
+        jenisSeatDropDown.setSelectedIndex(-1);
     }//GEN-LAST:event_tableMobilMouseClicked
 
     private void radioMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMobilActionPerformed
         jenisInput.setText("Mobil");
         setOthComp(true);
+        kapasitasInput.setEnabled(true);
+        jenisSeatDropDown.setEnabled(false);
     }//GEN-LAST:event_radioMobilActionPerformed
 
     private void tableMotorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMotorMouseClicked
@@ -1098,7 +1104,14 @@ public class KendaraanView extends javax.swing.JFrame {
         platInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
         merkInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
         ccInput.setText(tableModel.getValueAt(clickedRow, 4).toString());
-        tarifInput.setText(tableModel.getValueAt(clickedRow, 5).toString());        
+        tarifInput.setText(tableModel.getValueAt(clickedRow, 5).toString());
+        kapasitasInput.setEnabled(false);
+        kapasitasInput.setText("");
+        if(tableModel.getValueAt(clickedRow, 7).toString().equals("Single Seat")){
+            jenisSeatDropDown.setSelectedIndex(0);
+        }else{
+            jenisSeatDropDown.setSelectedIndex(1);
+        }        
     }//GEN-LAST:event_tableMotorMouseClicked
 
 /*
@@ -1149,9 +1162,9 @@ public class KendaraanView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_kapasitasInputActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jenisSeatDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenisSeatDropDownActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jenisSeatDropDownActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1208,7 +1221,6 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JPanel idKendaraanIPanel1;
     private javax.swing.JTextField idKendaraanInput;
     private javax.swing.JPanel input;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1228,6 +1240,7 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel jenisIPanel;
     private javax.swing.JTextField jenisInput;
+    private javax.swing.JComboBox<String> jenisSeatDropDown;
     private javax.swing.JTextField kapasitasInput;
     private javax.swing.JLabel kapasitasLabel;
     private javax.swing.JPanel kapasitasPanel;

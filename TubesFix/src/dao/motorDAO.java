@@ -43,7 +43,7 @@ public class motorDAO {
     public void updateMotor(Kendaraan_Motor m){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE motor SET jenis_Helm = '" + m.getJenis_Seat()
+        String sql = "UPDATE motor SET jenis_Seat = '" + m.getJenis_Seat()
                 + "', jenis = '" + m.getJenis()
                 + "', nama_Kendaraan = '" + m.getNamaKendaraan()
                 + "', platNo = '" + m.getPlatNo()

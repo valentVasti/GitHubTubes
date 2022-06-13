@@ -48,4 +48,9 @@ public class Transaksi {
     public void setTanggal_Transaksi(String tanggal_Transaksi){
         this.tanggal_Transaksi = tanggal_Transaksi;
     }
+    
+    @Override
+    public String toString(){
+        return id_Transaksi;
+    } 
 }

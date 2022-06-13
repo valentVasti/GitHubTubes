@@ -26,18 +26,20 @@ public class KendaraanControl {
             MtDao.insertMotor(kmt);
         }
     }
-/*    
-    public List<Kendaraan> showKendaraanBySearch(String jenis){
-        if(jenis.equalsIgnoreCase("Mobil")){
-            List<Kendaraan> listMobil = MbDao.showMobil();
+    
+    public List<Kendaraan_Mobil> showListMobil(){
+        
+            List<Kendaraan_Mobil> listMobil = MbDao.showMobil();
             return listMobil;
-        }else{
-            List<Kendaraan> listMotor = MtDao.showMotor();
-            return listMotor;
-        }
-                
+               
     }
-*/
+    
+    public List<Kendaraan_Motor> showListMotor(){
+                
+            List<Kendaraan_Motor> listMotor = MtDao.showMotor();
+            return listMotor;
+            
+    }
     
     public TableMobil showMobil(){
         

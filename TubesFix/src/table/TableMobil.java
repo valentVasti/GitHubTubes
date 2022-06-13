@@ -46,6 +46,8 @@ public class TableMobil extends AbstractTableModel{
                 return list.get(rowIndex).getTarif();
             case 6:
                 return list.get(rowIndex).getJenis();
+            case 7:
+                return list.get(rowIndex).getKapasitas_Mobil();
             default:
                 return null;
         }
