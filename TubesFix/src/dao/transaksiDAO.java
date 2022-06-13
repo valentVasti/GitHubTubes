@@ -117,7 +117,7 @@ public class transaksiDAO {
     public List<Transaksi> showTransaksiBySearch(String query){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT t.* FROM transaksi as g WHERE (g.id_Transaksi LIKE"
+        String sql = "SELECT t.* FROM transaksi as t WHERE (t.id_Transaksi LIKE"
                 + "'%" + query + "%'"
                 + "OR t.status_Pembayaran LIKE '%" + query + "%'"
                 + "OR t.jenis_Pembayaran LIKE '%" + query +"%'"
