@@ -18,7 +18,7 @@ public class Transaksi {
     }
     
     public String getId_Transaksi(){
-        return getId_Transaksi();
+        return id_Transaksi;
     }
     
     public void setId_Transaksi(String id_Transaksi){
