@@ -162,7 +162,7 @@ public class KendaraanView extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        searchBtn2 = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
         commandPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
@@ -858,11 +858,11 @@ public class KendaraanView extends javax.swing.JFrame {
         titleLabel.setText("FORM KENDARAAN");
         titleLabel.setToolTipText("");
 
-        searchBtn2.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
-        searchBtn2.setText("home");
-        searchBtn2.addActionListener(new java.awt.event.ActionListener() {
+        homeBtn.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
+        homeBtn.setText("home");
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtn2ActionPerformed(evt);
+                homeBtnActionPerformed(evt);
             }
         });
 
@@ -874,11 +874,11 @@ public class KendaraanView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(searchBtn2))
+                .addComponent(homeBtn))
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+            .addComponent(homeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
             .addGroup(titlePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -1250,9 +1250,11 @@ public class KendaraanView extends javax.swing.JFrame {
         showKendaraan();
     }//GEN-LAST:event_showAllBtnActionPerformed
 
-    private void searchBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchBtn2ActionPerformed
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        Home h = new Home();
+        this.dispose();
+        h.setVisible(true);
+    }//GEN-LAST:event_homeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1305,6 +1307,7 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JPanel headerPanel3;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JPanel idKendaraanIPanel;
     private javax.swing.JPanel idKendaraanIPanel1;
     private javax.swing.JTextField idKendaraanInput;
@@ -1356,7 +1359,6 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioMotor;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
-    private javax.swing.JButton searchBtn2;
     private javax.swing.JTextField searchInput;
     private javax.swing.JLabel seatLabel;
     private javax.swing.JPanel seatPanel;

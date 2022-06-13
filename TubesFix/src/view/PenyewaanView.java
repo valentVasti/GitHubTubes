@@ -166,7 +166,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        searchBtn2 = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         contentPanel = new javax.swing.JPanel();
         transaksiPanel = new javax.swing.JPanel();
@@ -500,11 +500,11 @@ public class PenyewaanView extends javax.swing.JFrame {
         titleLabel.setText("FORM PENYEWAAN");
         titleLabel.setToolTipText("");
 
-        searchBtn2.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
-        searchBtn2.setText("home");
-        searchBtn2.addActionListener(new java.awt.event.ActionListener() {
+        homeBtn.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
+        homeBtn.setText("home");
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtn2ActionPerformed(evt);
+                homeBtnActionPerformed(evt);
             }
         });
 
@@ -516,12 +516,12 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(searchBtn2)
+                .addComponent(homeBtn)
                 .addGap(0, 0, 0))
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(homeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
 
@@ -1080,9 +1080,11 @@ public class PenyewaanView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_transaksiDropDownActionPerformed
 
-    private void searchBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchBtn2ActionPerformed
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        Home h = new Home();
+        this.dispose();
+        h.setVisible(true);
+    }//GEN-LAST:event_homeBtnActionPerformed
     
     public static void main(String args[]) {
             /* Set the Nimbus look and feel */
@@ -1132,6 +1134,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JLabel guideLabel;
     private javax.swing.JPanel guidePanel;
     private javax.swing.JPanel headerPanel3;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JTextField idPenyewaanInput;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1168,7 +1171,6 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup radioStatusPembayaran;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
-    private javax.swing.JButton searchBtn2;
     private javax.swing.JTextField searchInput;
     private javax.swing.JPanel tanggalPanel;
     private javax.swing.JPanel tanggalPanel1;

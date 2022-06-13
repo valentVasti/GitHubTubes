@@ -114,7 +114,7 @@ public class GuideView extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         titlePanel = new javax.swing.JPanel();
         titleLabel1 = new javax.swing.JLabel();
-        searchBtn2 = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
 
         jInternalFrame1.setVisible(true);
 
@@ -584,11 +584,16 @@ public class GuideView extends javax.swing.JFrame {
         titleLabel1.setText("FORM GUIDE");
         titleLabel1.setToolTipText("");
 
-        searchBtn2.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
-        searchBtn2.setText("home");
-        searchBtn2.addActionListener(new java.awt.event.ActionListener() {
+        homeBtn.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
+        homeBtn.setText("home");
+        homeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homeBtnMouseClicked(evt);
+            }
+        });
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtn2ActionPerformed(evt);
+                homeBtnActionPerformed(evt);
             }
         });
 
@@ -600,7 +605,7 @@ public class GuideView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(titleLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(searchBtn2)
+                .addComponent(homeBtn)
                 .addGap(0, 0, 0))
         );
         titlePanelLayout.setVerticalGroup(
@@ -609,7 +614,7 @@ public class GuideView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(titleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(searchBtn2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(homeBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
@@ -810,9 +815,15 @@ public class GuideView extends javax.swing.JFrame {
         tv.setVisible(true);
     }//GEN-LAST:event_transaksiMenuMouseClicked
 
-    private void searchBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchBtn2ActionPerformed
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        Home h = new Home();
+        this.dispose();
+        h.setVisible(true);
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void homeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeBtnMouseClicked
+
+    }//GEN-LAST:event_homeBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -859,6 +870,7 @@ public class GuideView extends javax.swing.JFrame {
     private javax.swing.JButton editBtn;
     private javax.swing.JTable guideTable;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JTextField idInput;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
@@ -892,7 +904,6 @@ public class GuideView extends javax.swing.JFrame {
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JButton searchBtn1;
-    private javax.swing.JButton searchBtn2;
     private javax.swing.JTextField searchInput;
     private javax.swing.JTextField teleponInput;
     private javax.swing.JLabel titleLabel;

@@ -671,6 +671,16 @@ public class CustomerView extends javax.swing.JFrame {
 
         searchBtn2.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
         searchBtn2.setText("home");
+        searchBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchBtn2MouseClicked(evt);
+            }
+        });
+        searchBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtn2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
@@ -880,6 +890,16 @@ public class CustomerView extends javax.swing.JFrame {
         this.dispose();
         tv.setVisible(true);
     }//GEN-LAST:event_transaksiMenuMouseClicked
+
+    private void searchBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtn2MouseClicked
+
+    }//GEN-LAST:event_searchBtn2MouseClicked
+
+    private void searchBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn2ActionPerformed
+        Home h = new Home();
+        this.dispose();
+        h.setVisible(true);
+    }//GEN-LAST:event_searchBtn2ActionPerformed
 
     /**
      * @param args the command line arguments

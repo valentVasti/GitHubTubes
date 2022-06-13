@@ -1280,13 +1280,13 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="searchBtn2" min="-2" max="-2" attributes="0"/>
+                      <Component id="homeBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="searchBtn2" alignment="0" pref="41" max="32767" attributes="0"/>
+                  <Component id="homeBtn" alignment="0" pref="41" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="titleLabel" pref="0" max="32767" attributes="0"/>
@@ -1309,7 +1309,7 @@
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="searchBtn2">
+            <Component class="javax.swing.JButton" name="homeBtn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Stencil Std" size="18" style="0"/>
@@ -1317,7 +1317,7 @@
                 <Property name="text" type="java.lang.String" value="home"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBtn2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeBtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

@@ -936,7 +936,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="titleLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="searchBtn2" min="-2" max="-2" attributes="0"/>
+                          <Component id="homeBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -948,7 +948,7 @@
                           <Component id="titleLabel1" pref="36" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Component id="searchBtn2" alignment="1" max="32767" attributes="0"/>
+                      <Component id="homeBtn" alignment="1" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -966,7 +966,7 @@
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="searchBtn2">
+                <Component class="javax.swing.JButton" name="homeBtn">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Stencil Std" size="18" style="0"/>
@@ -974,7 +974,8 @@
                     <Property name="text" type="java.lang.String" value="home"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBtn2ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="homeBtnMouseClicked"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeBtnActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

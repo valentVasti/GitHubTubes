@@ -130,7 +130,7 @@ public class TransaksiView extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        searchBtn2 = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -747,8 +747,13 @@ public class TransaksiView extends javax.swing.JFrame {
         titleLabel.setText("FORM TRANSAKSI ");
         titleLabel.setToolTipText("");
 
-        searchBtn2.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
-        searchBtn2.setText("home");
+        homeBtn.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
+        homeBtn.setText("home");
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
@@ -758,11 +763,11 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(searchBtn2))
+                .addComponent(homeBtn))
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(homeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titlePanelLayout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
                 .addComponent(titleLabel))
@@ -914,6 +919,12 @@ public class TransaksiView extends javax.swing.JFrame {
         hitungPembayaranBtn.setEnabled(true);        
     }//GEN-LAST:event_jumlahPembayaranInputKeyTyped
 
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        Home h = new Home();
+        this.dispose();
+        h.setVisible(true);
+    }//GEN-LAST:event_homeBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -958,6 +969,7 @@ public class TransaksiView extends javax.swing.JFrame {
     private javax.swing.JButton editBtn;
     private javax.swing.JPanel headerPanel3;
     private javax.swing.JButton hitungPembayaranBtn;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JTextField idTransaksiInput;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -995,7 +1007,6 @@ public class TransaksiView extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioSudahBayar;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
-    private javax.swing.JButton searchBtn2;
     private javax.swing.JTextField searchInput;
     private javax.swing.JLabel statusPembayaranLabel1;
     private javax.swing.JPanel statusPembayaranPanel;
