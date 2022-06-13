@@ -39,6 +39,7 @@ public class TransaksiView extends javax.swing.JFrame {
         setEditDelComp(false);
         transaksiControl = new transaksiControl();
         this.p = p;
+        totalSewaField.setText(Double.toString(p.getTotal_Sewa()));
         action = "Tambah";
         showTransaksi();
     }
@@ -136,9 +137,19 @@ public class TransaksiView extends javax.swing.JFrame {
 
         addBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         addBtn.setText("TAMBAH");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         deleteBtn.setText("HAPUS");
@@ -875,6 +886,14 @@ public class TransaksiView extends javax.swing.JFrame {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
 
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addBtnActionPerformed
 
     /**
      * @param args the command line arguments

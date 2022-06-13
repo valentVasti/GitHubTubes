@@ -49,11 +49,9 @@ public class PenyewaanView extends javax.swing.JFrame {
         showPenyewaan();
         setMobilToDropDown();
         setMotorToDropDown();        
-        setTransaksiToDropDown();
+        //setTransaksiToDropDown();
         setCustomerToDropDown();
-
         setGuideToDropDown();
-        
     }
     
     public void setAddSearchComp(boolean value){
@@ -97,35 +95,55 @@ public class PenyewaanView extends javax.swing.JFrame {
     public void setTransaksiToDropDown(){
         listTransaksi = transaksiControl.showDataTransaksi();
              for(int i=0; i<listTransaksi.size(); i++){
-                transaksiDropDown.addItem(listTransaksi.get(i));
+                if(listTransaksi!=null){
+                    transaksiDropDown.addItem(listTransaksi.get(i));                    
+                }else{
+                    transaksiDropDown.setSelectedIndex(-1);
+                }
             }
     }
     
     public void setCustomerToDropDown(){
         listCustomer = customerControl.showDataCustomer();
-             for(int i=0; i<listTransaksi.size(); i++){
-                transaksiDropDown.addItem(listTransaksi.get(i));
+             for(int i=0; i<listCustomer.size(); i++){
+                if(listCustomer!=null){
+                    customerDropDown.addItem(listCustomer.get(i));    
+                }else{
+                    customerDropDown.setSelectedIndex(-1);
+                }
             }
     }
     
     public void setMobilToDropDown(){
         listMobil = kendaraanControl.showListMobil();
              for(int i=0; i<listMobil.size(); i++){
-                 mobilBox.addItem(listMobil.get(i));
+                if(listMobil!=null){
+                    mobilBox.addItem(listMobil.get(i));    
+                }else{
+                    mobilBox.setSelectedIndex(-1);
+                }
             }
     }
 
     public void setMotorToDropDown(){
         listMotor = kendaraanControl.showListMotor();
              for(int i=0; i<listMotor.size(); i++){
-                 motorBox.addItem(listMotor.get(i));
+                if(listMotor!=null){
+                    motorBox.addItem(listMotor.get(i));    
+                }else{
+                    motorBox.setSelectedIndex(-1);
+                }
             }
     }
     
     public void setGuideToDropDown(){
         listGuide = guideControl.showDataGuide();
              for(int i=0; i<listGuide.size(); i++){
-                 guideDropDown.addItem(listGuide.get(i));
+                if(listGuide!=null){
+                    guideDropDown.addItem(listGuide.get(i));    
+                }else{
+                    guideDropDown.setSelectedIndex(-1);
+                }
             }
     }    
     
