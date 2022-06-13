@@ -99,11 +99,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public void setTransaksiToDropDown(){
         listTransaksi = transaksiControl.showDataTransaksi();
-<<<<<<< HEAD
-             for(int i=0; i<listTransaksi.size(); i++){
-=======
             for(int i=0; i<listTransaksi.size(); i++){
->>>>>>> 1bede21c5243436c64130b76208d2479b9faa2f9
                     transaksiDropDown.addItem(listTransaksi.get(i));                    
             }
     }
