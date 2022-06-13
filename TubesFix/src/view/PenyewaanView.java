@@ -47,12 +47,11 @@ public class PenyewaanView extends javax.swing.JFrame {
         setEditDelComp(false);
         penyewaanControl = new penyewaanControl();
         showPenyewaan();
-        setTransaksiToDropDown();
-        setGuideToDropDown();
-        setMobilToDropDown();
-        setMotorToDropDown();        
-        
-        setCustomerToDropDown();
+        //setTransaksiToDropDown();
+        //setGuideToDropDown();
+        //setMobilToDropDown();
+        //setMotorToDropDown();        
+        //setCustomerToDropDown();
         
     }
     
@@ -96,6 +95,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public void setTransaksiToDropDown(){
         listTransaksi = transaksiControl.showDataTransaksi();
+        System.out.println(listTransaksi.get(0).getId_Transaksi());
              for(int i=0; i<listTransaksi.size(); i++){
                     transaksiDropDown.addItem(listTransaksi.get(i));                    
             }
@@ -167,7 +167,13 @@ public class PenyewaanView extends javax.swing.JFrame {
         contentPanel = new javax.swing.JPanel();
         transaksiPanel = new javax.swing.JPanel();
         transaksiLabel = new javax.swing.JLabel();
-        transaksiDropDown = new javax.swing.JComboBox<>();
+        try {
+            transaksiDropDown =(javax.swing.JComboBox)java.beans.Beans.instantiate(getClass().getClassLoader(), "view.PenyewaanView_transaksiDropDown");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
         tanggalPanel = new javax.swing.JPanel();
         durasiLabel = new javax.swing.JLabel();
         durasiInput = new javax.swing.JTextField();
