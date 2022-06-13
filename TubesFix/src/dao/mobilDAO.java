@@ -17,13 +17,13 @@ public class mobilDAO {
     private DbConnection dbCon = new DbConnection();
     private Connection con;
     
-    public void insertMobil(Kendaraan_Mobil m) {
+    public void insertMobil(Kendaraan m) {
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO mobil(id_Kendaraan, kapasitas_Mobil, jenis, nama_Kendaraan, platNo, merk, cc, tarif)" // bakal dicek dulu
-                + "VALUES ('" +m.getId_Kendaraan()+ "', '" + m.getKapasitas_Mobil() + "', '"
-                + m.getJenis() + "', '" + m.getNama_Kendaraan() + "', '" + m.getPlatNo() + "', '" + m.getMerk() + 
-                "', '" + m.getCC() + "', '" + m.getTarif() + "')";
+        String sql = "INSERT INTO kendaraan(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, cc, tarif, kapasitas_Mobil)" // jenis_Seat gaada berharap bisa NULL
+                + "VALUES ('" +m.getId()+ "', '" + m.getData("jenis") + "', '" + m.getData("nama_Kendaraan")
+                + "', '" + m.getData("platNo")+ "', '" + m.getData("merk") + 
+                "', '" + m.getData("cc") + "', '" + Double.parseDouble(m.getData("tarif")) + "', '" + m.getData("kapasitas_Mobil") + "')";
         
         System.out.println("Adding Mobil...");
         
@@ -33,29 +33,29 @@ public class mobilDAO {
             System.out.println("Added " +result + " Mobil");
             statement.close();
         } catch (Exception e) {
-            System.out.println("Errror adding Mobil...");
+            System.out.println("Error adding Mobil...");
             System.out.println(e);
         }
         dbCon.closeConnection();
     }
     
-    public void updateMobil(Kendaraan_Mobil m){
+    public void updateMobil(Kendaraan m){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE mobil SET kapasitas_Mobil = '" + m.getKapasitas_Mobil()
-                + "', jenis = '" + m.getJenis()
-                + "', nama_Kendaraan = '" + m.getNamaKendaraan()
-                + "', platNo = '" + m.getPlatNo()
-                + "', merk = '" + m.getMerk()
-                + "', cc = '" + m.getCC()
-                + "', tarif = '" + m.getTarif()
-                + "' WHERE id_Kendaraan = '" + m.getId_Kendaraan() + "'";
+        String sql = "UPDATE kendaraan SET jenis = '" + m.getData("jenis")
+                + "', nama_Kendaraan = '" + m.getData("nama_Kendaraan")
+                + "', platNo = '" + m.getData("platNo")
+                + "', merk = '" + m.getData("merk")
+                + "', cc = '" + m.getData("cc")
+                + "', tarif = '" + m.getData("tarif")
+                + "', kapasitas_Mobil = '" + m.getData("kapasitas_Mobil")
+                + "' WHERE id_Kendaraan = '" + m.getId() + "'";
         System.out.println("Editing Mobil...");
         
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Edited " + result + " Mobil " + m.getId_Kendaraan());
+            System.out.println("Edited " + result + " Mobil " + m.getId());
             statement.close();
         } catch (Exception e) {
             System.out.println("Error Updating Mobil...");
@@ -65,22 +65,22 @@ public class mobilDAO {
         dbCon.closeConnection();
     }
     
-    public List<Kendaraan_Mobil> showMobilBySearch(String query){
+    public List<Kendaraan> showMobilBySearch(String query){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT mt.* FROM mobil as mt WHERE (mt.id_Kendaraan LIKE"
-                + "'%" + query + "%'"
-                + "OR mt.kapasitas_Mobil LIKE '" + query + "'"
-                + "OR mt.jenis LIKE '" + query + "'"
-                + "OR mt.nama_Kendaraan LIKE '" + query + "'"
-                + "OR mt.platNo LIKE '" + query + "'"
-                + "OR mt.merk LIKE '" + query + "'"
-                + "OR mt.cc LIKE '" + query + "'"
-                + "OR mt.tarif LIKE '" + query + "')";
+        String sql = "SELECT mb.* FROM kendaraan as mb WHERE (mb.id_Kendaraan LIKE"
+                + "'" + query + "'"
+                + "OR mb.jenis LIKE '" + query + "'"
+                + "OR mb.nama_Kendaraan LIKE '" + query + "'"
+                + "OR mb.platNo LIKE '" + query + "'"
+                + "OR mb.merk LIKE '" + query + "'"
+                + "OR mb.cc LIKE '" + query + "'"
+                + "OR mb.tarif LIKE '" + query + "'"
+                + "OR mb.kapasitas_Mobil LIKE '" + query + "')";
 
         System.out.println("Mengambil data Mobil...");
         
-        List<Kendaraan_Mobil> list = new ArrayList();
+        List<Kendaraan> list = new ArrayList();
         
         try {
             Statement statement = con.createStatement();
@@ -88,17 +88,20 @@ public class mobilDAO {
             
             if (rs != null){
                 while (rs.next()){
-                        Kendaraan_Mobil k = new Kendaraan_Mobil(
-                            rs.getString("mt.id_Kendaraan"),
-                            rs.getString("mt.kapasitas_Mobil"),    
-                            rs.getString("mt.jenis"),
-                            rs.getString("mt.nama_Kendaraan"),
-                            rs.getString("mt.platNo"),
-                            rs.getString("mt.merk"),
-                            rs.getString("mt.cc"),
-                            Double.parseDouble(rs.getString("mt.tarif"))    
-                        ); 
-                    list.add(k);
+                        Kendaraan k = new Kendaraan_Mobil(
+                            rs.getString("mb.id_Kendaraan"),
+                            rs.getString("mb.jenis"),
+                            rs.getString("mb.nama_Kendaraan"),
+                            rs.getString("mb.platNo"),
+                            rs.getString("mb.merk"),
+                            rs.getString("mb.cc"),
+                            Double.parseDouble(rs.getString("mb.tarif")),
+                            rs.getString("mb.kapasitas_Mobil")
+                        );
+                    if(k.getId().contains("MOB")){
+                        list.add(k);
+                    }
+                                 
                    }
                 }
                 rs.close();
@@ -116,7 +119,7 @@ public class mobilDAO {
         
         con = dbCon.makeConnection();
         
-        String sql = "DELETE FROM mobil WHERE id_Kendaraan = '" + id + "'";
+        String sql = "DELETE FROM kendaraan WHERE id_Kendaraan = '" + id + "'";
                 
         System.out.println("Deleting Mobil...");
         
@@ -133,13 +136,13 @@ public class mobilDAO {
         dbCon.closeConnection();
     }  
     
-    public List<Kendaraan_Mobil> showMobil(){
+    public List<Kendaraan> showMobil(){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT * FROM mobil";
+        String sql = "SELECT * FROM kendaraan WHERE id_Kendaraan LIKE '%MOB%'";
         System.out.println("Mengambil data Mobil...");
         
-        List<Kendaraan_Mobil> list = new ArrayList();
+        List<Kendaraan> list = new ArrayList();
         
         try {
             Statement statement = con.createStatement();
@@ -147,15 +150,15 @@ public class mobilDAO {
             
             if (rs != null){
                 while (rs.next()){
-                        Kendaraan_Mobil k = new Kendaraan_Mobil(
+                        Kendaraan k = new Kendaraan_Mobil(
                             rs.getString("id_Kendaraan"),
-                            rs.getString("kapasitas_Mobil"),    
                             rs.getString("jenis"),
                             rs.getString("nama_Kendaraan"),
                             rs.getString("platNo"),
                             rs.getString("merk"),
                             rs.getString("cc"),
-                            Double.parseDouble(rs.getString("tarif"))    
+                            Double.parseDouble(rs.getString("tarif")),
+                            rs.getString("kapasitas_Mobil")    
                         );
                     
                     list.add(k);

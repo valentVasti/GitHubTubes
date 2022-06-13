@@ -7,9 +7,32 @@ package model;
 public class Kendaraan_Motor extends Kendaraan{
     private String jenis_Seat;
     
-    public Kendaraan_Motor(String jenis_Seat, String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk, String cc, double tarif) {
+    public Kendaraan_Motor(String id_Kendaraan, String jenis, String nama_Kendaraan, String platNo, String merk, String cc, double tarif, String jenis_Seat) {
         super(id_Kendaraan, jenis, nama_Kendaraan, platNo, merk, cc, tarif);
         this.jenis_Seat = jenis_Seat;
+    }
+    
+    public String getData(String data){
+        switch(data){
+            case "Id":
+                return id_Kendaraan;
+            case "jenis":
+                return jenis;
+            case "nama_Kendaraan":
+                return nama_Kendaraan;
+            case "platNo":
+                return platNo;
+            case "merk":
+                return merk;
+            case "cc":
+                return cc;
+            case "tarif":
+                return Double.toString(tarif);
+            case "jenis_Seat":
+                return jenis_Seat;
+            default:
+                return null;
+        }
     }
 
     public String getJenis_Seat() {

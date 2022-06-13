@@ -46,6 +46,11 @@ public class KendaraanView extends javax.swing.JFrame {
         merkInput.setEnabled(value);
         ccInput.setEnabled(value);
         tarifInput.setEnabled(value);
+        if(radioMobil.isSelected()){
+            kapasitasInput.setEnabled(value);
+        }else if (radioMotor.isSelected()){
+            jenisSeatDropDown.setEnabled(value);
+        }
         
         saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
@@ -69,6 +74,8 @@ public class KendaraanView extends javax.swing.JFrame {
         ccInput.setText("");
         jenisInput.setText("");
         tarifInput.setText("");
+        kapasitasInput.setText("");
+        jenisSeatDropDown.setSelectedIndex(-1);
         
         radioGroupJenis.clearSelection();
         radioMobil.setSelected(false);
@@ -139,17 +146,23 @@ public class KendaraanView extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         menuPanel = new javax.swing.JPanel();
         menu1Panel = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         menu2Panel = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         menu3Panel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         menu4Panel = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         menu5Panel = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
+        homeBtn = new javax.swing.JButton();
         commandPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
@@ -159,6 +172,8 @@ public class KendaraanView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(973, 752));
+        setMinimumSize(new java.awt.Dimension(973, 752));
 
         input.setBackground(new java.awt.Color(250, 250, 250));
         input.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.red, null, null), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4)), "INPUT", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Berlin Sans FB Demi", 1, 18), new java.awt.Color(51, 51, 51))); // NOI18N
@@ -593,7 +608,7 @@ public class KendaraanView extends javax.swing.JFrame {
                 .addGroup(tableIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tableIPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(39, Short.MAX_VALUE))
+                        .addContainerGap(42, Short.MAX_VALUE))
                     .addGroup(tableIPanelLayout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -633,16 +648,16 @@ public class KendaraanView extends javax.swing.JFrame {
         logoLuarPanel3Layout.setHorizontalGroup(
             logoLuarPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoLuarPanel3Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(47, 47, 47))
         );
         logoLuarPanel3Layout.setVerticalGroup(
             logoLuarPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(logoLuarPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoLuarPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout logoDalamPanel3Layout = new javax.swing.GroupLayout(logoDalamPanel3);
@@ -657,8 +672,8 @@ public class KendaraanView extends javax.swing.JFrame {
         logoDalamPanel3Layout.setVerticalGroup(
             logoDalamPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoDalamPanel3Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(logoLuarPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(logoLuarPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -667,63 +682,85 @@ public class KendaraanView extends javax.swing.JFrame {
 
         menu1Panel.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel17.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel17.setText("Penyewaan");
+
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/car rent.png"))); // NOI18N
 
         javax.swing.GroupLayout menu1PanelLayout = new javax.swing.GroupLayout(menu1Panel);
         menu1Panel.setLayout(menu1PanelLayout);
         menu1PanelLayout.setHorizontalGroup(
             menu1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu1PanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11)
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu1PanelLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(menu1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel17))
+                .addContainerGap())
         );
         menu1PanelLayout.setVerticalGroup(
             menu1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu1PanelLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu1PanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17)
+                .addContainerGap())
         );
 
         menu2Panel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer.png"))); // NOI18N
 
+        jLabel19.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel19.setText("Customer");
+
         javax.swing.GroupLayout menu2PanelLayout = new javax.swing.GroupLayout(menu2Panel);
         menu2Panel.setLayout(menu2PanelLayout);
         menu2PanelLayout.setHorizontalGroup(
             menu2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu2PanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu2PanelLayout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addGroup(menu2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel19))
+                .addGap(15, 15, 15))
         );
         menu2PanelLayout.setVerticalGroup(
             menu2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu2PanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel19)
+                .addContainerGap())
         );
 
         menu3Panel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/car.png"))); // NOI18N
 
+        jLabel20.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel20.setText("Kendaraan");
+
         javax.swing.GroupLayout menu3PanelLayout = new javax.swing.GroupLayout(menu3Panel);
         menu3Panel.setLayout(menu3PanelLayout);
         menu3PanelLayout.setHorizontalGroup(
             menu3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menu3PanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu3PanelLayout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(menu3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel20))
                 .addContainerGap())
         );
         menu3PanelLayout.setVerticalGroup(
             menu3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu3PanelLayout.createSequentialGroup()
+            .addGroup(menu3PanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel20)
                 .addContainerGap())
         );
 
@@ -731,26 +768,40 @@ public class KendaraanView extends javax.swing.JFrame {
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/tour guide.png"))); // NOI18N
 
+        jLabel21.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel21.setText("Guide");
+
         javax.swing.GroupLayout menu4PanelLayout = new javax.swing.GroupLayout(menu4Panel);
         menu4Panel.setLayout(menu4PanelLayout);
         menu4PanelLayout.setHorizontalGroup(
             menu4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu4PanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel14)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(menu4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menu4PanelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel14))
+                    .addGroup(menu4PanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel21)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         menu4PanelLayout.setVerticalGroup(
             menu4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu4PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel21)
                 .addContainerGap())
         );
 
         menu5Panel.setBackground(new java.awt.Color(255, 255, 255));
+        menu5Panel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/transaction.png"))); // NOI18N
+
+        jLabel22.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel22.setText("Transaksi");
 
         javax.swing.GroupLayout menu5PanelLayout = new javax.swing.GroupLayout(menu5Panel);
         menu5Panel.setLayout(menu5PanelLayout);
@@ -760,12 +811,19 @@ public class KendaraanView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(menu5PanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel22)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menu5PanelLayout.setVerticalGroup(
             menu5PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu5PanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel22)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
@@ -787,15 +845,11 @@ public class KendaraanView extends javax.swing.JFrame {
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(menu5Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menu4Panel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(menu3Panel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menu2Panel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menu1Panel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+            .addComponent(menu2Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(menu3Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu4Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(menu5Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu1Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         titlePanel.setBackground(new java.awt.Color(255, 204, 204));
@@ -804,24 +858,35 @@ public class KendaraanView extends javax.swing.JFrame {
         titleLabel.setBackground(new java.awt.Color(0, 0, 0));
         titleLabel.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("FORM ");
+        titleLabel.setText("FORM KENDARAAN");
         titleLabel.setToolTipText("");
+
+        homeBtn.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
+        homeBtn.setText("home");
+        homeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
         titlePanelLayout.setHorizontalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titlePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(titleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(homeBtn))
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titlePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+            .addComponent(homeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+            .addGroup(titlePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout headerPanel3Layout = new javax.swing.GroupLayout(headerPanel3);
@@ -843,9 +908,10 @@ public class KendaraanView extends javax.swing.JFrame {
                 .addGroup(headerPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(logoDalamPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(headerPanel3Layout.createSequentialGroup()
-                        .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -944,14 +1010,15 @@ public class KendaraanView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(headerPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(headerPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tableIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(commandPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(commandPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -995,44 +1062,45 @@ public class KendaraanView extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        setOthComp(true);
         jenisInput.setEnabled(false);
         setRadioJenisComp(true);
         clearText();
-        action = "Tambah";
+        action = "Tambah";        
+        if(radioMobil.isSelected() || radioMotor.isSelected()){
+            setOthComp(true);
+        }else{
+            setOthComp(false);
+        }
+
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         int clickedRowMotor = tableMotor.getSelectedRow();
         int clickedRowMobil = tableMobil.getSelectedRow();
-        
-        //(String id_Kendaraan, String kapasitas_Mobil, String jenis, 
-        //String nama_Kendaraan, String platNo, String merk, String cc, double tarif)        
+              
         if(radioMobil.isSelected()){
             if(action.equals("Tambah")){
-                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), kapasitasInput.getText(), jenisInput.getText(), 
-                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Motor kmt = new Kendaraan_Motor("", "", "", "", "", "", "", 0);
-                kendaraanControl.insertDataKendaraan(k, kmt, jenisInput.getText());
+                Kendaraan k = new Kendaraan_Mobil(idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(), 
+                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                        kapasitasInput.getText());
+                kendaraanControl.insertDataKendaraan(k, "Mobil");
             } else {
-                Kendaraan_Mobil k = new Kendaraan_Mobil(idKendaraanInput.getText(), kapasitasInput.getText(), jenisInput.getText(), 
-                        namaInput.getText(), platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Motor kmt = new Kendaraan_Motor( "", "", "", "", "", "", "", 0);
-                kendaraanControl.updateKendaraan(k, kmt, jenisInput.getText());
+                Kendaraan k = new Kendaraan_Mobil(idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(), 
+                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                        kapasitasInput.getText());
+                kendaraanControl.updateKendaraan(k, "Mobil");
             }            
         }else if(radioMotor.isSelected()){
             if(action.equals("Tambah")){
-                Kendaraan_Motor k = new Kendaraan_Motor( jenisSeatDropDown.getSelectedItem().toString(), idKendaraanInput.getText(), 
-                        jenisInput.getText(), namaInput.getText(), platInput.getText(), 
-                        merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
-                kendaraanControl.insertDataKendaraan(kmb, k, jenisInput.getText());
+                Kendaraan k = new Kendaraan_Motor( idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(),
+                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                        jenisSeatDropDown.getSelectedItem().toString());
+                kendaraanControl.insertDataKendaraan(k, "Motor");
             } else {
-                Kendaraan_Motor k = new Kendaraan_Motor( jenisSeatDropDown.getSelectedItem().toString(), idKendaraanInput.getText(), 
-                        jenisInput.getText(), namaInput.getText(), platInput.getText(), 
-                        merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()));
-                Kendaraan_Mobil kmb = new Kendaraan_Mobil("", "", "", "", "", "", "", 0);
-                kendaraanControl.updateKendaraan(kmb, k, jenisInput.getText());
+                Kendaraan k = new Kendaraan_Motor( idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(),
+                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                        jenisSeatDropDown.getSelectedItem().toString());
+                kendaraanControl.updateKendaraan(k, "Motor");
             }             
         }
 
@@ -1046,7 +1114,6 @@ public class KendaraanView extends javax.swing.JFrame {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        
         setOthComp(true);
         setAddSearchComp(false);
         setRadioJenisComp(false);
@@ -1189,6 +1256,12 @@ public class KendaraanView extends javax.swing.JFrame {
         showKendaraan();
     }//GEN-LAST:event_showAllBtnActionPerformed
 
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        Home h = new Home();
+        this.dispose();
+        h.setVisible(true);
+    }//GEN-LAST:event_homeBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1240,6 +1313,7 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JPanel headerPanel3;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JPanel idKendaraanIPanel;
     private javax.swing.JPanel idKendaraanIPanel1;
     private javax.swing.JTextField idKendaraanInput;
@@ -1251,7 +1325,12 @@ public class KendaraanView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

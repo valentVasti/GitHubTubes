@@ -8,9 +8,9 @@ import model.Kendaraan_Motor;
 
 public class TableMotor extends AbstractTableModel{
  
-    private List<Kendaraan_Motor> list;
+    private List<Kendaraan> list;
     
-    public TableMotor (List<Kendaraan_Motor> list)
+    public TableMotor (List<Kendaraan> list)
     {
         this.list = list;
     }
@@ -33,21 +33,21 @@ public class TableMotor extends AbstractTableModel{
         switch(columnIndex)
         {
             case 0 :
-                return list.get(rowIndex).getId_Kendaraan();
+                return list.get(rowIndex).getData("Id");
             case 1:
-                return list.get(rowIndex).getNama_Kendaraan();
+                return list.get(rowIndex).getData("nama_Kendaraan");
             case 2: 
-                return list.get(rowIndex).getMerk();
+                return list.get(rowIndex).getData("merk");
             case 3:
-                return list.get(rowIndex).getPlatNo();
+                return list.get(rowIndex).getData("platNo");
             case 4:
-                return list.get(rowIndex).getCC();
+                return list.get(rowIndex).getData("cc");
             case 5:
-                return list.get(rowIndex).getTarif();
+                return list.get(rowIndex).getData("tarif");
             case 6:
-                return list.get(rowIndex).getJenis();
+                return list.get(rowIndex).getData("jenis");
             case 7:
-                return list.get(rowIndex).getJenis_Seat();
+                return list.get(rowIndex).getData("jenis_Seat");
             default:
                 return null;
         }

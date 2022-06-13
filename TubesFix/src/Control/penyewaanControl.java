@@ -19,19 +19,9 @@ public class penyewaanControl {
         PDao.insertPenyewaan(p);
     }
     
-    public List<Penyewaan> showDataPenyewaan(String query, String jenis){
-        List<Penyewaan> dataPenyewaan = PDao.showListPenyewaan(query, jenis);
-        return dataPenyewaan;
-    }
-    
     public TablePenyewaan showPenyewaan(String query) {
         
-        List<Penyewaan> dataPenyewaanMb = PDao.showListPenyewaan(query, "Mobil");
-        List<Penyewaan> dataPenyewaanMt = PDao.showListPenyewaan(query, "Motor");
-        
-        for(int i=0; i<dataPenyewaanMb.size(); i++){
-            dataPenyewaanMb.add(dataPenyewaanMt.get(i));
-        }
+        List<Penyewaan> dataPenyewaanMb = PDao.showListPenyewaan(query);
         
         TablePenyewaan tablePenyewaan = new TablePenyewaan(dataPenyewaanMb);
         
