@@ -9,6 +9,7 @@ import Control.transaksiControl;
 import Control.CustomerControl;
 import control.KendaraanControl;
 import Control.guideControl;
+import Exception.InputKosongException;
 import dao.mobilDAO;
 import model.Penyewaan;
 import model.Customer;
@@ -62,6 +63,10 @@ public class PenyewaanView extends javax.swing.JFrame {
         setMobilToDropDown();
         setMotorToDropDown();        
         setCustomerToDropDown();
+        mobilBox.setSelectedIndex(-1);
+        motorBox.setSelectedIndex(-1);
+        guideDropDown.setSelectedIndex(-1);
+        lanjutkanPembayaranBtn.setEnabled(false);
     }
     
     public PenyewaanView(Transaksi t, Penyewaan p) {
@@ -85,7 +90,6 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public void setAddSearchComp(boolean value){
         addBtn.setEnabled(value);
-        editBtn.setEnabled(value);
         searchBtn.setEnabled(value);
     }
     
@@ -93,17 +97,18 @@ public class PenyewaanView extends javax.swing.JFrame {
         idTransaksiInput.setEnabled(value);
         idPenyewaanInput.setEnabled(value);
         customerDropDown.setEnabled(value);
+        mobilBox.setEnabled(value);
+        motorBox.setEnabled(value);
+        rekapBtn.setEnabled(value);
         guideDropDown.setEnabled(value);
         mobilRb.setEnabled(value);
         motorRb.setEnabled(value);
         durasiInput.setEnabled(value);
         
-        saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
     }
     
     public void setEditDelComp(boolean value){
-        editBtn.setEnabled(value);
         deleteBtn.setEnabled(value);
     }
     
@@ -215,17 +220,26 @@ public class PenyewaanView extends javax.swing.JFrame {
                 + "\n=================================\n";
         rekapanTxtArea.setText(rekapan);
     }
+
+    public void inputKosongException() throws InputKosongException{
+        if(idPenyewaanInput.getText().isEmpty() || customerDropDown.getSelectedIndex() == -1
+                || (!mobilRb.isSelected()&& !motorRb.isSelected())
+                || (mobilBox.getSelectedIndex() == -1 && motorBox.getSelectedIndex() == -1)
+                || guideDropDown.getSelectedIndex() == -1
+                || durasiInput.getText().isEmpty()){
+            throw new InputKosongException();
+        }
+    }
         
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         radioStatusPembayaran = new javax.swing.ButtonGroup();
         radioJenisPembayaran = new javax.swing.ButtonGroup();
+        radioKendaraan = new javax.swing.ButtonGroup();
         commandPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
-        editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
-        saveBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         headerPanel3 = new javax.swing.JPanel();
         logoDalamPanel3 = new javax.swing.JPanel();
@@ -297,14 +311,6 @@ public class PenyewaanView extends javax.swing.JFrame {
             }
         });
 
-        editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
-        editBtn.setText("UBAH");
-        editBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBtnActionPerformed(evt);
-            }
-        });
-
         deleteBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         deleteBtn.setText("HAPUS");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -313,16 +319,13 @@ public class PenyewaanView extends javax.swing.JFrame {
             }
         });
 
-        saveBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
-        saveBtn.setText("SIMPAN");
-        saveBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBtnActionPerformed(evt);
-            }
-        });
-
         cancelBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         cancelBtn.setText("BATAL");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout commandPanelLayout = new javax.swing.GroupLayout(commandPanel);
         commandPanel.setLayout(commandPanelLayout);
@@ -333,11 +336,8 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addGroup(commandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(commandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(deleteBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(editBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(commandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cancelBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saveBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(addBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cancelBtn))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         commandPanelLayout.setVerticalGroup(
@@ -345,13 +345,9 @@ public class PenyewaanView extends javax.swing.JFrame {
             .addGroup(commandPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(addBtn)
-                .addGap(14, 14, 14)
-                .addComponent(editBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(deleteBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(saveBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelBtn)
                 .addGap(48, 48, 48))
         );
@@ -746,6 +742,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         pilihLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         pilihLabel1.setText("Pilih Kendaraan");
 
+        radioKendaraan.add(mobilRb);
         mobilRb.setText("Mobil");
         mobilRb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -753,6 +750,7 @@ public class PenyewaanView extends javax.swing.JFrame {
             }
         });
 
+        radioKendaraan.add(motorRb);
         motorRb.setText("Motor");
         motorRb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1017,17 +1015,15 @@ public class PenyewaanView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-
-    }//GEN-LAST:event_saveBtnActionPerformed
-
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         mobilBox.setEnabled(false);
         motorBox.setEnabled(false);
-        editBtn.setEnabled(true);
+        mobilBox.setSelectedIndex(-1);
+        motorBox.setSelectedIndex(-1);
         setOthComp(true);
         clearText();
         idTransaksiInput.setEnabled(false);
+        rekapanTxtArea.setText("");
         action = "Tambah";        
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -1073,7 +1069,26 @@ public class PenyewaanView extends javax.swing.JFrame {
     }//GEN-LAST:event_lanjutkanPembayaranBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-
+        setEditDelComp(false);
+        setOthComp(false);
+        setAddSearchComp(true);
+        
+        try {
+            TablePenyewaan penyewaan = penyewaanControl.showPenyewaan(searchInput.getText());
+            if(penyewaan.getRowCount()==0){
+                clearText();
+                setEditDelComp(false);
+                JOptionPane.showConfirmDialog(null, "Data Tidak Ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            }else{
+                setEditDelComp(true);
+                penyewaanTabel.setModel(penyewaan);
+            }
+            
+            clearText();
+        } catch (Exception e) {
+            System.out.println("Error : "+e.getMessage());
+        }
+    
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void mobilBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobilBoxActionPerformed
@@ -1191,13 +1206,25 @@ public class PenyewaanView extends javax.swing.JFrame {
     }//GEN-LAST:event_motorRbActionPerformed
 
     private void rekapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapBtnActionPerformed
+    try{
+        inputKosongException();
         showRekapan(penyewaanGenerate());
         setOthComp(false);
+        lanjutkanPembayaranBtn.setEnabled(true);        
+    }catch(InputKosongException e){
+        JOptionPane.showMessageDialog(this, e.message());
+    }catch (NumberFormatException e){
+        JOptionPane.showMessageDialog(this, "Durasi harus inputan angka!");             
+    }
+
     }//GEN-LAST:event_rekapBtnActionPerformed
 
-    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-
-    }//GEN-LAST:event_editBtnActionPerformed
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        setOthComp(false);
+        setEditDelComp(false);
+        setAddSearchComp(true);
+        clearText();
+    }//GEN-LAST:event_cancelBtnActionPerformed
     
     public static void main(String args[]) {
             /* Set the Nimbus look and feel */
@@ -1242,7 +1269,6 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JTextField durasiInput;
     private javax.swing.JLabel durasiLabel;
     private javax.swing.JLabel durasiLabel1;
-    private javax.swing.JButton editBtn;
     private javax.swing.JComboBox<Guide> guideDropDown;
     private javax.swing.JLabel guideLabel;
     private javax.swing.JPanel guidePanel;
@@ -1282,10 +1308,10 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JLabel pilihLabel;
     private javax.swing.JLabel pilihLabel1;
     private javax.swing.ButtonGroup radioJenisPembayaran;
+    private javax.swing.ButtonGroup radioKendaraan;
     private javax.swing.ButtonGroup radioStatusPembayaran;
     private javax.swing.JButton rekapBtn;
     private javax.swing.JTextArea rekapanTxtArea;
-    private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
     private javax.swing.JPanel tanggalPanel;

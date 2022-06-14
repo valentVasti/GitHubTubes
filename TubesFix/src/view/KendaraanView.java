@@ -1149,6 +1149,8 @@ public class KendaraanView extends javax.swing.JFrame {
             setEditDelComp(false);            
         }catch (InputKosongException e){
             JOptionPane.showMessageDialog(this, e.message());            
+        }catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Tarif harus inputan angka!");             
         }
 
     }//GEN-LAST:event_saveBtnActionPerformed
