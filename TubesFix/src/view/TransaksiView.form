@@ -504,6 +504,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sudah Bayar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioSudahBayarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioBelumBayar">
               <Properties>
@@ -731,7 +734,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="titlePanel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="23" max="32767" attributes="0"/>
                           <Component id="menuPanel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="logoDalamPanel3" max="32767" attributes="0"/>

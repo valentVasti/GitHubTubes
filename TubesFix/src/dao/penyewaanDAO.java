@@ -229,7 +229,7 @@ public class penyewaanDAO {
         
         con = dbCon.makeConnection();
         
-        String sql = "DELETE FROM penyewaan WHERE id_Penyewaan = " + id + "";
+        String sql = "DELETE FROM penyewaan WHERE id_Penyewaan = '" + id + "'";
                 
         System.out.println("Deleting Penyewaan...");
         

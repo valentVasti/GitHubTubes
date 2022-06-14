@@ -5,6 +5,7 @@
 package view;
 
 import Control.transaksiControl;
+import Exception.InputKosongException;
 import model.Transaksi;
 import model.Penyewaan;
 import table.TableTransaksi;
@@ -19,7 +20,7 @@ public class TransaksiView extends javax.swing.JFrame {
     private transaksiControl transaksiControl;
     private Penyewaan p;
     
-    String action = "Tambah";//testing juga
+    String action = "Tambah";
     String selectedId = null;
     List<Transaksi> listGuide;
     
@@ -34,16 +35,22 @@ public class TransaksiView extends javax.swing.JFrame {
 
     }
     
-    public TransaksiView(Penyewaan p) {
+    public TransaksiView(Penyewaan p, String status) {
         initComponents();
         setAddSearchComp(false);
         setOthComp(true);
         setEditDelComp(false);
         transaksiControl = new transaksiControl();
-        action = "Tambah";
         showTransaksi();
         totalSewaField.setText(Double.toString(p.getTotal_Sewa()));
         this.p = p;
+        
+        if(status.equalsIgnoreCase("Unpaid")){
+            idTransaksiInput.setText(p.getTransaksi().getId_Transaksi());
+            action = "Ubah";
+        }else if(status.equalsIgnoreCase("-")){
+            action = "Tambah";            
+        }
     }
     
     public void setAddSearchComp(boolean value){
@@ -55,6 +62,7 @@ public class TransaksiView extends javax.swing.JFrame {
         idTransaksiInput.setEnabled(value);
         tanggalTransaksiInput.setEnabled(value);
         jumlahPembayaranInput.setEnabled(value);
+        kembalianField.setEnabled(value);
         
         saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
@@ -70,6 +78,14 @@ public class TransaksiView extends javax.swing.JFrame {
     }
     public void showTransaksi(){
         transaksiTable.setModel((TableModel) transaksiControl.showTransaksi(""));
+    }
+    
+    public void inputKosongException() throws InputKosongException{
+        if(idTransaksiInput.getText().isEmpty() || tanggalTransaksiInput.getText().isEmpty()
+                || (!radioBelumBayar.isSelected() && !radioSudahBayar.isSelected())
+                || (!radioCash.isSelected() && !radioDebit.isSelected())){
+            throw new InputKosongException();
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -319,6 +335,11 @@ public class TransaksiView extends javax.swing.JFrame {
         radioSudahBayar.setBackground(new java.awt.Color(255, 255, 255));
         radioStatusPembayaran.add(radioSudahBayar);
         radioSudahBayar.setText("Sudah Bayar");
+        radioSudahBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioSudahBayarActionPerformed(evt);
+            }
+        });
 
         radioBelumBayar.setBackground(new java.awt.Color(255, 255, 255));
         radioStatusPembayaran.add(radioBelumBayar);
@@ -800,7 +821,7 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addGroup(headerPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(headerPanel3Layout.createSequentialGroup()
                         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(logoDalamPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -849,6 +870,8 @@ public class TransaksiView extends javax.swing.JFrame {
     }//GEN-LAST:event_radioDebitActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+    try{
+        inputKosongException();
         String status = "", jenis = "";
         //(String id_Transaksi, String status_Pembayaran, String jenis_Pembayaran, String tanggal_Transaksi)
 
@@ -864,12 +887,25 @@ public class TransaksiView extends javax.swing.JFrame {
             jenis = "Debit";
         }
         
-        Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
-                tanggalTransaksiInput.getText());
-        transaksiControl.insertDataTransaksi(transaksi);
-        PenyewaanView pv = new PenyewaanView(transaksi, p);
-        this.dispose();
-        pv.setVisible(true);            
+        if(action == "Tambah"){
+            Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
+                    tanggalTransaksiInput.getText());
+            transaksiControl.insertDataTransaksi(transaksi);
+
+            PenyewaanView pv = new PenyewaanView(transaksi, p);
+            this.dispose();
+            pv.setVisible(true);             
+        }else{
+            Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
+                    tanggalTransaksiInput.getText());
+            transaksiControl.updateTransaksi(transaksi);
+            showTransaksi();
+        }
+       
+    }catch (InputKosongException e){
+        JOptionPane.showMessageDialog(this, e.message());        
+    }
+            
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void hitungPembayaranBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungPembayaranBtnActionPerformed
@@ -897,7 +933,24 @@ public class TransaksiView extends javax.swing.JFrame {
     }//GEN-LAST:event_totalSewaFieldActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-
+        setEditDelComp(false);
+        setOthComp(false);
+        setAddSearchComp(true);
+        
+        try {
+            TableTransaksi transaksi = transaksiControl.showTransaksi(searchInput.getText());
+            if(transaksi.getRowCount()==0){
+                clearText();
+                setEditDelComp(false);
+                JOptionPane.showConfirmDialog(null, "Data Tidak Ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            }else{
+                setEditDelComp(true);
+                transaksiTable.setModel(transaksi);
+            }
+            clearText();
+        } catch (Exception e) {
+            System.out.println("Error : "+e.getMessage());
+        }
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
@@ -905,7 +958,7 @@ public class TransaksiView extends javax.swing.JFrame {
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void jumlahPembayaranInputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlahPembayaranInputKeyTyped
@@ -921,12 +974,16 @@ public class TransaksiView extends javax.swing.JFrame {
     private void radioBelumBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBelumBayarActionPerformed
         jumlahPembayaranInput.setEnabled(false);
         hitungPembayaranBtn.setEnabled(false);
-        
+        kembalianField.setEnabled(false);
     }//GEN-LAST:event_radioBelumBayarActionPerformed
 
     private void kembalianFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalianFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_kembalianFieldActionPerformed
+
+    private void radioSudahBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSudahBayarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioSudahBayarActionPerformed
 
     /**
      * @param args the command line arguments

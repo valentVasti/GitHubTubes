@@ -109,8 +109,11 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public void clearText(){
         customerDropDown.setSelectedItem(-1);
-        motorBox.setSelectedItem(ABORT);
-        mobilBox.setSelectedItem(ABORT);
+        idTransaksiInput.setText("");
+        idPenyewaanInput.setText("");
+        motorBox.setSelectedItem(-1);
+        mobilBox.setSelectedItem(-1);
+        customerDropDown.setSelectedIndex(-1);
         durasiInput.setText("");
         mobilRb.setSelected(false);
         motorRb.setSelected(false);
@@ -157,7 +160,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public Penyewaan penyewaanGenerate(){
         int clickedRowPenyewaan = penyewaanTabel.getSelectedRow();
-        Kendaraan selectedKendaraan = listMobil.get(0); //temp aja
+        Kendaraan selectedKendaraan = listMobil.get(0);
         String jenis = null;
         
         int selectedIndex = customerDropDown.getSelectedIndex();
@@ -170,6 +173,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         }else if(motorRb.isSelected()){
             selectedIndex = motorBox.getSelectedIndex();
             selectedKendaraan = listMotor.get(selectedIndex);
+            System.out.println("lololo "+selectedIndex);
             jenis = "Motor";
         }
 
@@ -1045,9 +1049,15 @@ public class PenyewaanView extends javax.swing.JFrame {
     }//GEN-LAST:event_homeBtnActionPerformed
 
     private void lanjutkanPembayaranBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lanjutkanPembayaranBtnActionPerformed
-        TransaksiView tv = new TransaksiView(penyewaanGenerate());
-        this.dispose();
-        tv.setVisible(true);
+        if(penyewaanGenerate().getTransaksi().getId_Transaksi().equalsIgnoreCase("-")){
+            TransaksiView tv = new TransaksiView(penyewaanGenerate(), "-");
+            this.dispose();
+            tv.setVisible(true);            
+        }else{
+            TransaksiView tv = new TransaksiView(penyewaanGenerate(), "Unpaid");
+            this.dispose();
+            tv.setVisible(true);            
+        }
     }//GEN-LAST:event_lanjutkanPembayaranBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
@@ -1071,7 +1081,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     }//GEN-LAST:event_idTransaksiInputActionPerformed
 
     private void penyewaanTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penyewaanTabelMouseClicked
-                
+        clearText();
         int indexTransaksi = 0;
         int indexCustomer = 0;
         int indexKendaraan = 0;
@@ -1105,7 +1115,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         
         if(idKendaraan.contains("MOB")){
             mobilRb.setSelected(true);
-            mobilRb.setSelected(false);
+            motorRb.setSelected(false);
             for(Kendaraan mobil : listMobil){
                 if(mobil.getId().equals(idKendaraan)){
                     indexKendaraan = listMobil.indexOf(mobil);
@@ -1138,6 +1148,22 @@ public class PenyewaanView extends javax.swing.JFrame {
         guideDropDown.setSelectedIndex(indexGuide);
         
         showRekapan(penyewaanGenerate());
+        
+        listTransaksi = transaksiControl.showDataTransaksi();
+        Transaksi t = new Transaksi("", "", "", "");
+        
+        for(Transaksi transaksi: listTransaksi){
+            if(transaksi.getId_Transaksi().equalsIgnoreCase(idTransaksi)){
+                t = transaksi;
+                break;
+            }
+        }
+        
+        if(t.getStatus_Pembayaran().equalsIgnoreCase("Paid")){
+            lanjutkanPembayaranBtn.setEnabled(false);
+        }else{
+            lanjutkanPembayaranBtn.setEnabled(true);
+        }
     }//GEN-LAST:event_penyewaanTabelMouseClicked
 
     private void mobilRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobilRbActionPerformed
