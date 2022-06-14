@@ -85,7 +85,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public void setAddSearchComp(boolean value){
         addBtn.setEnabled(value);
-        rekapBtn.setEnabled(value);
+        editBtn.setEnabled(value);
         searchBtn.setEnabled(value);
     }
     
@@ -103,7 +103,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     }
     
     public void setEditDelComp(boolean value){
-        rekapBtn.setEnabled(value);
+        editBtn.setEnabled(value);
         deleteBtn.setEnabled(value);
     }
     
@@ -223,7 +223,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         radioJenisPembayaran = new javax.swing.ButtonGroup();
         commandPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
-        rekapBtn = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
@@ -257,6 +257,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         durasiLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         rekapanTxtArea = new javax.swing.JTextArea();
+        rekapBtn = new javax.swing.JButton();
         penyewaanPanel = new javax.swing.JPanel();
         penyewaanInput = new javax.swing.JLabel();
         idPenyewaanInput = new javax.swing.JTextField();
@@ -296,11 +297,11 @@ public class PenyewaanView extends javax.swing.JFrame {
             }
         });
 
-        rekapBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
-        rekapBtn.setText("rekap");
-        rekapBtn.addActionListener(new java.awt.event.ActionListener() {
+        editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
+        editBtn.setText("UBAH");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rekapBtnActionPerformed(evt);
+                editBtnActionPerformed(evt);
             }
         });
 
@@ -333,7 +334,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                     .addGroup(commandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(deleteBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rekapBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(editBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(commandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(cancelBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(saveBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -345,7 +346,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(addBtn)
                 .addGap(14, 14, 14)
-                .addComponent(rekapBtn)
+                .addComponent(editBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(deleteBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -657,6 +658,14 @@ public class PenyewaanView extends javax.swing.JFrame {
         rekapanTxtArea.setRows(5);
         jScrollPane2.setViewportView(rekapanTxtArea);
 
+        rekapBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
+        rekapBtn.setText("Tampil Rekap");
+        rekapBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rekapBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tanggalPanel3Layout = new javax.swing.GroupLayout(tanggalPanel3);
         tanggalPanel3.setLayout(tanggalPanel3Layout);
         tanggalPanel3Layout.setHorizontalGroup(
@@ -666,15 +675,18 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addGroup(tanggalPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tanggalPanel3Layout.createSequentialGroup()
                         .addComponent(durasiLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                        .addGap(98, 98, 98)
+                        .addComponent(rekapBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         tanggalPanel3Layout.setVerticalGroup(
             tanggalPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tanggalPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(durasiLabel1)
+                .addGroup(tanggalPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(durasiLabel1)
+                    .addComponent(rekapBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addContainerGap())
@@ -942,7 +954,7 @@ public class PenyewaanView extends javax.swing.JFrame {
             .addGroup(contentPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(penyewaanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(contentPanelLayout.createSequentialGroup()
@@ -975,7 +987,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(lanjutkanPembayaranBtn))
                     .addComponent(penyewaanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1012,7 +1024,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         mobilBox.setEnabled(false);
         motorBox.setEnabled(false);
-        rekapBtn.setEnabled(true);
+        editBtn.setEnabled(true);
         setOthComp(true);
         clearText();
         idTransaksiInput.setEnabled(false);
@@ -1181,8 +1193,11 @@ public class PenyewaanView extends javax.swing.JFrame {
     private void rekapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapBtnActionPerformed
         showRekapan(penyewaanGenerate());
         setOthComp(false);
-        
     }//GEN-LAST:event_rekapBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+
+    }//GEN-LAST:event_editBtnActionPerformed
     
     public static void main(String args[]) {
             /* Set the Nimbus look and feel */
@@ -1227,6 +1242,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JTextField durasiInput;
     private javax.swing.JLabel durasiLabel;
     private javax.swing.JLabel durasiLabel1;
+    private javax.swing.JButton editBtn;
     private javax.swing.JComboBox<Guide> guideDropDown;
     private javax.swing.JLabel guideLabel;
     private javax.swing.JPanel guidePanel;

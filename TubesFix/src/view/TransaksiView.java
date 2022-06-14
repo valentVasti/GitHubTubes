@@ -957,10 +957,6 @@ public class TransaksiView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_editBtnActionPerformed
 
-    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-
-    }//GEN-LAST:event_addBtnActionPerformed
-
     private void jumlahPembayaranInputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlahPembayaranInputKeyTyped
         hitungPembayaranBtn.setEnabled(true);        
     }//GEN-LAST:event_jumlahPembayaranInputKeyTyped
@@ -984,6 +980,10 @@ public class TransaksiView extends javax.swing.JFrame {
     private void radioSudahBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSudahBayarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioSudahBayarActionPerformed
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+
+    }//GEN-LAST:event_addBtnActionPerformed
 
     /**
      * @param args the command line arguments
