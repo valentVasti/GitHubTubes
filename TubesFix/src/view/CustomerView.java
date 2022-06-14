@@ -800,6 +800,8 @@ public class CustomerView extends javax.swing.JFrame {
             setEditDelComp(false);
         }catch (InputKosongException e) {
             JOptionPane.showMessageDialog(this, e.message());   
+        }catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Umur harus inputan angka!");             
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
