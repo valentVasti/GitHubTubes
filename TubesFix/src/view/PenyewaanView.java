@@ -240,7 +240,8 @@ public class PenyewaanView extends javax.swing.JFrame {
         searchInput = new javax.swing.JTextField();
         tanggalPanel3 = new javax.swing.JPanel();
         durasiLabel1 = new javax.swing.JLabel();
-        rekapanField = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         penyewaanPanel = new javax.swing.JPanel();
         penyewaanInput = new javax.swing.JLabel();
         idPenyewaanInput = new javax.swing.JTextField();
@@ -637,12 +638,9 @@ public class PenyewaanView extends javax.swing.JFrame {
         durasiLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         durasiLabel1.setText("Rekapan Penyewaan");
 
-        rekapanField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        rekapanField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rekapanFieldActionPerformed(evt);
-            }
-        });
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout tanggalPanel3Layout = new javax.swing.GroupLayout(tanggalPanel3);
         tanggalPanel3.setLayout(tanggalPanel3Layout);
@@ -653,8 +651,8 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addGroup(tanggalPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tanggalPanel3Layout.createSequentialGroup()
                         .addComponent(durasiLabel1)
-                        .addGap(0, 175, Short.MAX_VALUE))
-                    .addComponent(rekapanField))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
                 .addContainerGap())
         );
         tanggalPanel3Layout.setVerticalGroup(
@@ -662,8 +660,8 @@ public class PenyewaanView extends javax.swing.JFrame {
             .addGroup(tanggalPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(durasiLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rekapanField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -869,6 +867,8 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        guidePanel.setBackground(new java.awt.Color(250, 250, 250));
+
         guideLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         guideLabel.setText("Guide");
 
@@ -960,7 +960,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(lanjutkanPembayaranBtn))
                     .addComponent(penyewaanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -971,7 +971,7 @@ public class PenyewaanView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(headerPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
+                    .addComponent(headerPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(commandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -982,10 +982,9 @@ public class PenyewaanView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(headerPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(commandPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -1039,10 +1038,6 @@ public class PenyewaanView extends javax.swing.JFrame {
         this.dispose();
         tv.setVisible(true);
     }//GEN-LAST:event_lanjutkanPembayaranBtnActionPerformed
-
-    private void rekapanFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapanFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rekapanFieldActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
 
@@ -1209,6 +1204,8 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton lanjutkanPembayaranBtn;
     private javax.swing.JPanel logoDalamPanel3;
     private javax.swing.JPanel logoLuarPanel3;
@@ -1230,7 +1227,6 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup radioJenisPembayaran;
     private javax.swing.ButtonGroup radioStatusPembayaran;
     private javax.swing.JButton rekapBtn;
-    private javax.swing.JTextField rekapanField;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
