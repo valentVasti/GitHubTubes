@@ -323,6 +323,11 @@ public class TransaksiView extends javax.swing.JFrame {
         radioBelumBayar.setBackground(new java.awt.Color(255, 255, 255));
         radioStatusPembayaran.add(radioBelumBayar);
         radioBelumBayar.setText("Belum Bayar");
+        radioBelumBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioBelumBayarActionPerformed(evt);
+            }
+        });
 
         statusPembayaranLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         statusPembayaranLabel1.setText("Status Pembayaran");
@@ -887,10 +892,6 @@ public class TransaksiView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_hitungPembayaranBtnActionPerformed
 
-    private void kembalianFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalianFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kembalianFieldActionPerformed
-
     private void totalSewaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalSewaFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_totalSewaFieldActionPerformed
@@ -916,6 +917,16 @@ public class TransaksiView extends javax.swing.JFrame {
         this.dispose();
         h.setVisible(true);
     }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void radioBelumBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBelumBayarActionPerformed
+        jumlahPembayaranInput.setEnabled(false);
+        hitungPembayaranBtn.setEnabled(false);
+        
+    }//GEN-LAST:event_radioBelumBayarActionPerformed
+
+    private void kembalianFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalianFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kembalianFieldActionPerformed
 
     /**
      * @param args the command line arguments
