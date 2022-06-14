@@ -101,7 +101,7 @@
                       <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
                           <Component id="deleteBtn" alignment="0" max="32767" attributes="0"/>
                           <Component id="addBtn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="editBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rekapBtn" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                           <Component id="cancelBtn" alignment="1" max="32767" attributes="0"/>
@@ -118,7 +118,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="addBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                  <Component id="editBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="rekapBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="deleteBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -142,15 +142,15 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="editBtn">
+        <Component class="javax.swing.JButton" name="rekapBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Berlin Sans FB" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="UBAH"/>
+            <Property name="text" type="java.lang.String" value="rekap"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rekapBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="deleteBtn">
@@ -705,7 +705,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
-                          <Component id="searchBtn1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lanjutkanPembayaranBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
@@ -732,7 +732,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="guidePanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="searchBtn1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lanjutkanPembayaranBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="penyewaanPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -770,7 +770,7 @@
                               <Component id="durasiLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="175" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jumlahPembayaranInput1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rekapanField" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -782,7 +782,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="durasiLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jumlahPembayaranInput1" pref="194" max="32767" attributes="0"/>
+                      <Component id="rekapanField" pref="194" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -797,9 +797,12 @@
                 <Property name="text" type="java.lang.String" value="Rekapan Penyewaan"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jumlahPembayaranInput1">
+            <Component class="javax.swing.JTextField" name="rekapanField">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+              </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jumlahPembayaranInput1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rekapanFieldActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1036,11 +1039,17 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Mobil"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mobilRbActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="motorRb">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Motor"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="motorRbActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="mobilBox">
                       <Properties>
@@ -1173,12 +1182,12 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="searchBtn1">
+        <Component class="javax.swing.JButton" name="lanjutkanPembayaranBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Lanjutkan ke pembayaran"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBtn1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lanjutkanPembayaranBtnActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">

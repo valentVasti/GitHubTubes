@@ -45,6 +45,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     Customer selectedCustomer;
     Guide selectedGuide;
     Kendaraan selectedKendaraan;
+    Penyewaan p;
        
     public PenyewaanView() {
         initComponents();
@@ -84,7 +85,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public void setAddSearchComp(boolean value){
         addBtn.setEnabled(value);
-        editBtn.setEnabled(value);
+        rekapBtn.setEnabled(value);
         searchBtn.setEnabled(value);
     }
     
@@ -92,18 +93,17 @@ public class PenyewaanView extends javax.swing.JFrame {
         idTransaksiInput.setEnabled(value);
         idPenyewaanInput.setEnabled(value);
         customerDropDown.setEnabled(value);
+        guideDropDown.setEnabled(value);
         mobilRb.setEnabled(value);
         motorRb.setEnabled(value);
         durasiInput.setEnabled(value);
-        mobilBox.setEnabled(value);
-        motorBox.setEnabled(value);
         
         saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
     }
     
     public void setEditDelComp(boolean value){
-        editBtn.setEnabled(value);
+        rekapBtn.setEnabled(value);
         deleteBtn.setEnabled(value);
     }
     
@@ -154,6 +154,52 @@ public class PenyewaanView extends javax.swing.JFrame {
                 p.getKendaraan(), p.getDurasi(), p.getJenis(), p.getTotal_Sewa());
         penyewaanControl.insertDataPenyewaan(pNew);
     }
+    
+    public Penyewaan penyewaanGenerate(){
+        int clickedRowPenyewaan = penyewaanTabel.getSelectedRow();
+        Kendaraan selectedKendaraan = listMobil.get(0);
+        String jenis = null;
+        
+        int selectedIndex = customerDropDown.getSelectedIndex();
+        Customer selectedCustomer = listCustomer.get(selectedIndex);
+        
+        if(mobilRb.isSelected()){
+            selectedIndex = mobilBox.getSelectedIndex();
+            selectedKendaraan = listMobil.get(selectedIndex);
+            jenis = "Mobil";
+        }else if(motorRb.isSelected()){
+            selectedIndex = motorBox.getSelectedIndex();
+            selectedKendaraan = listMotor.get(selectedIndex);
+            jenis = "Motor";
+        }
+
+        selectedIndex = guideDropDown.getSelectedIndex();
+        Guide selectedGuide = listGuide.get(selectedIndex);
+            
+        double totalSewa = Integer.parseInt(durasiInput.getText()) * Double.parseDouble(selectedKendaraan.getData("tarif"));
+
+        Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, t, selectedGuide, 
+                selectedKendaraan, Integer.parseInt(durasiInput.getText()), jenis, totalSewa 
+                );
+                
+        return p;
+    }
+    
+    public void showRekapan(Penyewaan p){
+        String rekapan = "==== REKAPAN PENYEWAAN ====" 
+                + "\nID Penyewaan    " + p.getId_Penyewaan() 
+                + "\nCustomer        " + p.getCustomer().getNama_Customer()
+                + "\nID Transaksi    " + p.getTransaksi().getId_Transaksi()
+                + "\n---------------------------------------------------"
+                + "\n" + p.getKendaraan().getData("jenis")
+                + "\n" + p.getKendaraan().getData("merk") + " " +p.getKendaraan().getData("nama")
+                + "\nTARIF         @" + p.getKendaraan().getData("tarif")
+                + "\nDURASI PENYEAWAAN  " + p.getDurasi() + " HARI"
+                + "\nTOTAL SEWA         " + p.getTotal_Sewa()
+                + "\nStatus Bayar    " + p.getTransaksi().getStatus_Pembayaran()
+                + "\n=====================================================\n";
+        rekapanField.setText(rekapan);
+    }
         
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -162,7 +208,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         radioJenisPembayaran = new javax.swing.ButtonGroup();
         commandPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
-        editBtn = new javax.swing.JButton();
+        rekapBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
@@ -194,7 +240,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         searchInput = new javax.swing.JTextField();
         tanggalPanel3 = new javax.swing.JPanel();
         durasiLabel1 = new javax.swing.JLabel();
-        jumlahPembayaranInput1 = new javax.swing.JTextField();
+        rekapanField = new javax.swing.JTextField();
         penyewaanPanel = new javax.swing.JPanel();
         penyewaanInput = new javax.swing.JLabel();
         idPenyewaanInput = new javax.swing.JTextField();
@@ -216,7 +262,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         guidePanel = new javax.swing.JPanel();
         guideDropDown = new javax.swing.JComboBox<>();
         guideLabel = new javax.swing.JLabel();
-        searchBtn1 = new javax.swing.JButton();
+        lanjutkanPembayaranBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         penyewaanTabel = new javax.swing.JTable();
 
@@ -234,11 +280,11 @@ public class PenyewaanView extends javax.swing.JFrame {
             }
         });
 
-        editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
-        editBtn.setText("UBAH");
-        editBtn.addActionListener(new java.awt.event.ActionListener() {
+        rekapBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
+        rekapBtn.setText("rekap");
+        rekapBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBtnActionPerformed(evt);
+                rekapBtnActionPerformed(evt);
             }
         });
 
@@ -271,7 +317,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                     .addGroup(commandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(deleteBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(editBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(rekapBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(commandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(cancelBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(saveBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -283,7 +329,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(addBtn)
                 .addGap(14, 14, 14)
-                .addComponent(editBtn)
+                .addComponent(rekapBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(deleteBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -591,9 +637,10 @@ public class PenyewaanView extends javax.swing.JFrame {
         durasiLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         durasiLabel1.setText("Rekapan Penyewaan");
 
-        jumlahPembayaranInput1.addActionListener(new java.awt.event.ActionListener() {
+        rekapanField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        rekapanField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jumlahPembayaranInput1ActionPerformed(evt);
+                rekapanFieldActionPerformed(evt);
             }
         });
 
@@ -607,7 +654,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                     .addGroup(tanggalPanel3Layout.createSequentialGroup()
                         .addComponent(durasiLabel1)
                         .addGap(0, 175, Short.MAX_VALUE))
-                    .addComponent(jumlahPembayaranInput1))
+                    .addComponent(rekapanField))
                 .addContainerGap())
         );
         tanggalPanel3Layout.setVerticalGroup(
@@ -616,7 +663,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(durasiLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jumlahPembayaranInput1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                .addComponent(rekapanField, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -675,8 +722,18 @@ public class PenyewaanView extends javax.swing.JFrame {
         pilihLabel1.setText("Pilih Kendaraan");
 
         mobilRb.setText("Mobil");
+        mobilRb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mobilRbActionPerformed(evt);
+            }
+        });
 
         motorRb.setText("Motor");
+        motorRb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                motorRbActionPerformed(evt);
+            }
+        });
 
         mobilBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -838,10 +895,10 @@ public class PenyewaanView extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        searchBtn1.setText("Lanjutkan ke pembayaran");
-        searchBtn1.addActionListener(new java.awt.event.ActionListener() {
+        lanjutkanPembayaranBtn.setText("Lanjutkan ke pembayaran");
+        lanjutkanPembayaranBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtn1ActionPerformed(evt);
+                lanjutkanPembayaranBtnActionPerformed(evt);
             }
         });
 
@@ -880,7 +937,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                         .addComponent(tanggalPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contentPanelLayout.createSequentialGroup()
                         .addGap(149, 149, 149)
-                        .addComponent(searchBtn1))
+                        .addComponent(lanjutkanPembayaranBtn))
                     .addGroup(contentPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(guidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -901,7 +958,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(guidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(searchBtn1))
+                        .addComponent(lanjutkanPembayaranBtn))
                     .addComponent(penyewaanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -939,17 +996,14 @@ public class PenyewaanView extends javax.swing.JFrame {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        mobilBox.setEnabled(false);
+        motorBox.setEnabled(false);
+        rekapBtn.setEnabled(true);
         setOthComp(true);
         clearText();
         idTransaksiInput.setEnabled(false);
         action = "Tambah";        
     }//GEN-LAST:event_addBtnActionPerformed
-
-    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        setOthComp(true);
-        setAddSearchComp(false);
-        action = "Ubah";
-    }//GEN-LAST:event_editBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
@@ -980,41 +1034,15 @@ public class PenyewaanView extends javax.swing.JFrame {
         h.setVisible(true);
     }//GEN-LAST:event_homeBtnActionPerformed
 
-    private void searchBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn1ActionPerformed
-        int clickedRowPenyewaan = penyewaanTabel.getSelectedRow();
-        Kendaraan selectedKendaraan = listMobil.get(0);
-        String jenis = null;
-        
-        int selectedIndex = customerDropDown.getSelectedIndex();
-        Customer selectedCustomer = listCustomer.get(selectedIndex);
-        
-        if(mobilRb.isSelected()){
-            selectedIndex = mobilBox.getSelectedIndex();
-            selectedKendaraan = listMobil.get(selectedIndex);
-            jenis = "Mobil";
-        }else if(motorRb.isSelected()){
-            selectedIndex = motorBox.getSelectedIndex();
-            selectedKendaraan = listMotor.get(selectedIndex);
-            jenis = "Motor";
-        }
-
-        selectedIndex = guideDropDown.getSelectedIndex();
-        Guide selectedGuide = listGuide.get(selectedIndex);
-            
-        double totalSewa = Integer.parseInt(durasiInput.getText()) * Double.parseDouble(selectedKendaraan.getData("tarif"));
-
-        Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, t, selectedGuide, 
-                selectedKendaraan, Integer.parseInt(durasiInput.getText()), jenis, totalSewa 
-                );
-
-        TransaksiView tv = new TransaksiView(p);
+    private void lanjutkanPembayaranBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lanjutkanPembayaranBtnActionPerformed
+        TransaksiView tv = new TransaksiView(penyewaanGenerate());
         this.dispose();
         tv.setVisible(true);
-    }//GEN-LAST:event_searchBtn1ActionPerformed
+    }//GEN-LAST:event_lanjutkanPembayaranBtnActionPerformed
 
-    private void jumlahPembayaranInput1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahPembayaranInput1ActionPerformed
+    private void rekapanFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapanFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jumlahPembayaranInput1ActionPerformed
+    }//GEN-LAST:event_rekapanFieldActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
 
@@ -1100,6 +1128,24 @@ public class PenyewaanView extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_penyewaanTabelMouseClicked
+
+    private void mobilRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobilRbActionPerformed
+        mobilBox.setEnabled(true);
+        mobilBox.setSelectedIndex(-1);
+        motorBox.setEnabled(false);
+    }//GEN-LAST:event_mobilRbActionPerformed
+
+    private void motorRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motorRbActionPerformed
+        motorBox.setEnabled(true);
+        motorBox.setSelectedIndex(-1);
+        mobilBox.setEnabled(false);
+    }//GEN-LAST:event_motorRbActionPerformed
+
+    private void rekapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapBtnActionPerformed
+        showRekapan(penyewaanGenerate());
+        setOthComp(false);
+        
+    }//GEN-LAST:event_rekapBtnActionPerformed
     
     public static void main(String args[]) {
             /* Set the Nimbus look and feel */
@@ -1144,7 +1190,6 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JTextField durasiInput;
     private javax.swing.JLabel durasiLabel;
     private javax.swing.JLabel durasiLabel1;
-    private javax.swing.JButton editBtn;
     private javax.swing.JComboBox<Guide> guideDropDown;
     private javax.swing.JLabel guideLabel;
     private javax.swing.JPanel guidePanel;
@@ -1164,7 +1209,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jumlahPembayaranInput1;
+    private javax.swing.JButton lanjutkanPembayaranBtn;
     private javax.swing.JPanel logoDalamPanel3;
     private javax.swing.JPanel logoLuarPanel3;
     private javax.swing.JPanel menu1Panel;
@@ -1184,9 +1229,10 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JLabel pilihLabel1;
     private javax.swing.ButtonGroup radioJenisPembayaran;
     private javax.swing.ButtonGroup radioStatusPembayaran;
+    private javax.swing.JButton rekapBtn;
+    private javax.swing.JTextField rekapanField;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
-    private javax.swing.JButton searchBtn1;
     private javax.swing.JTextField searchInput;
     private javax.swing.JPanel tanggalPanel;
     private javax.swing.JPanel tanggalPanel1;
