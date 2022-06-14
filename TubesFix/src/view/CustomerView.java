@@ -6,6 +6,7 @@ package view;
 
 import Control.CustomerControl;
 import model.Customer;
+import Exception.InputKosongException;
 import table.TableCustomer;
 import dao.customerDAO;
 import java.util.ArrayList;
@@ -61,6 +62,15 @@ public class CustomerView extends javax.swing.JFrame {
     
     public void showCustomer(){
         customerTable.setModel(customerControl.showCustomer());
+    }
+    
+    public void inputKosongException() throws InputKosongException{
+        if(idCustomerInput.getText().isEmpty() || namaCustomerInput.getText().isEmpty()
+                || alamatCustomerInput.getText().isEmpty()
+                || umurCustomerInput.getText().isEmpty()
+                || noTelpCustomerInput.getText().isEmpty()){
+            throw new InputKosongException();
+        }
     }
 
     /**
@@ -770,24 +780,29 @@ public class CustomerView extends javax.swing.JFrame {
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        int clickedRow = customerTable.getSelectedRow();
-        TableModel tableModel = customerTable.getModel();
-        //(String id_Customer, String nama_Customer, String alamat_Customer, int umur_Customer, String telp_Customer)        
-        if(action.equals("Tambah")){
-            Customer c = new Customer(idCustomerInput.getText(), namaCustomerInput.getText(),
-            alamatCustomerInput.getText(), Integer.parseInt(umurCustomerInput.getText()), noTelpCustomerInput.getText());
-            customerControl.insertDataCustomer(c);
-        } else {
-            Customer c = new Customer(idCustomerInput.getText(), namaCustomerInput.getText(),
-            alamatCustomerInput.getText(), Integer.parseInt(umurCustomerInput.getText()), noTelpCustomerInput.getText());
-            customerControl.updateCustomer(c);
-        }
+        try{
+            inputKosongException();
+            int clickedRow = customerTable.getSelectedRow();
+            TableModel tableModel = customerTable.getModel();
+            //(String id_Customer, String nama_Customer, String alamat_Customer, int umur_Customer, String telp_Customer)        
+            if(action.equals("Tambah")){
+                Customer c = new Customer(idCustomerInput.getText(), namaCustomerInput.getText(),
+                alamatCustomerInput.getText(), Integer.parseInt(umurCustomerInput.getText()), noTelpCustomerInput.getText());
+                customerControl.insertDataCustomer(c);
+            } else {
+                Customer c = new Customer(idCustomerInput.getText(), namaCustomerInput.getText(),
+                alamatCustomerInput.getText(), Integer.parseInt(umurCustomerInput.getText()), noTelpCustomerInput.getText());
+                customerControl.updateCustomer(c);
+            }
 
-        clearText();
-        showCustomer();
-        setOthComp(false);
-        setAddSearchComp(true);
-        setEditDelComp(false); 
+            clearText();
+            showCustomer();
+            setOthComp(false);
+            setAddSearchComp(true);
+            setEditDelComp(false);
+        }catch (InputKosongException e) {
+            JOptionPane.showMessageDialog(this, e.message());   
+        }
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed

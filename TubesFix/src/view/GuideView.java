@@ -2,6 +2,7 @@
 package view;
 
 import Control.guideControl;
+import Exception.InputKosongException;
 import java.beans.PropertyEditorManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,15 @@ public class GuideView extends javax.swing.JFrame {
     }
     public void showGuide(){
         guideTable.setModel(guideControl.showGuide());
+    }
+    
+    public void inputKosongException() throws InputKosongException{
+        if(idInput.getText().isEmpty() || namaInput.getText().isEmpty()
+                || alamatInput.getText().isEmpty()
+                || umurInput.getText().isEmpty()
+                || teleponInput.getText().isEmpty()){
+            throw new InputKosongException();
+        }
     }
     
 
@@ -723,24 +733,29 @@ public class GuideView extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        int clickedRow = guideTable.getSelectedRow();
-        TableModel tableModel = guideTable.getModel();
-        //(String id_Guide, String nama_Guide, String alamat_Guide, int umur_Guide, String telp_Guide)        
-        if(action.equals("Tambah")){
-            Guide guide = new Guide(idInput.getText(), namaInput.getText(),alamatInput.getText(),
-                    Integer.parseInt(umurInput.getText()), teleponInput.getText());
-            guideControl.insertDataGuide(guide);
-        } else{
-            Guide guide = new Guide(idInput.getText(),namaInput.getText(), alamatInput.getText(),
-                    Integer.parseInt(umurInput.getText()), teleponInput.getText());
-            guideControl.updateGuide(guide);
-        }
+        try{
+            inputKosongException();
+            int clickedRow = guideTable.getSelectedRow();
+            TableModel tableModel = guideTable.getModel();
+            //(String id_Guide, String nama_Guide, String alamat_Guide, int umur_Guide, String telp_Guide)        
+            if(action.equals("Tambah")){
+                Guide guide = new Guide(idInput.getText(), namaInput.getText(),alamatInput.getText(),
+                        Integer.parseInt(umurInput.getText()), teleponInput.getText());
+                guideControl.insertDataGuide(guide);
+            } else{
+                Guide guide = new Guide(idInput.getText(),namaInput.getText(), alamatInput.getText(),
+                        Integer.parseInt(umurInput.getText()), teleponInput.getText());
+                guideControl.updateGuide(guide);
+            }
 
-        clearText();
-        showGuide();
-        setOthComp(false);
-        setAddSearchComp(true);
-        setEditDelComp(false);      
+            clearText();
+            showGuide();
+            setOthComp(false);
+            setAddSearchComp(true);
+            setEditDelComp(false);
+        }catch(InputKosongException e){
+            JOptionPane.showMessageDialog(this, e.message());  
+        }
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed

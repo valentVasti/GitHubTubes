@@ -41,7 +41,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     List<Customer> listCustomer;
     List<Transaksi> listTransaksi;
     List<Guide> listGuide;
-    Transaksi t = new Transaksi("", "Unpaid", "", "");
+    Transaksi t = new Transaksi("-", "Unpaid", "", "");
     Customer selectedCustomer;
     Guide selectedGuide;
     Kendaraan selectedKendaraan;
@@ -157,7 +157,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public Penyewaan penyewaanGenerate(){
         int clickedRowPenyewaan = penyewaanTabel.getSelectedRow();
-        Kendaraan selectedKendaraan = listMobil.get(0);
+        Kendaraan selectedKendaraan = listMobil.get(0); //temp aja
         String jenis = null;
         
         int selectedIndex = customerDropDown.getSelectedIndex();
@@ -175,10 +175,21 @@ public class PenyewaanView extends javax.swing.JFrame {
 
         selectedIndex = guideDropDown.getSelectedIndex();
         Guide selectedGuide = listGuide.get(selectedIndex);
+        
+        listTransaksi = transaksiControl.showDataTransaksi();
+        Transaksi selectedTransaksi = listTransaksi.get(0);
+        
+        for(Transaksi transaksi: listTransaksi){
+            if(transaksi.getId_Transaksi().equals(idTransaksiInput.getText())){
+                selectedTransaksi = transaksi;
+                break;
+            }
+            selectedTransaksi = t;
+        }
             
         double totalSewa = Integer.parseInt(durasiInput.getText()) * Double.parseDouble(selectedKendaraan.getData("tarif"));
 
-        Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, t, selectedGuide, 
+        Penyewaan p = new Penyewaan(idPenyewaanInput.getText(),selectedCustomer, selectedTransaksi, selectedGuide, 
                 selectedKendaraan, Integer.parseInt(durasiInput.getText()), jenis, totalSewa 
                 );
                 
@@ -192,7 +203,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                 + "\nID Transaksi    " + p.getTransaksi().getId_Transaksi()
                 + "\n---------------------------------------------------"
                 + "\n" + p.getKendaraan().getData("jenis")
-                + "\n" + p.getKendaraan().getData("merk") + " " +p.getKendaraan().getData("nama")
+                + "\n" + p.getKendaraan().getData("merk") + " " +p.getKendaraan().getData("nama_Kendaraan")
                 + "\nTARIF         @" + p.getKendaraan().getData("tarif")
                 + "\nDURASI PENYEAWAAN  " + p.getDurasi() + " HARI"
                 + "\nTOTAL SEWA         " + p.getTotal_Sewa()
@@ -1060,13 +1071,16 @@ public class PenyewaanView extends javax.swing.JFrame {
     }//GEN-LAST:event_idTransaksiInputActionPerformed
 
     private void penyewaanTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penyewaanTabelMouseClicked
-        
+                
         int indexTransaksi = 0;
         int indexCustomer = 0;
         int indexKendaraan = 0;
         int indexGuide = 0;
         setEditDelComp(true);
         setOthComp(false);
+        
+        motorBox.setEnabled(false);
+        mobilBox.setEnabled(false);
 
         int clickedRow = penyewaanTabel.getSelectedRow();
         TableModel tableModel = penyewaanTabel.getModel();
@@ -1078,33 +1092,33 @@ public class PenyewaanView extends javax.swing.JFrame {
         idTransaksiInput.setText(idTransaksi);
 
         String idCustomer = tableModel.getValueAt(clickedRow, 1).toString();
-        System.out.println("blablbalbalbal"+idCustomer);
         
         for(Customer customer : listCustomer){
             if(customer.getId_Customer().equalsIgnoreCase(idCustomer)){
-                indexCustomer = listCustomer.indexOf(idCustomer);
-                System.out.println("tetststststtsts" + indexCustomer);
+                indexCustomer = listCustomer.indexOf(customer);
             }
         }
 
         customerDropDown.setSelectedIndex(indexCustomer);
 
         String idKendaraan = tableModel.getValueAt(clickedRow, 3).toString();
-
+        
         if(idKendaraan.contains("MOB")){
             mobilRb.setSelected(true);
-            for(Kendaraan kendaraan : listMobil){
-                if(kendaraan.getId().equals(idKendaraan)){
-                    indexKendaraan = listMobil.indexOf(idKendaraan);
+            mobilRb.setSelected(false);
+            for(Kendaraan mobil : listMobil){
+                if(mobil.getId().equals(idKendaraan)){
+                    indexKendaraan = listMobil.indexOf(mobil);
                 }
             }
             mobilBox.setSelectedIndex(indexKendaraan);
             motorBox.setSelectedIndex(-1);
         }else if(idKendaraan.contains("MOT")){
             motorRb.setSelected(true);
-            for(Kendaraan kendaraan : listMotor){
-                if(kendaraan.getId().equals(idKendaraan)){
-                    indexKendaraan = listMobil.indexOf(idKendaraan);
+            mobilRb.setSelected(false);
+            for(Kendaraan motor : listMotor){
+                if(motor.getId().equals(idKendaraan)){
+                    indexKendaraan = listMotor.indexOf(motor);
                 }
             }
             motorBox.setSelectedIndex(indexKendaraan);
@@ -1123,7 +1137,7 @@ public class PenyewaanView extends javax.swing.JFrame {
 
         guideDropDown.setSelectedIndex(indexGuide);
         
-        
+        showRekapan(penyewaanGenerate());
     }//GEN-LAST:event_penyewaanTabelMouseClicked
 
     private void mobilRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobilRbActionPerformed

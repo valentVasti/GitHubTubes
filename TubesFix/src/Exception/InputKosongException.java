@@ -4,10 +4,6 @@
  */
 package Exception;
 
-/**
- *
- * @author ASUS
- */
 public class InputKosongException extends Exception {
     
     public String message(){

@@ -1,6 +1,8 @@
 package view;
 
+import Exception.InputKosongException;
 import control.KendaraanControl;
+import dao.mobilDAO;
 import java.beans.PropertyEditorManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +91,24 @@ public class KendaraanView extends javax.swing.JFrame {
         tableMobil.setModel(kendaraanControl.showMobil());
         tableMotor.setModel(kendaraanControl.showMotor());
     }
+    
+    public void inputKosongException() throws InputKosongException{
+        if(radioMobil.isSelected()){
+            if(idKendaraanInput.getText().isEmpty() || namaInput.getText().isEmpty()
+                    || platInput.getText().isEmpty() || merkInput.getText().isEmpty()
+                    || ccInput.getText().isEmpty() || tarifInput.getText().isEmpty()
+                    || kapasitasInput.getText().isEmpty()){
+                throw new InputKosongException();
+            }
+        }else if(radioMotor.isSelected()){
+            if(idKendaraanInput.getText().isEmpty() || namaInput.getText().isEmpty()
+                    || platInput.getText().isEmpty() || merkInput.getText().isEmpty()
+                    || ccInput.getText().isEmpty() || tarifInput.getText().isEmpty()
+                    || jenisSeatDropDown.getSelectedIndex() == -1){
+                throw new InputKosongException();            
+            }
+        }
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1062,6 +1082,7 @@ public class KendaraanView extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        JOptionPane.showMessageDialog(this, "Pilih mobil atau motor terlebih dahulu!");  
         jenisInput.setEnabled(false);
         setRadioJenisComp(true);
         clearText();
@@ -1075,42 +1096,48 @@ public class KendaraanView extends javax.swing.JFrame {
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        int clickedRowMotor = tableMotor.getSelectedRow();
-        int clickedRowMobil = tableMobil.getSelectedRow();
-              
-        if(radioMobil.isSelected()){
-            if(action.equals("Tambah")){
-                Kendaraan k = new Kendaraan_Mobil(idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(), 
-                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
-                        kapasitasInput.getText());
-                kendaraanControl.insertDataKendaraan(k, "Mobil");
-            } else {
-                Kendaraan k = new Kendaraan_Mobil(idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(), 
-                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
-                        kapasitasInput.getText());
-                kendaraanControl.updateKendaraan(k, "Mobil");
-            }            
-        }else if(radioMotor.isSelected()){
-            if(action.equals("Tambah")){
-                Kendaraan k = new Kendaraan_Motor( idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(),
-                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
-                        jenisSeatDropDown.getSelectedItem().toString());
-                kendaraanControl.insertDataKendaraan(k, "Motor");
-            } else {
-                Kendaraan k = new Kendaraan_Motor( idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(),
-                        platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
-                        jenisSeatDropDown.getSelectedItem().toString());
-                kendaraanControl.updateKendaraan(k, "Motor");
-            }             
+        try{
+            inputKosongException();
+            int clickedRowMotor = tableMotor.getSelectedRow();
+            int clickedRowMobil = tableMobil.getSelectedRow();
+
+            if(radioMobil.isSelected()){
+                if(action.equals("Tambah")){
+                    Kendaraan k = new Kendaraan_Mobil(idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(), 
+                            platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                            kapasitasInput.getText());
+                    kendaraanControl.insertDataKendaraan(k, "Mobil");
+                } else {
+                    Kendaraan k = new Kendaraan_Mobil(idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(), 
+                            platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                            kapasitasInput.getText());
+                    kendaraanControl.updateKendaraan(k, "Mobil");
+                }            
+            }else if(radioMotor.isSelected()){
+                if(action.equals("Tambah")){
+                    Kendaraan k = new Kendaraan_Motor( idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(),
+                            platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                            jenisSeatDropDown.getSelectedItem().toString());
+                    kendaraanControl.insertDataKendaraan(k, "Motor");
+                } else {
+                    Kendaraan k = new Kendaraan_Motor( idKendaraanInput.getText(), jenisInput.getText(), namaInput.getText(),
+                            platInput.getText(), merkInput.getText(), ccInput.getText(), Double.parseDouble(tarifInput.getText()), 
+                            jenisSeatDropDown.getSelectedItem().toString());
+                    kendaraanControl.updateKendaraan(k, "Motor");
+                }             
+            }
+
+            clearText();
+            showKendaraan();
+            kapasitasInput.setEnabled(false);
+            jenisSeatDropDown.setEnabled(false);
+            setOthComp(false);
+            setAddSearchComp(true);
+            setEditDelComp(false);            
+        }catch (InputKosongException e){
+            JOptionPane.showMessageDialog(this, e.message());            
         }
 
-        clearText();
-        showKendaraan();
-        kapasitasInput.setEnabled(false);
-        jenisSeatDropDown.setEnabled(false);
-        setOthComp(false);
-        setAddSearchComp(true);
-        setEditDelComp(false);
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
