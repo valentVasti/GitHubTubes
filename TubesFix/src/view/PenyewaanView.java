@@ -41,7 +41,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     List<Customer> listCustomer;
     List<Transaksi> listTransaksi;
     List<Guide> listGuide;
-    Transaksi t = new Transaksi("", "", "", "");
+    Transaksi t = new Transaksi("", "Unpaid", "", "");
     Customer selectedCustomer;
     Guide selectedGuide;
     Kendaraan selectedKendaraan;
@@ -197,8 +197,8 @@ public class PenyewaanView extends javax.swing.JFrame {
                 + "\nDURASI PENYEAWAAN  " + p.getDurasi() + " HARI"
                 + "\nTOTAL SEWA         " + p.getTotal_Sewa()
                 + "\nStatus Bayar    " + p.getTransaksi().getStatus_Pembayaran()
-                + "\n=====================================================\n";
-        rekapanField.setText(rekapan);
+                + "\n=================================\n";
+        rekapanTxtArea.setText(rekapan);
     }
         
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -241,7 +241,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         tanggalPanel3 = new javax.swing.JPanel();
         durasiLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        rekapanTxtArea = new javax.swing.JTextArea();
         penyewaanPanel = new javax.swing.JPanel();
         penyewaanInput = new javax.swing.JLabel();
         idPenyewaanInput = new javax.swing.JTextField();
@@ -638,9 +638,9 @@ public class PenyewaanView extends javax.swing.JFrame {
         durasiLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         durasiLabel1.setText("Rekapan Penyewaan");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        rekapanTxtArea.setColumns(20);
+        rekapanTxtArea.setRows(5);
+        jScrollPane2.setViewportView(rekapanTxtArea);
 
         javax.swing.GroupLayout tanggalPanel3Layout = new javax.swing.GroupLayout(tanggalPanel3);
         tanggalPanel3.setLayout(tanggalPanel3Layout);
@@ -1061,10 +1061,10 @@ public class PenyewaanView extends javax.swing.JFrame {
 
     private void penyewaanTabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penyewaanTabelMouseClicked
         
-        int indexTransaksi = -1;
-        int indexCustomer = -1;
-        int indexKendaraan = -1;
-        int indexGuide = -1;
+        int indexTransaksi = 0;
+        int indexCustomer = 0;
+        int indexKendaraan = 0;
+        int indexGuide = 0;
         setEditDelComp(true);
         setOthComp(false);
 
@@ -1078,10 +1078,12 @@ public class PenyewaanView extends javax.swing.JFrame {
         idTransaksiInput.setText(idTransaksi);
 
         String idCustomer = tableModel.getValueAt(clickedRow, 1).toString();
-
+        System.out.println("blablbalbalbal"+idCustomer);
+        
         for(Customer customer : listCustomer){
-            if(customer.getId_Customer().equals(idCustomer)){
+            if(customer.getId_Customer().equalsIgnoreCase(idCustomer)){
                 indexCustomer = listCustomer.indexOf(idCustomer);
+                System.out.println("tetststststtsts" + indexCustomer);
             }
         }
 
@@ -1205,7 +1207,6 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton lanjutkanPembayaranBtn;
     private javax.swing.JPanel logoDalamPanel3;
     private javax.swing.JPanel logoLuarPanel3;
@@ -1227,6 +1228,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup radioJenisPembayaran;
     private javax.swing.ButtonGroup radioStatusPembayaran;
     private javax.swing.JButton rekapBtn;
+    private javax.swing.JTextArea rekapanTxtArea;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
