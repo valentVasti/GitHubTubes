@@ -434,6 +434,11 @@ public class TransaksiView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        transaksiTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transaksiTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(transaksiTable);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -984,6 +989,38 @@ public class TransaksiView extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
 
     }//GEN-LAST:event_addBtnActionPerformed
+
+    private void transaksiTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiTableMouseClicked
+        setEditDelComp(true);
+        setOthComp(false);
+                
+        int clickedRow = transaksiTable.getSelectedRow();
+        TableModel tableModel = transaksiTable.getModel();
+        
+        selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 10).toString());
+        tanggalInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
+        totalInput.setText(tableModel.getValueAt(clickedRow, 4).toString());
+        
+        String idComputer = tableModel.getValueAt(clickedRow, 8).toString();
+        
+        for(Computer computer : listComputer){
+            if(computer.getId().equals(idComputer)){
+                indexComputer = listComputer.indexOf(computer);
+            }
+        }
+        
+        computerDropDown.setSelectedIndex(indexComputer);
+        
+        String idPembeli = tableModel.getValueAt(clickedRow, 9).toString();
+                
+        for(Pembeli pembeli : listPembeli){
+            if(Integer.toString(pembeli.getId()).equals(idPembeli)){
+                indexPembeli = listPembeli.indexOf(pembeli);
+            }
+        }        
+        
+        pembeliDropDown.setSelectedIndex(indexPembeli);
+    }//GEN-LAST:event_transaksiTableMouseClicked
 
     /**
      * @param args the command line arguments
