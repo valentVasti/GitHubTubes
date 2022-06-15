@@ -5,7 +5,9 @@
 package view;
 
 import Control.transaksiControl;
+import Exception.InputId;
 import Exception.InputKosongException;
+import Exception.belumBayarException;
 import model.Transaksi;
 import model.Penyewaan;
 import table.TableTransaksi;
@@ -22,7 +24,7 @@ public class TransaksiView extends javax.swing.JFrame {
     
     String action = "Tambah";
     String selectedId = null;
-    List<Transaksi> listGuide;
+    List<Transaksi> listTransaksi;
     
     public TransaksiView() {
         initComponents();
@@ -32,12 +34,10 @@ public class TransaksiView extends javax.swing.JFrame {
         setOthComp(false);
         transaksiControl = new transaksiControl();
         hitungPembayaranBtn.setEnabled(false);
-        radioSudahBayar.setSelected(false);radioBelumBayar.setSelected(false);
-        radioSudahBayar.setEnabled(false);radioBelumBayar.setEnabled(false);
-        radioCash.setSelected(false);radioDebit.setSelected(false);
-        radioCash.setEnabled(false);radioDebit.setEnabled(false);
+        setEnabled(false);
+        setSelectedRadio(false);
         showTransaksi();
-        radioSudahBayar.setEnabled(false);
+        delBtn.setEnabled(false);
     }
     
     public TransaksiView(Penyewaan p, String status) {
@@ -48,8 +48,9 @@ public class TransaksiView extends javax.swing.JFrame {
         showTransaksi();
         totalSewaField.setText(Double.toString(p.getTotal_Sewa()));
         this.p = p;
-        radioSudahBayar.setEnabled(false);
-        
+        setEnabledRadio(true);
+        setSelectedRadio(false);
+                
         if(status.equalsIgnoreCase("Unpaid")){
             idTransaksiInput.setText(p.getTransaksi().getId_Transaksi());
             tanggalTransaksiInput.setText(p.getTransaksi().getTanggal_Transaksi());
@@ -62,8 +63,8 @@ public class TransaksiView extends javax.swing.JFrame {
     
     public void setAddSearchComp(boolean value){
         addBtn.setEnabled(value);
-        //searchBtn.setEnabled(value);
-        //searchInput.setEnabled(value);
+        searchBtn.setEnabled(value);
+        searchInput.setEnabled(value);
     }
     public void setOthComp(boolean value){
         idTransaksiInput.setEnabled(value);
@@ -73,6 +74,17 @@ public class TransaksiView extends javax.swing.JFrame {
         
         saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
+    }
+    
+       
+    public void setEnabledRadio(boolean value){
+        radioSudahBayar.setEnabled(value);radioBelumBayar.setEnabled(value);
+        radioCash.setEnabled(value);radioDebit.setEnabled(value);        
+    }
+    
+    public void setSelectedRadio(boolean value){
+        radioCash.setSelected(value);radioDebit.setSelected(value);
+        radioCash.setSelected(value);radioDebit.setSelected(value);       
     }
 
     public void clearText(){
@@ -91,6 +103,29 @@ public class TransaksiView extends javax.swing.JFrame {
             throw new InputKosongException();
         }
     }
+    
+    public void inputId() throws InputId{
+        if(!idTransaksiInput.getText().contains("TR-")){
+            throw new InputId();
+        }
+    }
+    
+    public void belumBayarException() throws belumBayarException{
+        if(radioSudahBayar.isSelected() && jumlahPembayaranInput.getText().isEmpty()){
+            throw new belumBayarException();
+        }
+    }
+    
+    public int checkDel(String idDel){
+        listTransaksi = transaksiControl.showDataTransaksi();
+        for(Transaksi tr: listTransaksi){
+            if(tr.getId_Transaksi().equals(idDel)){
+                return 0;
+            }
+        }
+        return 1;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -102,6 +137,7 @@ public class TransaksiView extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
+        delBtn = new javax.swing.JButton();
         contentPanel = new javax.swing.JPanel();
         transaksiPanel = new javax.swing.JPanel();
         transaksiLabel = new javax.swing.JLabel();
@@ -184,6 +220,14 @@ public class TransaksiView extends javax.swing.JFrame {
             }
         });
 
+        delBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
+        delBtn.setText("HAPUS");
+        delBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout commandPanelLayout = new javax.swing.GroupLayout(commandPanel);
         commandPanel.setLayout(commandPanelLayout);
         commandPanelLayout.setHorizontalGroup(
@@ -193,7 +237,8 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addGroup(commandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(delBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         commandPanelLayout.setVerticalGroup(
@@ -201,6 +246,8 @@ public class TransaksiView extends javax.swing.JFrame {
             .addGroup(commandPanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(addBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(delBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -443,7 +490,7 @@ public class TransaksiView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addComponent(totalSewaField, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -549,23 +596,23 @@ public class TransaksiView extends javax.swing.JFrame {
 
         logoLuarPanel3.setBackground(new java.awt.Color(255, 204, 204));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Group 6 1 (1).png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Logo Rental Atma.png"))); // NOI18N
 
         javax.swing.GroupLayout logoLuarPanel3Layout = new javax.swing.GroupLayout(logoLuarPanel3);
         logoLuarPanel3.setLayout(logoLuarPanel3Layout);
         logoLuarPanel3Layout.setHorizontalGroup(
             logoLuarPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoLuarPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(24, 24, 24))
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         logoLuarPanel3Layout.setVerticalGroup(
             logoLuarPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(logoLuarPanel3Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoLuarPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout logoDalamPanel3Layout = new javax.swing.GroupLayout(logoDalamPanel3);
@@ -758,7 +805,7 @@ public class TransaksiView extends javax.swing.JFrame {
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(120, Short.MAX_VALUE)
                 .addComponent(penyewaanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(guideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -768,7 +815,7 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addComponent(customerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(menu5Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -783,7 +830,7 @@ public class TransaksiView extends javax.swing.JFrame {
         titlePanel.setForeground(new java.awt.Color(255, 255, 255));
 
         titleLabel.setBackground(new java.awt.Color(0, 0, 0));
-        titleLabel.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Tw Cen MT", 1, 48)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("FORM TRANSAKSI ");
         titleLabel.setToolTipText("");
@@ -810,7 +857,7 @@ public class TransaksiView extends javax.swing.JFrame {
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(homeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titlePanelLayout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(titleLabel))
         );
 
@@ -834,7 +881,7 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addGroup(headerPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(headerPanel3Layout.createSequentialGroup()
                         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(logoDalamPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(6, 6, 6))
@@ -885,9 +932,9 @@ public class TransaksiView extends javax.swing.JFrame {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
     try{
         inputKosongException();
+        inputId();
         String status = "", jenis = "";
-        //(String id_Transaksi, String status_Pembayaran, String jenis_Pembayaran, String tanggal_Transaksi)
-
+        
         if(radioSudahBayar.isSelected()){
             status = "Paid";
         }else if (radioBelumBayar.isSelected()){
@@ -903,6 +950,8 @@ public class TransaksiView extends javax.swing.JFrame {
         if(radioBelumBayar.isSelected()){
             jenis = "Belum bayar";
         }
+        
+        belumBayarException();
         
         if(action == "Tambah"){
             Transaksi transaksi = new Transaksi(idTransaksiInput.getText(), status, jenis,
@@ -924,6 +973,10 @@ public class TransaksiView extends javax.swing.JFrame {
        
     }catch (InputKosongException e){
         JOptionPane.showMessageDialog(this, e.message());        
+    }catch (InputId e){
+        JOptionPane.showMessageDialog(this, e.message("TR-"));     
+    }catch(belumBayarException e){
+        JOptionPane.showMessageDialog(this, e.message());
     }
             
     }//GEN-LAST:event_saveBtnActionPerformed
@@ -1007,6 +1060,7 @@ public class TransaksiView extends javax.swing.JFrame {
 
     private void transaksiTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiTableMouseClicked
         setOthComp(false);
+        delBtn.setEnabled(true);
                 
         int clickedRow = transaksiTable.getSelectedRow();
         TableModel tableModel = transaksiTable.getModel();
@@ -1067,6 +1121,34 @@ public class TransaksiView extends javax.swing.JFrame {
         cv.setVisible(true);
     }//GEN-LAST:event_customerMenuMouseClicked
 
+    private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        selectedId = idTransaksiInput.getText();
+        switch(getAnswer){
+            case 0:
+                try {
+                transaksiControl.deleteTransaksi(selectedId);
+                if(checkDel(selectedId)==0){
+                    JOptionPane.showMessageDialog(this, "Gagal menghapus\n note: Data transaksi masih menjadi FK data Penyewaan");                    
+                }else{
+                    clearText();
+                    showTransaksi();
+                    setOthComp(false);
+                    setAddSearchComp(true);
+                    JOptionPane.showMessageDialog(this, "Berhasil menghapus data!");                    
+                }
+
+            } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Gagal menghapus transaksi");
+                    System.out.println("Error : "+e.getMessage());
+            }
+                break;
+            
+            case 1:
+                break;
+        }
+    }//GEN-LAST:event_delBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1108,6 +1190,7 @@ public class TransaksiView extends javax.swing.JFrame {
     private javax.swing.JPanel commandPanel;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JPanel customerMenu;
+    private javax.swing.JButton delBtn;
     private javax.swing.JPanel guideMenu;
     private javax.swing.JPanel headerPanel3;
     private javax.swing.JButton hitungPembayaranBtn;

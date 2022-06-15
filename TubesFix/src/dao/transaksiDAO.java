@@ -62,7 +62,7 @@ public class transaksiDAO {
     public void deleteTransaksi(String id){
         con = dbCon.makeConnection();
         
-        String sql = "DELETE FROM customer WHERE id_Transaksi = " + id + "";
+        String sql = "DELETE FROM transaksi WHERE id_Transaksi = '" + id + "'";
                 
         System.out.println("Deleting Transaksi...");
         

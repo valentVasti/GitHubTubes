@@ -7,6 +7,7 @@ package view;
 import Control.CustomerControl;
 import model.Customer;
 import Exception.InputKosongException;
+import Exception.InputId;
 import table.TableCustomer;
 import dao.customerDAO;
 import java.util.ArrayList;
@@ -72,6 +73,12 @@ public class CustomerView extends javax.swing.JFrame {
             throw new InputKosongException();
         }
     }
+    
+    public void inputId() throws InputId{
+        if(!idCustomerInput.getText().contains("CUS-")){
+            throw new InputId();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,7 +142,7 @@ public class CustomerView extends javax.swing.JFrame {
         searchBtn2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(204, 0, 0));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         command.setBackground(new java.awt.Color(255, 255, 255));
         command.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 51, 51), new java.awt.Color(255, 102, 102), new java.awt.Color(255, 102, 102), new java.awt.Color(255, 51, 51)), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 4)), "COMMAND", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Berlin Sans FB Demi", 1, 18), new java.awt.Color(51, 51, 51))); // NOI18N
@@ -217,7 +224,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         idCustomer.setBackground(new java.awt.Color(250, 250, 250));
 
-        idCustomerLabel.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
+        idCustomerLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         idCustomerLabel.setText("ID Customer");
 
         idCustomerInput.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +253,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         namaCustomer.setBackground(new java.awt.Color(250, 250, 250));
 
-        namaCustomerLabel.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
+        namaCustomerLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         namaCustomerLabel.setText("Nama ");
 
         javax.swing.GroupLayout namaCustomerLayout = new javax.swing.GroupLayout(namaCustomer);
@@ -269,7 +276,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         alamatCustomer.setBackground(new java.awt.Color(250, 250, 250));
 
-        alamatCustomerLabel.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
+        alamatCustomerLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         alamatCustomerLabel.setText("Alamat ");
 
         javax.swing.GroupLayout alamatCustomerLayout = new javax.swing.GroupLayout(alamatCustomer);
@@ -292,7 +299,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         umurCustomer.setBackground(new java.awt.Color(250, 250, 250));
 
-        umurCustomerLabel.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
+        umurCustomerLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         umurCustomerLabel.setText("Umur ");
 
         javax.swing.GroupLayout umurCustomerLayout = new javax.swing.GroupLayout(umurCustomer);
@@ -315,7 +322,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         noTelpCustomer.setBackground(new java.awt.Color(250, 250, 250));
 
-        noTelpCustomerLabel.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
+        noTelpCustomerLabel.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         noTelpCustomerLabel.setText("Nomor Telepon");
 
         javax.swing.GroupLayout noTelpCustomerLayout = new javax.swing.GroupLayout(noTelpCustomer);
@@ -437,16 +444,16 @@ public class CustomerView extends javax.swing.JFrame {
 
         logoLuarPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Group 6 1 (1).png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Logo Rental Atma.png"))); // NOI18N
 
         javax.swing.GroupLayout logoLuarPanel1Layout = new javax.swing.GroupLayout(logoLuarPanel1);
         logoLuarPanel1.setLayout(logoLuarPanel1Layout);
         logoLuarPanel1Layout.setHorizontalGroup(
             logoLuarPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logoLuarPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(29, 29, 29))
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         logoLuarPanel1Layout.setVerticalGroup(
             logoLuarPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,7 +641,7 @@ public class CustomerView extends javax.swing.JFrame {
         transaksiMenuLayout.setVerticalGroup(
             transaksiMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transaksiMenuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10))
@@ -645,7 +652,7 @@ public class CustomerView extends javax.swing.JFrame {
         menuPanel1Layout.setHorizontalGroup(
             menuPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanel1Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(penyewaanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menu2Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -655,7 +662,7 @@ public class CustomerView extends javax.swing.JFrame {
                 .addComponent(guideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(transaksiMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         menuPanel1Layout.setVerticalGroup(
             menuPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -715,7 +722,7 @@ public class CustomerView extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(logoDalamPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(menuPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -777,6 +784,7 @@ public class CustomerView extends javax.swing.JFrame {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         try{
             inputKosongException();
+            inputId();
             int clickedRow = customerTable.getSelectedRow();
             TableModel tableModel = customerTable.getModel();
             //(String id_Customer, String nama_Customer, String alamat_Customer, int umur_Customer, String telp_Customer)        
@@ -799,6 +807,8 @@ public class CustomerView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.message());   
         }catch (NumberFormatException e){
             JOptionPane.showMessageDialog(this, "Umur harus inputan angka!");             
+        }catch (InputId e){
+            JOptionPane.showMessageDialog(this, e.message("CUS-"));
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -843,7 +853,7 @@ public class CustomerView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Berhasil menghapus data!");
              
             } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Gagal menghapus pembeli");
+                    JOptionPane.showMessageDialog(this, "Gagal menghapus customer");
                     System.out.println("Error : "+e.getMessage());
             }
                 break;
