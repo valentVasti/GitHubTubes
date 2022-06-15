@@ -34,12 +34,9 @@ public class TransaksiView extends javax.swing.JFrame {
         setOthComp(false);
         transaksiControl = new transaksiControl();
         hitungPembayaranBtn.setEnabled(false);
-        radioSudahBayar.setSelected(false);radioBelumBayar.setSelected(false);
-        radioSudahBayar.setEnabled(false);radioBelumBayar.setEnabled(false);
-        radioCash.setSelected(false);radioDebit.setSelected(false);
-        radioCash.setEnabled(false);radioDebit.setEnabled(false);
+        setSelectedRadio(false);
         showTransaksi();
-        radioSudahBayar.setEnabled(false);
+        delBtn.setEnabled(true);
     }
     
     public TransaksiView(Penyewaan p, String status) {
@@ -176,13 +173,13 @@ public class TransaksiView extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         guideMenu = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         kendaraanMenu = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         customerMenu = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         menu5Panel = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -200,6 +197,7 @@ public class TransaksiView extends javax.swing.JFrame {
 
         addBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         addBtn.setText("TAMBAH");
+        addBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
@@ -208,6 +206,7 @@ public class TransaksiView extends javax.swing.JFrame {
 
         saveBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         saveBtn.setText("BAYAR/SIMPAN");
+        saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
@@ -216,6 +215,7 @@ public class TransaksiView extends javax.swing.JFrame {
 
         cancelBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         cancelBtn.setText("BATAL");
+        cancelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
@@ -224,6 +224,7 @@ public class TransaksiView extends javax.swing.JFrame {
 
         delBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         delBtn.setText("HAPUS");
+        delBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         delBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delBtnActionPerformed(evt);
@@ -638,6 +639,7 @@ public class TransaksiView extends javax.swing.JFrame {
         menuPanel.setForeground(new java.awt.Color(255, 255, 255));
 
         penyewaanMenu.setBackground(new java.awt.Color(255, 255, 255));
+        penyewaanMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         penyewaanMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 penyewaanMenuMouseClicked(evt);
@@ -673,6 +675,7 @@ public class TransaksiView extends javax.swing.JFrame {
         );
 
         guideMenu.setBackground(new java.awt.Color(255, 255, 255));
+        guideMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         guideMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 guideMenuMouseClicked(evt);
@@ -681,34 +684,32 @@ public class TransaksiView extends javax.swing.JFrame {
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer.png"))); // NOI18N
 
-        jLabel20.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
-        jLabel20.setText("Guide");
+        jLabel18.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel18.setText("Customer");
 
         javax.swing.GroupLayout guideMenuLayout = new javax.swing.GroupLayout(guideMenu);
         guideMenu.setLayout(guideMenuLayout);
         guideMenuLayout.setHorizontalGroup(
             guideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(guideMenuLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guideMenuLayout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(guideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guideMenuLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guideMenuLayout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addGap(28, 28, 28))))
+                .addGroup(guideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel12))
+                .addGap(17, 17, 17))
         );
         guideMenuLayout.setVerticalGroup(
             guideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(guideMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel20)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         kendaraanMenu.setBackground(new java.awt.Color(255, 255, 255));
+        kendaraanMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kendaraanMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kendaraanMenuMouseClicked(evt);
@@ -724,24 +725,25 @@ public class TransaksiView extends javax.swing.JFrame {
         kendaraanMenu.setLayout(kendaraanMenuLayout);
         kendaraanMenuLayout.setHorizontalGroup(
             kendaraanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kendaraanMenuLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kendaraanMenuLayout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(kendaraanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel13))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel19))
+                .addContainerGap())
         );
         kendaraanMenuLayout.setVerticalGroup(
             kendaraanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kendaraanMenuLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel19)
-                .addContainerGap())
+                .addGap(25, 25, 25))
         );
 
         customerMenu.setBackground(new java.awt.Color(255, 255, 255));
+        customerMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         customerMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 customerMenuMouseClicked(evt);
@@ -750,8 +752,8 @@ public class TransaksiView extends javax.swing.JFrame {
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/tour guide.png"))); // NOI18N
 
-        jLabel18.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
-        jLabel18.setText("Customer");
+        jLabel20.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jLabel20.setText("Guide");
 
         javax.swing.GroupLayout customerMenuLayout = new javax.swing.GroupLayout(customerMenu);
         customerMenu.setLayout(customerMenuLayout);
@@ -760,8 +762,10 @@ public class TransaksiView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerMenuLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(customerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
+                    .addGroup(customerMenuLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel20))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
         customerMenuLayout.setVerticalGroup(
@@ -769,12 +773,13 @@ public class TransaksiView extends javax.swing.JFrame {
             .addGroup(customerMenuLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel18)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel20)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         menu5Panel.setBackground(new java.awt.Color(204, 204, 204));
+        menu5Panel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/transaction.png"))); // NOI18N
 
@@ -807,7 +812,7 @@ public class TransaksiView extends javax.swing.JFrame {
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
+                .addContainerGap(125, Short.MAX_VALUE)
                 .addComponent(penyewaanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(guideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -817,7 +822,7 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addComponent(customerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(menu5Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -839,6 +844,7 @@ public class TransaksiView extends javax.swing.JFrame {
 
         homeBtn.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
         homeBtn.setText("home");
+        homeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeBtnActionPerformed(evt);
@@ -883,7 +889,7 @@ public class TransaksiView extends javax.swing.JFrame {
                 .addGroup(headerPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(headerPanel3Layout.createSequentialGroup()
                         .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(logoDalamPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(6, 6, 6))
@@ -900,7 +906,7 @@ public class TransaksiView extends javax.swing.JFrame {
                         .addComponent(commandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(headerPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)))
+                    .addComponent(headerPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1058, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1096,7 +1102,9 @@ public class TransaksiView extends javax.swing.JFrame {
     }//GEN-LAST:event_transaksiTableMouseClicked
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        
+        setOthComp(false);
+        setAddSearchComp(true);
+        clearText();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void penyewaanMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penyewaanMenuMouseClicked
@@ -1106,9 +1114,10 @@ public class TransaksiView extends javax.swing.JFrame {
     }//GEN-LAST:event_penyewaanMenuMouseClicked
 
     private void guideMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guideMenuMouseClicked
-        GuideView gv = new GuideView();
+        CustomerView cv = new CustomerView();
         this.dispose();
-        gv.setVisible(true);
+        cv.setVisible(true);
+        
     }//GEN-LAST:event_guideMenuMouseClicked
 
     private void kendaraanMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kendaraanMenuMouseClicked
@@ -1118,9 +1127,10 @@ public class TransaksiView extends javax.swing.JFrame {
     }//GEN-LAST:event_kendaraanMenuMouseClicked
 
     private void customerMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerMenuMouseClicked
-        CustomerView cv = new CustomerView();
+        
+        GuideView gv = new GuideView();
         this.dispose();
-        cv.setVisible(true);
+        gv.setVisible(true);
     }//GEN-LAST:event_customerMenuMouseClicked
 
     private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed

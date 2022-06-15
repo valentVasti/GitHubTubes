@@ -66,6 +66,7 @@ public class Home extends javax.swing.JFrame {
 
         kendaraanMenu.setBackground(new java.awt.Color(255, 255, 255));
         kendaraanMenu.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4)));
+        kendaraanMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kendaraanMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kendaraanMenuMouseClicked(evt);
@@ -100,6 +101,7 @@ public class Home extends javax.swing.JFrame {
 
         customerMenu.setBackground(new java.awt.Color(255, 255, 255));
         customerMenu.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4)));
+        customerMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         customerMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 customerMenuMouseClicked(evt);
@@ -137,6 +139,7 @@ public class Home extends javax.swing.JFrame {
 
         penyewaanMenu.setBackground(new java.awt.Color(255, 255, 255));
         penyewaanMenu.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4))));
+        penyewaanMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         penyewaanMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 penyewaanMenuMouseClicked(evt);
@@ -171,6 +174,7 @@ public class Home extends javax.swing.JFrame {
 
         transaksiMenu.setBackground(new java.awt.Color(255, 255, 255));
         transaksiMenu.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4)));
+        transaksiMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         transaksiMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 transaksiMenuMouseClicked(evt);
@@ -207,6 +211,7 @@ public class Home extends javax.swing.JFrame {
 
         guideMenu.setBackground(new java.awt.Color(255, 255, 255));
         guideMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red, java.awt.Color.red), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4))));
+        guideMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         guideMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 guideMenuMouseClicked(evt);
@@ -469,7 +474,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logoDalamPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
