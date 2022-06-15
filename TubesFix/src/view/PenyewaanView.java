@@ -115,10 +115,12 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public void clearText(){
         customerDropDown.setSelectedItem(-1);
+        guideDropDown.setSelectedItem(-1);
         idTransaksiInput.setText("");
         idPenyewaanInput.setText("");
         motorBox.setSelectedItem(-1);
         mobilBox.setSelectedItem(-1);
+        guideDropDown.setSelectedIndex(-1);
         customerDropDown.setSelectedIndex(-1);
         durasiInput.setText("");
         mobilRb.setSelected(false);
@@ -215,7 +217,7 @@ public class PenyewaanView extends javax.swing.JFrame {
                 + "\n" + p.getKendaraan().getData("jenis")
                 + "\n" + p.getKendaraan().getData("merk") + " " +p.getKendaraan().getData("nama_Kendaraan")
                 + "\nTARIF         @" + p.getKendaraan().getData("tarif")
-                + "\nDURASI PENYEAWAAN  " + p.getDurasi() + " HARI"
+                + "\nDURASI PENYEWAAN  " + p.getDurasi() + " HARI"
                 + "\nTOTAL SEWA         " + p.getTotal_Sewa()
                 + "\nStatus Bayar    " + p.getTransaksi().getStatus_Pembayaran()
                 + "\n=================================\n";
@@ -1067,6 +1069,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         idTransaksiInput.setEnabled(false);
         rekapanTxtArea.setText("");
         action = "Tambah";        
+        radioKendaraan.clearSelection();
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -1269,6 +1272,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         setEditDelComp(false);
         setAddSearchComp(true);
         clearText();
+        radioKendaraan.clearSelection();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void customerMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerMenuMouseClicked

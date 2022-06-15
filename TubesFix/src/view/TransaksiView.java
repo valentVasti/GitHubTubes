@@ -1009,7 +1009,7 @@ public class TransaksiView extends javax.swing.JFrame {
             }            
         }while(kembalian < 0);
     }catch (NumberFormatException e){
-        JOptionPane.showMessageDialog(this, "Umur harus inputan angka!");             
+        JOptionPane.showMessageDialog(this, "Bayar harus inputan angka!");             
     }
 
     }//GEN-LAST:event_hitungPembayaranBtnActionPerformed
