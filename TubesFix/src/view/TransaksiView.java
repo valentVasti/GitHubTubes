@@ -34,10 +34,12 @@ public class TransaksiView extends javax.swing.JFrame {
         setOthComp(false);
         transaksiControl = new transaksiControl();
         hitungPembayaranBtn.setEnabled(false);
-        setEnabled(false);
-        setSelectedRadio(false);
+        radioSudahBayar.setSelected(false);radioBelumBayar.setSelected(false);
+        radioSudahBayar.setEnabled(false);radioBelumBayar.setEnabled(false);
+        radioCash.setSelected(false);radioDebit.setSelected(false);
+        radioCash.setEnabled(false);radioDebit.setEnabled(false);
         showTransaksi();
-        delBtn.setEnabled(false);
+        radioSudahBayar.setEnabled(false);
     }
     
     public TransaksiView(Penyewaan p, String status) {
