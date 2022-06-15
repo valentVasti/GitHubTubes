@@ -37,6 +37,7 @@ public class TransaksiView extends javax.swing.JFrame {
         setSelectedRadio(false);
         showTransaksi();
         delBtn.setEnabled(true);
+        
     }
     
     public TransaksiView(Penyewaan p, String status) {
@@ -1021,6 +1022,7 @@ public class TransaksiView extends javax.swing.JFrame {
 
         setOthComp(false);
         setAddSearchComp(true);
+        addBtn.setEnabled(false);
         
         try {
             TableTransaksi transaksi = transaksiControl.showTransaksi(searchInput.getText());
@@ -1103,7 +1105,11 @@ public class TransaksiView extends javax.swing.JFrame {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         setOthComp(false);
-        setAddSearchComp(true);
+        setAddSearchComp(false);
+        setSelectedRadio(false);
+        setEnabledRadio(false);
+        delBtn.setEnabled(false);
+        JOptionPane.showMessageDialog(this, "Silahkan kembali ke HOME untuk membatalkan");
         clearText();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
