@@ -1109,6 +1109,9 @@ public class TransaksiView extends javax.swing.JFrame {
         setSelectedRadio(false);
         setEnabledRadio(false);
         delBtn.setEnabled(false);
+        hitungPembayaranBtn.setEnabled(false);
+        totalSewaField.setText("");
+        totalSewaField.setEnabled(false);
         JOptionPane.showMessageDialog(this, "Silahkan kembali ke HOME untuk membatalkan");
         clearText();
     }//GEN-LAST:event_cancelBtnActionPerformed
