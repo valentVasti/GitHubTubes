@@ -166,7 +166,7 @@ public class PenyewaanView extends javax.swing.JFrame {
     
     public Penyewaan penyewaanGenerate(){
         int clickedRowPenyewaan = penyewaanTabel.getSelectedRow();
-        Kendaraan selectedKendaraan = listMobil.get(0);
+        Kendaraan selectedKendaraan = null;
         String jenis = null;
         
         int selectedIndex = customerDropDown.getSelectedIndex();
@@ -312,6 +312,7 @@ public class PenyewaanView extends javax.swing.JFrame {
 
         addBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         addBtn.setText("TAMBAH");
+        addBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
@@ -320,6 +321,7 @@ public class PenyewaanView extends javax.swing.JFrame {
 
         deleteBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         deleteBtn.setText("HAPUS");
+        deleteBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
@@ -328,6 +330,7 @@ public class PenyewaanView extends javax.swing.JFrame {
 
         cancelBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         cancelBtn.setText("BATAL");
+        cancelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
@@ -437,6 +440,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         );
 
         customerMenu.setBackground(new java.awt.Color(255, 255, 255));
+        customerMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         customerMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 customerMenuMouseClicked(evt);
@@ -473,6 +477,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         );
 
         kendaraanMenu.setBackground(new java.awt.Color(255, 255, 255));
+        kendaraanMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kendaraanMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kendaraanMenuMouseClicked(evt);
@@ -508,6 +513,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         );
 
         guideMenu.setBackground(new java.awt.Color(255, 255, 255));
+        guideMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         guideMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 guideMenuMouseClicked(evt);
@@ -543,6 +549,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         );
 
         transaksiMenu.setBackground(new java.awt.Color(255, 255, 255));
+        transaksiMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         transaksiMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 transaksiMenuMouseClicked(evt);
@@ -614,6 +621,7 @@ public class PenyewaanView extends javax.swing.JFrame {
 
         homeBtn.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
         homeBtn.setText("home");
+        homeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeBtnActionPerformed(evt);
@@ -634,7 +642,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(homeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout headerPanel3Layout = new javax.swing.GroupLayout(headerPanel3);

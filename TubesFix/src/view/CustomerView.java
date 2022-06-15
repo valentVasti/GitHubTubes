@@ -149,6 +149,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         addBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         addBtn.setText("TAMBAH");
+        addBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
@@ -157,6 +158,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         editBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         editBtn.setText("UBAH");
+        editBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editBtnActionPerformed(evt);
@@ -165,6 +167,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         deleteBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         deleteBtn.setText("HAPUS");
+        deleteBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
@@ -173,6 +176,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         saveBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         saveBtn.setText("SIMPAN");
+        saveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
@@ -181,6 +185,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         cancelBtn.setFont(new java.awt.Font("Berlin Sans FB", 0, 12)); // NOI18N
         cancelBtn.setText("BATAL");
+        cancelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
@@ -484,6 +489,7 @@ public class CustomerView extends javax.swing.JFrame {
         menuPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         penyewaanMenu.setBackground(new java.awt.Color(255, 255, 255));
+        penyewaanMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         penyewaanMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 penyewaanMenuMouseClicked(evt);
@@ -523,6 +529,7 @@ public class CustomerView extends javax.swing.JFrame {
         );
 
         menu2Panel.setBackground(new java.awt.Color(204, 204, 204));
+        menu2Panel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/customer.png"))); // NOI18N
 
@@ -550,6 +557,7 @@ public class CustomerView extends javax.swing.JFrame {
         );
 
         kendaraanMenu.setBackground(new java.awt.Color(255, 255, 255));
+        kendaraanMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kendaraanMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kendaraanMenuMouseClicked(evt);
@@ -582,6 +590,7 @@ public class CustomerView extends javax.swing.JFrame {
         );
 
         guideMenu.setBackground(new java.awt.Color(255, 255, 255));
+        guideMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         guideMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 guideMenuMouseClicked(evt);
@@ -616,6 +625,7 @@ public class CustomerView extends javax.swing.JFrame {
         );
 
         transaksiMenu.setBackground(new java.awt.Color(255, 255, 255));
+        transaksiMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         transaksiMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 transaksiMenuMouseClicked(evt);
@@ -684,6 +694,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         searchBtn2.setFont(new java.awt.Font("Stencil Std", 0, 18)); // NOI18N
         searchBtn2.setText("home");
+        searchBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         searchBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchBtn2MouseClicked(evt);
