@@ -1242,12 +1242,14 @@ public class PenyewaanView extends javax.swing.JFrame {
         mobilBox.setEnabled(true);
         mobilBox.setSelectedIndex(-1);
         motorBox.setEnabled(false);
+        motorBox.setSelectedIndex(-1);
     }//GEN-LAST:event_mobilRbActionPerformed
 
     private void motorRbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motorRbActionPerformed
         motorBox.setEnabled(true);
         motorBox.setSelectedIndex(-1);
         mobilBox.setEnabled(false);
+        mobilBox.setSelectedIndex(-1);
     }//GEN-LAST:event_motorRbActionPerformed
 
     private void rekapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rekapBtnActionPerformed
