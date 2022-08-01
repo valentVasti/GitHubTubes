@@ -60,6 +60,7 @@ public class PenyewaanView extends javax.swing.JFrame {
         kendaraanControl = new KendaraanControl();
         customerControl = new CustomerControl();
         showPenyewaan();
+        setEnabled(false);
         setGuideToDropDown();
         setMobilToDropDown();
         setMotorToDropDown();        
